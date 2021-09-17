@@ -78,10 +78,11 @@
             <a class="dropdown-item" href="#">Child Immunisation-Vitamin K1(Birth Dose)</a>
             <a class="dropdown-item" href="#">Child Immunisation-BCG</a>
             <a class="dropdown-item" href="#">Child Immunisation(9-11 months)-Measles & Rubella (MR) 1st Dose</a>
-            <a class="dropdown-item" href="#">Child Immunisation(9-11 months)-Measles 1st Dose</a>
             <a class="dropdown-item" href="#">Child immunisation-Vitamin A Dose-1</a>
             <a class="dropdown-item" href="#">Children(12-59 months) provided Albendazole</a>
-
+            <a class="dropdown-item" href="#">Child immunisation DPT and Pentavalent 1st dose</a>
+            <a class="dropdown-item" href="#">Child immunisation DPT and Pentavalent 2nd dose</a>
+            <a class="dropdown-item" href="#">Child immunisation DPT and Pentavalent 3rd dose</a>
         </div>
     </div>
 
@@ -326,12 +327,15 @@
 
             case "Child Immunisation(9-11 months)-Measles & Rubella (MR) 1st Dose": yValue = d => d.chld_immunzt_9to11m_mr; sortBy = 'chld_immunzt_9to11m_mr'; break;
 
-            case "Child Immunisation(9-11 months)-Measles 1st Dose": yValue = d => d.chld_immunzt_9to11m_measl_1st_dose; sortBy = 'chld_immunzt_9to11m_measl_1st_dose'; break;
-
             case "Child immunisation-Vitamin A Dose-1": yValue = d => d.chld_immunzt_vit_a_dose_1; sortBy = 'chld_immunzt_vit_a_dose_1'; break;
 
             case "Children(12-59 months) provided Albendazole": yValue = d => d.no_chld_12to59m_albendazole; sortBy = 'no_chld_12to59m_albendazole'; break;
+            
+            case "Child immunisation DPT and Pentavalent 1st dose": yValue = d => d.chld_immunzt_dpt1_penta1; sortBy = 'chld_immunzt_dpt1_penta1'; break;
 
+            case "Child immunisation DPT and Pentavalent 2nd dose": yValue = d => d.chld_immunzt_dpt2_penta2; sortBy = 'chld_immunzt_dpt2_penta2'; break;
+
+            case "Child immunisation DPT and Pentavalent 3rd dose": yValue = d => d.chld_immunzt_dpt3_penta3; sortBy = 'chld_immunzt_dpt3_penta3'; break;
         }
 
         
@@ -372,6 +376,9 @@
         d.chld_immunzt_9to11m_measl_1st_dose = +d.chld_immunzt_9to11m_measl_1st_dose;
         d.chld_immunzt_vit_a_dose_1 = +d.chld_immunzt_vit_a_dose_1;
         d.no_chld_12to59m_albendazole = +d.no_chld_12to59m_albendazole;
+        d.chld_immunzt_dpt1_penta1 = +d.chld_immunzt_dpt1_penta1;
+        d.chld_immunzt_dpt2_penta2 = +d.chld_immunzt_dpt2_penta2;
+        d.chld_immunzt_dpt3_penta3 = +d.chld_immunzt_dpt3_penta3;
         d.area_name = d.area_name;
         d.month = d.month;
         d.year = d.year;
