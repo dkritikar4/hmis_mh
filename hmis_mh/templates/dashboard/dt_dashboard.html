@@ -2386,20 +2386,20 @@
     data_from_django = {{ context.pw_data | safe }};
     var pw_data = []
     data_from_django.forEach(element => {
-        pw_data.push(element);
+        pw_data.push(element.fields);
     });
 
 
     data_from_django = {{ context.ci_data | safe }};
     var ci_data = []
     data_from_django.forEach(element => {
-        ci_data.push(element);
+        ci_data.push(element.fields);
     });
 
     data_from_django = {{ context.cd_data | safe }};
     var cd_data = []
     data_from_django.forEach(element => {
-        cd_data.push(element);
+        cd_data.push(element.fields);
     });
 
 
@@ -2525,7 +2525,7 @@
         // state =  state.replace(/ /g, '_');
         // if(pw_data[0].state != 'state')
         //     {
-        if (pw_data[0].area_parent_id == 405 ){
+        if (pw_data[0].area_parent_id == 22 ){
             newState = pw_data[0].area_parent_id;
         }
         else{
@@ -2551,7 +2551,7 @@ $(document).ready(function() {
     $('#areaSt').bind('change', function() {
         var elements = $('.dtList').children().hide(); // hide all the elements
         var value = $(this).val();
-        if (value == 405) { // if somethings' selected
+        if (value == 22) { // if somethings' selected
             elements.show(); // show the ones we want
         }
     }).trigger('change');
