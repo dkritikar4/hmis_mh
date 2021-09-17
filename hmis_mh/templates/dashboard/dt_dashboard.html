@@ -106,7 +106,7 @@
                     <option value='India' selected>India</option>
                 </select>
             </div> -->
-            <label class="d-inline-block ml-5" for="area_select">Select District</label>
+            <label class="d-inline-block ml-5" for="area_select">Select District:</label>
             <select class="custom-select" name="area_select" id="areaSt" style="width: auto">
                 {% for st_select in st_list %}
                 <option value="{{ st_select.area_id }}">{{ st_select.area_name }}
@@ -196,19 +196,33 @@
                                     </div>
                                     <a href="{% url 'tablechart' dist_name fy %}" class="lc_link" target="_blank"
                                         style="color: #a10404;">TABLE</a>
+                                    <a href="{% url 'stlvl_pie' dist_name fy %}?id1=Total_no_of_PW_registered_for_ANC"
+                                        class="lc_link" target="_blank" style="color: #0414a1;">PIE</a>
 
 
                                 </td>
                             </tr>
                             <tr>
                                 <td>1.1.1</td>
-                                <td colspan="6">Number of Early ANC Registeration: <span id="st_noearlyanc"></span></td>
-                                <td colspan="2"><a
-                                        href="{% url 'barnumeric' dist_name fy %}?id1=Early_ANC_Registeration"
-                                        class="lc_link" target="_blank" style="color: #972097;">BAR</a>
+                                <td colspan="6">Early ANC Registeration: <span id="st_noearlyanc"></span></td>
+                                <td colspan="2">
                                     <div class="btn-group dropright mr-1">
-                                        <button type="button" class="btn btn-light dropdown-toggle numeric lineColor"
+                                        <button type="button" class="btn btn-light dropdown-toggle numeric barColor"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            BAR
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" 
+                                            href="{% url 'barnumeric' dist_name fy %}?id1=Early_ANC_Registeration"
+                                            target="_blank">Individual</a>
+                                            <a class="dropdown-item" 
+                                            href="{% url 'pw_compbarNumeric' dist_name fy %}?id1=Early_ANC_Registeration"
+                                            target="_blank">Compare</a>
+                                        </div>
+                                    </div>
+                                        <div class="btn-group dropright mr-1">
+                                            <button type="button" class="btn btn-light dropdown-toggle numeric lineColor"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             LINE
                                         </button>
                                         <div class="dropdown-menu">
@@ -229,7 +243,7 @@
                             </tr>
                             <tr class="per_value">
                                 <td>1.1.1</td>
-                                <td colspan="6">% Early ANC Registration as fraction of PW registered for ANC: <span
+                                <td colspan="6">% Early ANC Registeration fraction of registered PW for ANC: <span
                                         id="dt_earlyanc"></span></td>
                                 <td colspan="2">
                                     <div class="btn-group dropright mr-1">
@@ -274,12 +288,24 @@
                                 <td>1.2.7</td>
                                 <td colspan="6">Number of PW received 4 or more ANC check ups: <span
                                         id="st_noanc4"></span></td>
-                                <td colspan="2"><a
-                                        href="{% url 'barnumeric' dist_name fy %}?id1=PW_received_4_or_more_ANC_check_ups"
-                                        class="lc_link" target="_blank" style="color: #972097;">BAR</a>
-                                    <div class="btn-group dropright mr-1">
+                                <td colspan="2">
+                                        <div class="btn-group dropright mr-1">
+                                            <button type="button" class="btn btn-light dropdown-toggle numeric barColor"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                BAR
+                                            </button>
+                                            <div class="dropdown-menu">
+                                                    <a class="dropdown-item"
+                                                        href="{% url 'barnumeric' dist_name fy %}?id1=PW_received_4_or_more_ANC_check_ups"
+                                                        target="_blank">Individual</a>
+                                                    <a class="dropdown-item" 
+                                                    href="{% url 'pw_compbarNumeric' dist_name fy %}?id1=PW_received_4_or_more_ANC_check_ups"
+                                                    target="_blank">Compare</a>
+                                            </div>
+                                        </div>
+                                        <div class="btn-group dropright mr-1">
                                         <button type="button" class="btn btn-light dropdown-toggle numeric lineColor"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">   
                                             LINE
                                         </button>
                                         <div class="dropdown-menu">
@@ -300,10 +326,23 @@
 
                             <tr class="per_value">
                                 <td>1.2.7</td>
-                                <td colspan="6"> % PW received 4 or more ANC check ups as fraction of PW registered for ANC: <span id="dt_anc4ormore"></span></td>
-                                <td colspan="2"><a
-                                        href="{% url 'barchart' dist_name fy %}?id1=PW_received_4_or_more_ANC_check_ups"
-                                        class="lc_link" target="_blank" style="color: #972097;">BAR</a>
+                                <td colspan="6"> % PW received 4 or more ANC check ups fraction of registered PW for
+                                    ANC: <span id="dt_anc4ormore"></span></td>
+                                <td colspan="2">
+                                    <div class="btn-group dropright mr-1">
+                                        <button type="button" class="btn btn-light dropdown-toggle barColor"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            BAR
+                                        </button>
+                                            <div class="dropdown-menu">
+                                                <a class="dropdown-item"
+                                                    href="{% url 'barchart' dist_name fy %}?id1=PW_received_4_or_more_ANC_check_ups"
+                                                    target="_blank">Individual</a>
+                                                <a class="dropdown-item" 
+                                                href="{% url 'pw_compbar' dist_name fy %}?id1=PW_received_4_or_more_ANC_check_ups"
+                                                target="_blank">Compare</a>
+                                            </div>
+                                    </div>
                                     <div class="btn-group dropright mr-1">
                                         <button type="button" class="btn btn-light dropdown-toggle lineColor"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -328,8 +367,21 @@
                             <tr>
                                 <td>1.2.1</td>
                                 <td colspan="6">Number of PW given TT1: <span id="st_nopwtt1"></span></td>
-                                <td colspan="2"><a href="{% url 'barnumeric' dist_name fy %}?id1=PW_given_TT1"
-                                        class="lc_link" target="_blank" style="color: #972097;">BAR</a>
+                                <td colspan="2">
+                                    <div class="btn-group dropright mr-1">
+                                        <button type="button" class="btn btn-light dropdown-toggle numeric barColor"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                BAR
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item"
+                                                href="{% url 'barnumeric' dist_name fy %}?id1=PW_given_TT1"
+                                                target="_blank">Individual</a>
+                                            <a class="dropdown-item" 
+                                            href="{% url 'pw_compbarNumeric' dist_name fy %}?id1=PW_given_TT1"
+                                            target="_blank">Compare</a>
+                                        </div>
+                                    </div>
                                     <div class="btn-group dropright mr-1">
                                         <button type="button" class="btn btn-light dropdown-toggle numeric lineColor"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -353,11 +405,23 @@
 
                             <tr class="per_value">
                                 <td>1.2.1</td>
-                                <td colspan="6">% PW given TT1 fraction of registered PW for ANC: <span
+                                <td colspan="6">% PW given TT1 as fraction of PW received 4 or more ANC check ups:
+                                     <span
                                         id="dt_pwtt1"></span></td>
                                 <td colspan="2">
-                                    <a href="{% url 'barchart' dist_name fy %}?id1=PW_given_TT1" class="lc_link"
-                                        target="_blank" style="color: #972097;">BAR</a>
+                                    <div class="btn-group dropright mr-1">
+                                        <button type="button" class="btn btn-light dropdown-toggle barColor"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            BAR
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item"
+                                                href="{% url 'barchart' dist_name fy %}?id1=PW_given_TT1"
+                                                target="_blank">Individual</a>
+                                            <a class="dropdown-item" 
+                                            href="{% url 'pw_compbar' dist_name fy %}?id1=PW_given_TT1"
+                                            target="_blank">Compare</a>
+                                        </div>
                                     <div class="btn-group dropright mr-1">
                                         <button type="button" class="btn btn-light dropdown-toggle lineColor"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -382,9 +446,23 @@
 
                             <tr>
                                 <td>1.2.2</td>
-                                <td colspan="6">Number of PW given TT2: <span id="st_nopwtt2"></span></td>
-                                <td colspan="2"><a href="{% url 'barnumeric' dist_name fy %}?id1=PW_given_TT2"
-                                        class="lc_link" target="_blank" style="color: #972097;">BAR</a>
+                                <td colspan="6">Number of PW given TT2: 
+                                    <span id="st_nopwtt2"></span></td>
+                                <td colspan="2">
+                                    <div class="btn-group dropright mr-1">
+                                        <button type="button" class="btn btn-light dropdown-toggle numeric barColor"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                BAR
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item"
+                                                href="{% url 'barnumeric' dist_name fy %}?id1=PW_given_TT2"
+                                                target="_blank">Individual</a>
+                                            <a class="dropdown-item" 
+                                            href="{% url 'pw_compbarNumeric' dist_name fy %}?id1=PW_given_TT2"
+                                            target="_blank">Compare</a>
+                                        </div>
+                                    </div>
                                     <div class="btn-group dropright mr-1">
                                         <button type="button" class="btn btn-light dropdown-toggle numeric lineColor"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -406,40 +484,24 @@
                                 </td>
                             </tr>
 
-                            <tr class="per_value">
-                                <td>1.2.2</td>
-                                <td colspan="6">% PW given TT2 fraction of registered PW for ANC: <span
-                                        id="dt_pwtt2"></span></td>
-                                <td colspan="2">
-                                    <a href="{% url 'barchart' dist_name fy %}?id1=PW_given_TT2" class="lc_link"
-                                        target="_blank" style="color: #972097;">BAR</a>
-                                    <div class="btn-group dropright mr-1">
-                                        <button type="button" class="btn btn-light dropdown-toggle lineColor"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            LINE
-                                        </button>
-                                        <div class="dropdown-menu">
-                                            <a class="dropdown-item lc_link"
-                                                href="{% url 'linechart' dist_name fy %}?id1=PW_given_TT2"
-                                                target="_blank">Areawise</a>
-                                            <a class="dropdown-item lc_link"
-                                                href="{% url 'fy_line' dist_name fy %}?id1=PW_given_TT2"
-                                                target="_blank">Yearwise</a>
-                                        </div>
-                                    </div>
-                                    <a href="{% url 'tablechart' dist_name fy %}" class="lc_link" target="_blank"
-                                        style="color: #a10404;">TABLE</a>
-                                    <a href="{% url 'pw_map' fy %}?id1=4" class="lc_link" target="_blank"
-                                        style="color: #05705e;">MAP</a>
-                                </td>
-                                </td>
-                            </tr>
-
                             <tr>
                                 <td>1.2.3</td>
                                 <td colspan="6">Number of PW given TT Booster: <span id="st_nopwttbooster"></span></td>
-                                <td colspan="2"><a href="{% url 'barnumeric' dist_name fy %}?id1=PW_given_TT_Booster"
-                                        class="lc_link" target="_blank" style="color: #972097;">BAR</a>
+                                <td colspan="2">
+                                    <div class="btn-group dropright mr-1">
+                                        <button type="button" class="btn btn-light dropdown-toggle numeric barColor"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                BAR
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item"
+                                                href="{% url 'barnumeric' dist_name fy %}?id1=PW_given_TT_Booster"
+                                                target="_blank">Individual</a>
+                                            <a class="dropdown-item" 
+                                            href="{% url 'pw_compbarNumeric' dist_name fy %}?id1=PW_given_TT_Booster"
+                                            target="_blank">Compare</a>
+                                        </div>
+                                    </div>
                                     <div class="btn-group dropright mr-1">
                                         <button type="button" class="btn btn-light dropdown-toggle numeric lineColor"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -463,11 +525,24 @@
 
                             <tr class="per_value">
                                 <td>1.2.3</td>
-                                <td colspan="6">% PW given TT Booster fraction of registered PW for ANC: <span
+                                <td colspan="6">% PW given TT1 or TT Booster as fraction of PW received 4 or more ANC check ups
+                                    : <span
                                         id="dt_pwttbooster"></span></td>
                                 <td colspan="2">
-                                    <a href="{% url 'barchart' dist_name fy %}?id1=PW_given_TT_Booster" class="lc_link"
-                                        target="_blank" style="color: #972097;">BAR</a>
+                                    <div class="btn-group dropright mr-1">
+                                        <button type="button" class="btn btn-light dropdown-toggle barColor"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            BAR
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item"
+                                                href="{% url 'barchart' dist_name fy %}?id1=PW_given_TT1_or_TT_Booster"
+                                                target="_blank">Individual</a>
+                                            <a class="dropdown-item" 
+                                            href="{% url 'pw_compbar' dist_name fy %}?id1=PW_given_TT1_or_TT_Booster"
+                                            target="_blank">Compare</a>
+                                        </div>
+                                    </div>
                                     <div class="btn-group dropright mr-1">
                                         <button type="button" class="btn btn-light dropdown-toggle lineColor"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -475,10 +550,10 @@
                                         </button>
                                         <div class="dropdown-menu">
                                             <a class="dropdown-item lc_link"
-                                                href="{% url 'linechart' dist_name fy %}?id1=PW_given_TT_Booster"
+                                                href="{% url 'linechart' dist_name fy %}?id1=PW_given_TT1_or_TT_Booster"
                                                 target="_blank">Areawise</a>
                                             <a class="dropdown-item lc_link"
-                                                href="{% url 'fy_line' dist_name fy %}?id1=PW_given_TT_Booster"
+                                                href="{% url 'fy_line' dist_name fy %}?id1=PW_given_TT1_or_TT_Booster"
                                                 target="_blank">Yearwise</a>
                                         </div>
                                     </div>
@@ -493,9 +568,21 @@
                                 <td>1.2.4</td>
                                 <td colspan="6">Number of PW given 180 Iron Folic Acid (IFA) tablets: <span
                                         id="st_nopwifa"></span></td>
-                                <td colspan="2"><a
-                                        href="{% url 'barnumeric' dist_name fy %}?id1=PW_given_180_Iron_Folic_Acid_(IFA)_tablets"
-                                        class="lc_link" target="_blank" style="color: #972097;">BAR</a>
+                                <td colspan="2">
+                                    <div class="btn-group dropright mr-1">
+                                        <button type="button" class="btn btn-light dropdown-toggle numeric barColor"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                BAR
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item"
+                                                href="{% url 'barnumeric' dist_name fy %}?id1=PW_given_180_Iron_Folic_Acid_(IFA)_tablets"
+                                                target="_blank">Individual</a>
+                                            <a class="dropdown-item" 
+                                            href="{% url 'pw_compbarNumeric' dist_name fy %}?id1=PW_given_180_Iron_Folic_Acid_(IFA)_tablets"
+                                            target="_blank">Compare</a>
+                                        </div>
+                                    </div>
                                     <div class="btn-group dropright mr-1">
                                         <button type="button" class="btn btn-light dropdown-toggle numeric lineColor"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -519,12 +606,24 @@
 
                             <tr class="per_value">
                                 <td>1.2.4</td>
-                                <td colspan="6">% PW given 180 Iron Folic Acid (IFA) tablets fraction of registered PW
-                                    for ANC: <span id="dt_pwifa"></span>
+                                <td colspan="6">% PW given 180 Iron Folic Acid (IFA) tablets as fraction of PW received 4 or more ANC check ups:
+                                    <span id="dt_pwifa"></span>
                                 </td>
                                 <td colspan="2">
-                                    <a href="{% url 'barchart' dist_name fy %}?id1=PW_given_180_Iron_Folic_Acid_(IFA)_tablets"
-                                        class="lc_link" target="_blank" style="color: #972097;">BAR</a>
+                                    <div class="btn-group dropright mr-1">
+                                        <button type="button" class="btn btn-light dropdown-toggle barColor"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            BAR
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item"
+                                                href="{% url 'barchart' dist_name fy %}?id1=PW_given_180_Iron_Folic_Acid_(IFA)_tablets"
+                                                target="_blank">Individual</a>
+                                            <a class="dropdown-item" 
+                                            href="{% url 'pw_compbar' dist_name fy %}?id1=PW_given_180_Iron_Folic_Acid_(IFA)_tablets"
+                                            target="_blank">Compare</a>
+                                        </div>
+                                    </div>
                                     <div class="btn-group dropright mr-1">
                                         <button type="button" class="btn btn-light dropdown-toggle lineColor"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -550,9 +649,21 @@
                                 <td>1.2.5</td>
                                 <td colspan="6">Number of PW given 360 Calcium tablets: <span
                                         id="st_nopwcalcium"></span></td>
-                                <td colspan="2"><a
-                                        href="{% url 'barnumeric' dist_name fy %}?id1=PW_given_360_Calcium_tablets"
-                                        class="lc_link" target="_blank" style="color: #972097;">BAR</a>
+                                <td colspan="2">
+                                    <div class="btn-group dropright mr-1">
+                                        <button type="button" class="btn btn-light dropdown-toggle numeric barColor"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                BAR
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item"
+                                                href="{% url 'barnumeric' dist_name fy %}?id1=PW_given_360_Calcium_tablets"
+                                                target="_blank">Individual</a>
+                                            <a class="dropdown-item" 
+                                            href="{% url 'pw_compbarNumeric' dist_name fy %}?id1=PW_given_360_Calcium_tablets"
+                                            target="_blank">Compare</a>
+                                        </div>
+                                    </div>
                                     <div class="btn-group dropright mr-1">
                                         <button type="button" class="btn btn-light dropdown-toggle numeric lineColor"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -576,10 +687,22 @@
 
                             <tr class="per_value">
                                 <td>1.2.5</td>
-                                <td colspan="6"> PW given 360 Calcium tablets: <span id="dt_pwCalcium"></span></td>
+                                <td colspan="6"> % PW given 360 Calcium tablets as fraction of PW received 4 or more ANC check ups: <span id="dt_pwCalcium"></span></td>
                                 <td colspan="2">
-                                    <a href="{% url 'barchart' dist_name fy %}?id1=PW_given_360_Calcium_tablets"
-                                        class="lc_link" target="_blank" style="color: #972097;">BAR</a>
+                                    <div class="btn-group dropright mr-1">
+                                        <button type="button" class="btn btn-light dropdown-toggle barColor"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            BAR
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item"
+                                                href="{% url 'barchart' dist_name fy %}?id1=PW_given_360_Calcium_tablets"
+                                                target="_blank">Individual</a>
+                                            <a class="dropdown-item" 
+                                            href="{% url 'pw_compbar' dist_name fy %}?id1=PW_given_360_Calcium_tablets"
+                                            target="_blank">Compare</a>
+                                        </div>
+                                    </div>
                                     <div class="btn-group dropright mr-1">
                                         <button type="button" class="btn btn-light dropdown-toggle lineColor"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -605,9 +728,21 @@
                                 <td>1.2.6</td>
                                 <td colspan="6">Number of PW given one Albendazole tablet after 1st trimester: <span
                                         id="st_nopwalben"></span></td>
-                                <td colspan="2"><a
-                                        href="{% url 'barnumeric' dist_name fy %}?id1=PW_given_one_Albendazole_tablet_after_1st_trimester"
-                                        class="lc_link" target="_blank" style="color: #972097;">BAR</a>
+                                <td colspan="2">
+                                    <div class="btn-group dropright mr-1">
+                                        <button type="button" class="btn btn-light dropdown-toggle numeric barColor"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                BAR
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item"
+                                                href="{% url 'barnumeric' dist_name fy %}?id1=PW_given_one_Albendazole_tablet_after_1st_trimester"
+                                                target="_blank">Individual</a>
+                                            <a class="dropdown-item" 
+                                            href="{% url 'pw_compbarNumeric' dist_name fy %}?id1=PW_given_one_Albendazole_tablet_after_1st_trimester"
+                                            target="_blank">Compare</a>
+                                        </div>
+                                    </div>
                                     <div class="btn-group dropright mr-1">
                                         <button type="button" class="btn btn-light dropdown-toggle numeric lineColor"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -631,11 +766,23 @@
 
                             <tr class="per_value">
                                 <td>1.2.6</td>
-                                <td colspan="6"> PW given one Albendazole tablet after 1st trimester: <span
+                                <td colspan="6"> % PW given one Albendazole tablet after 1st trimester as fraction of PW received 4 or more ANC check ups: <span
                                         id="dt_pwalben"></span></td>
-                                <td colspan="2"><a
-                                        href="{% url 'barchart' dist_name fy %}?id1=PW_given_one_Albendazole_tablet_after_1st_trimester"
-                                        class="lc_link" target="_blank" style="color: #972097;">BAR</a>
+                                <td colspan="2">
+                                    <div class="btn-group dropright mr-1">
+                                        <button type="button" class="btn btn-light dropdown-toggle barColor"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            BAR
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item"
+                                                href="{% url 'barchart' dist_name fy %}?id1=PW_given_one_Albendazole_tablet_after_1st_trimester"
+                                                target="_blank">Individual</a>
+                                            <a class="dropdown-item" 
+                                            href="{% url 'pw_compbar' dist_name fy %}?id1=PW_given_one_Albendazole_tablet_after_1st_trimester"
+                                            target="_blank">Compare</a>
+                                        </div>
+                                    </div>
                                     <div class="btn-group dropright mr-1">
                                         <button type="button" class="btn btn-light dropdown-toggle lineColor"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -647,6 +794,166 @@
                                                 target="_blank">Areawise</a>
                                             <a class="dropdown-item lc_link"
                                                 href="{% url 'fy_line' dist_name fy %}?id1=PW_given_one_Albendazole_tablet_after_1st_trimester"
+                                                target="_blank">Yearwise</a>
+                                        </div>
+                                    </div>
+                                    <a href="{% url 'tablechart' dist_name fy %}" class="lc_link" target="_blank"
+                                        style="color: #a10404;">TABLE</a>
+                                    <a href="{% url 'pw_map' fy %}?id1=8" class="lc_link" target="_blank"
+                                        style="color: #05705e;">MAP</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>1.4.2</td>
+                                <td colspan="6">Number of Moderately Anaemic PW:
+                                     <span
+                                        id="st_nopwmodanaemia"></span></td>
+                                <td colspan="2">
+                                    <div class="btn-group dropright mr-1">
+                                        <button type="button" class="btn btn-light dropdown-toggle numeric barColor"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                BAR
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item"
+                                                href="{% url 'barnumeric' dist_name fy %}?id1=Moderately_Anaemic_PW"
+                                                target="_blank">Individual</a>
+                                            <a class="dropdown-item" 
+                                            href="{% url 'pw_compbarNumeric' dist_name fy %}?id1=Moderately_Anaemic_PW"
+                                            target="_blank">Compare</a>
+                                        </div>
+                                    </div>
+                                    <div class="btn-group dropright mr-1">
+                                        <button type="button" class="btn btn-light dropdown-toggle numeric lineColor"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            LINE
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item lc_link"
+                                                href="{% url 'linenumeric' dist_name fy %}?id1=Moderately_Anaemic_PW"
+                                                target="_blank">Areawise</a>
+                                            <a class="dropdown-item lc_link"
+                                                href="{% url 'fy_lineNum' dist_name fy %}?id1=Moderately_Anaemic_PW"
+                                                target="_blank">Yearwise</a>
+                                        </div>
+                                    </div>
+                                    <a href="{% url 'tablechart' dist_name fy %}" class="lc_link" target="_blank"
+                                        style="color: #a10404;">TABLE</a>
+                                    <a href="{% url 'stlvl_pie' dist_name fy %}?id1=Moderately_Anaemic_PW"
+                                        class="lc_link" target="_blank" style="color: #0414a1;">PIE</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>1.4.3</td>
+                                <td colspan="6">Number of Severely Anaemic PW (tested):
+                                     <span
+                                        id="st_nopwsevanaemia"></span></td>
+                                <td colspan="2">
+                                    <div class="btn-group dropright mr-1">
+                                        <button type="button" class="btn btn-light dropdown-toggle numeric barColor"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                BAR
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item"
+                                                href="{% url 'barnumeric' dist_name fy %}?id1=Severely_Anaemic_PW_(tested)"
+                                                target="_blank">Individual</a>
+                                            <a class="dropdown-item" 
+                                            href="{% url 'pw_compbarNumeric' dist_name fy %}?id1=Severely_Anaemic_PW_(tested)"
+                                            target="_blank">Compare</a>
+                                        </div> 
+                                    </div>
+                                    <div class="btn-group dropright mr-1">
+                                        <button type="button" class="btn btn-light dropdown-toggle numeric lineColor"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            LINE
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item lc_link"
+                                                href="{% url 'linenumeric' dist_name fy %}?id1=Severely_Anaemic_PW_(tested)"
+                                                target="_blank">Areawise</a>
+                                            <a class="dropdown-item lc_link"
+                                                href="{% url 'fy_lineNum' dist_name fy %}?id1=Severely_Anaemic_PW_(tested)"
+                                                target="_blank">Yearwise</a>
+                                        </div>
+                                    </div>
+                                    <a href="{% url 'tablechart' dist_name fy %}" class="lc_link" target="_blank"
+                                        style="color: #a10404;">TABLE</a>
+                                    <a href="{% url 'stlvl_pie' dist_name fy %}?id1=Severely_Anaemic_PW_(tested)"
+                                        class="lc_link" target="_blank" style="color: #0414a1;">PIE</a>
+                                </td>
+                            </tr>
+                            <tr class="per_value">
+                                <td>1.4.4</td>
+                                <td colspan="6"> Severely Anaemic PW given treatment as a % of total tested cases:
+                                     <span
+                                        id="dt_sevanaemiatrtd"></span></td>
+                                <td colspan="2">
+                                    <div class="btn-group dropright mr-1">
+                                        <button type="button" class="btn btn-light dropdown-toggle barColor"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            BAR
+                                        </button>
+                                            <div class="dropdown-menu">
+                                                <a class="dropdown-item"
+                                                    href="{% url 'barchart' dist_name fy %}?id1=Severely_Anaemic_PW_(tested)"
+                                                    target="_blank">Individual</a>
+                                                <a class="dropdown-item" 
+                                                href="{% url 'pw_compbar' dist_name fy %}?id1=Severely_Anaemic_PW_(tested)"
+                                                target="_blank">Compare</a>
+                                            </div>
+                                    </div>
+                                    <div class="btn-group dropright mr-1">
+                                        <button type="button" class="btn btn-light dropdown-toggle lineColor"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            LINE
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item lc_link"
+                                                href="{% url 'linechart' dist_name fy %}?id1=Severely_Anaemic_PW_given_treatment"
+                                                target="_blank">Areawise</a>
+                                            <a class="dropdown-item lc_link"
+                                                href="{% url 'fy_line' dist_name fy %}?id1=Severely_Anaemic_PW_given_treatment"
+                                                target="_blank">Yearwise</a>
+                                        </div>
+                                    </div>
+                                    <a href="{% url 'tablechart' dist_name fy %}" class="lc_link" target="_blank"
+                                        style="color: #a10404;">TABLE</a>
+                                    <a href="{% url 'pw_map' fy %}?id1=8" class="lc_link" target="_blank"
+                                        style="color: #05705e;">MAP</a>
+                                </td>
+                            </tr>
+                            <tr class="per_value">
+                                <td></td>
+                                <td colspan="6"> TT1 to TT2 Dropout (% PW given TT2 as fraction of PW given TT1):
+                                     <span
+                                        id="dt_tt1tott2drop"></span></td>
+                                <td colspan="2">
+                                    <div class="btn-group dropright mr-1">
+                                        <button type="button" class="btn btn-light dropdown-toggle barColor"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            BAR
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item"
+                                                href="{% url 'barchart' dist_name fy %}?id1=TT1_to_TT2_Dropout"
+                                                target="_blank">Individual</a>
+                                            <a class="dropdown-item" 
+                                            href="{% url 'pw_compbar' dist_name fy %}?id1=TT1_to_TT2_Dropout"
+                                            target="_blank">Compare</a>
+                                        </div>
+                                    </div>
+                                    <div class="btn-group dropright mr-1">
+                                        <button type="button" class="btn btn-light dropdown-toggle lineColor"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            LINE
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item lc_link"
+                                                href="{% url 'linechart' dist_name fy %}?id1=TT1_to_TT2_Dropout"
+                                                target="_blank">Areawise</a>
+                                            <a class="dropdown-item lc_link"
+                                                href="{% url 'fy_line' dist_name fy %}?id1=TT1_to_TT2_Dropout"
                                                 target="_blank">Yearwise</a>
                                         </div>
                                     </div>
@@ -673,11 +980,105 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td>3.1</td>
-                                <td colspan="6">Total C-Section deliveries performed: <span id="st_nocsection"></span>
+                                <td>2.1.1</td>
+                                <td colspan="6">Total number of Home Deliveries:
+                                     <span id="st_home"></span>
                                 </td>
-                                <td colspan="2"><a href="{% url 'barnumeric' dist_name fy %}?id1=C-section_deliveries"
-                                        class="lc_link" target="_blank" style="color: #972097;">BAR</a>
+                                <td colspan="2">
+                                    <div class="btn-group dropright mr-1">
+                                        <button type="button" class="btn btn-light dropdown-toggle numeric barColor"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                BAR
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item"
+                                                href="{% url 'barnumeric' dist_name fy %}?id1=Home_Deliveries"
+                                                target="_blank">Individual</a>
+                                            <a class="dropdown-item" 
+                                            href="{% url 'pw_compbarNumeric' dist_name fy %}?id1=Home_Deliveries"
+                                            target="_blank">Compare</a>
+                                        </div>
+                                    </div>
+                                    <div class="btn-group dropright mr-1">
+                                        <button type="button" class="btn btn-light dropdown-toggle numeric lineColor"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            LINE
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item lc_link"
+                                                href="{% url 'linenumeric' dist_name fy %}?id1=Home_Deliveries"
+                                                target="_blank">Areawise</a>
+                                            <a class="dropdown-item lc_link"
+                                                href="{% url 'fy_lineNum' dist_name fy %}?id1=Home_Deliveries"
+                                                target="_blank">Yearwise</a>
+                                        </div>
+                                    </div>
+                                    <a href="{% url 'tablechart' dist_name fy %}" class="lc_link" target="_blank"
+                                        style="color: #a10404;">TABLE</a>
+                                    <a href="{% url 'stlvl_pie' dist_name fy %}?id1=Home_Deliveries" class="lc_link"
+                                        target="_blank" style="color: #0414a1;">PIE</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2.2</td>
+                                <td colspan="6">Total number of Institutional Deliveries:
+                                     <span id="st_insti"></span>
+                                </td>
+                                <td colspan="2">
+                                    <div class="btn-group dropright mr-1">
+                                        <button type="button" class="btn btn-light dropdown-toggle numeric barColor"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                BAR
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item"
+                                                href="{% url 'barnumeric' dist_name fy %}?id1=Institutional_Deliveries"
+                                                target="_blank">Individual</a>
+                                            <a class="dropdown-item" 
+                                            href="{% url 'pw_compbarNumeric' dist_name fy %}?id1=Institutional_Deliveries"
+                                            target="_blank">Compare</a>
+                                        </div>
+                                    </div>
+                                    <div class="btn-group dropright mr-1">
+                                        <button type="button" class="btn btn-light dropdown-toggle numeric lineColor"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            LINE
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item lc_link"
+                                                href="{% url 'linenumeric' dist_name fy %}?id1=Institutional_Deliveries"
+                                                target="_blank">Areawise</a>
+                                            <a class="dropdown-item lc_link"
+                                                href="{% url 'fy_lineNum' dist_name fy %}?id1=Institutional_Deliveries"
+                                                target="_blank">Yearwise</a>
+                                        </div>
+                                    </div>
+                                    <a href="{% url 'tablechart' dist_name fy %}" class="lc_link" target="_blank"
+                                        style="color: #a10404;">TABLE</a>
+                                    <a href="{% url 'stlvl_pie' dist_name fy %}?id1=Institutional_Deliveries" class="lc_link"
+                                        target="_blank" style="color: #0414a1;">PIE</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>3.1</td>
+                                <td colspan="6">Total C-Section deliveries performed: 
+                                    <span id="st_nocsection"></span>
+                                </td>
+                                <td colspan="2">
+                                    <div class="btn-group dropright mr-1">
+                                        <button type="button" class="btn btn-light dropdown-toggle numeric barColor"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                BAR
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item"
+                                                href="{% url 'barnumeric' dist_name fy %}?id1=C-section_deliveries"
+                                                target="_blank">Individual</a>
+                                            <a class="dropdown-item" 
+                                            href="{% url 'pw_compbarNumeric' dist_name fy %}?id1=C-section_deliveries"
+                                            target="_blank">Compare</a>
+                                        </div>
+                                    </div>
                                     <div class="btn-group dropright mr-1">
                                         <button type="button" class="btn btn-light dropdown-toggle numeric lineColor"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -698,13 +1099,24 @@
                                         target="_blank" style="color: #0414a1;">PIE</a>
                                 </td>
                             </tr>
-
                             <tr class="per_value">
                                 <td>3.1</td>
                                 <td colspan="6"> C-section deliveries: <span id="dt_csection"></span></td>
                                 <td colspan="2">
-                                    <a href="{% url 'barchart' dist_name fy %}?id1=C-section_deliveries" class="lc_link"
-                                        target="_blank" style="color: #972097;">BAR</a>
+                                    <div class="btn-group dropright mr-1">
+                                        <button type="button" class="btn btn-light dropdown-toggle barColor"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            BAR
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item"
+                                                href="{% url 'barchart' dist_name fy %}?id1=C-section_deliveries"
+                                                target="_blank">Individual</a>
+                                            <a class="dropdown-item" 
+                                            href="{% url 'pw_compbar' dist_name fy %}?id1=C-section_deliveries"
+                                            target="_blank">Compare</a>
+                                        </div>
+                                    </div>
                                     <div class="btn-group dropright mr-1">
                                         <button type="button" class="btn btn-light dropdown-toggle lineColor"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -726,12 +1138,102 @@
                                 </td>
                             </tr>
                             <tr>
+                                <td>4.1.2</td>
+                                <td colspan="6">Total Number of Preterm Birth:
+                                     <span id="st_nopretermbirth"></span>
+                                </td>
+                                <td colspan="2">
+                                    <div class="btn-group dropright mr-1">
+                                        <button type="button" class="btn btn-light dropdown-toggle numeric barColor"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                BAR
+                                        </button>   
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item"
+                                                href="{% url 'barnumeric' dist_name fy %}?id1=Preterm_Birth"
+                                                target="_blank">Individual</a>
+                                            <a class="dropdown-item" 
+                                            href="{% url 'pw_compbarNumeric' dist_name fy %}?id1=Preterm_Birth"
+                                            target="_blank">Compare</a>
+                                        </div>
+                                    </div>
+                                    <div class="btn-group dropright mr-1">
+                                        <button type="button" class="btn btn-light dropdown-toggle numeric lineColor"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            LINE
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item lc_link"
+                                                href="{% url 'linenumeric' dist_name fy %}?id1=Preterm_Birth"
+                                                target="_blank">Areawise</a>
+                                            <a class="dropdown-item lc_link"
+                                                href="{% url 'fy_lineNum' dist_name fy %}?id1=Preterm_Birth"
+                                                target="_blank">Yearwise</a>
+                                        </div>
+                                    </div>
+                                    <a href="{% url 'tablechart' dist_name fy %}" class="lc_link" target="_blank"
+                                        style="color: #a10404;">TABLE</a>
+                                    <a href="{% url 'stlvl_pie' dist_name fy %}?id1=Preterm_Birth" class="lc_link"
+                                        target="_blank" style="color: #0414a1;">PIE</a>
+                                </td>
+                            </tr>
+                            <tr class="per_value">
+                                <td>4.1.2</td>
+                                <td colspan="6"> Preterm Birth Rate:
+                                     <span id="dt_pretermbirthrate"></span></td>
+                                <td colspan="2">
+                                    <div class="btn-group dropright mr-1">
+                                        <button type="button" class="btn btn-light dropdown-toggle barColor"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            BAR
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item"
+                                                href="{% url 'barchart' dist_name fy %}?id1=Preterm_Birth_Rate"
+                                                target="_blank">Individual</a>
+                                            <a class="dropdown-item" 
+                                            href="{% url 'pw_compbar' dist_name fy %}?id1=Preterm_Birth_Rate"
+                                            target="_blank">Compare</a>
+                                        </div>
+                                    </div>
+                                    <div class="btn-group dropright mr-1">
+                                        <button type="button" class="btn btn-light dropdown-toggle lineColor"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            LINE
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item lc_link"
+                                                href="{% url 'linechart' dist_name fy %}?id1=Preterm_Birth_Rate"
+                                                target="_blank">Areawise</a>
+                                            <a class="dropdown-item lc_link"
+                                                href="{% url 'fy_line' dist_name fy %}?id1=Preterm_Birth_Rate"
+                                                target="_blank">Yearwise</a>
+                                        </div>
+                                    </div>
+                                    <a href="{% url 'tablechart' dist_name fy %}" class="lc_link" target="_blank"
+                                        style="color: #a10404;">TABLE</a>
+                                    <a href="{% url 'pw_map' fy %}?id1=10" class="lc_link" target="_blank"
+                                        style="color: #05705e;">MAP</a>
+                                </td>
+                            </tr>
+                            <tr>
                                 <td class="ind_code">4.1.3</td>
                                 <td colspan="6">Total number of Still Birth: <span id="st_totstb"></span></td>
-                                <td colspan="2"><a
-                                        href="{% url 'barnumeric' dist_name fy %}?id1=Total_no_of_Still_Birth"
-                                        class="lc_link" target="_blank" style="color: #972097;">BAR</a>
+                                <td colspan="2">
                                     <div class="btn-group dropright mr-1">
+                                        <button type="button" class="btn btn-light dropdown-toggle numeric barColor"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                BAR
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item"
+                                                href="{% url 'barnumeric' dist_name fy %}?id1=Total_no_of_Still_Birth"
+                                                target="_blank">Individual</a>
+                                            <a class="dropdown-item" 
+                                            href="{% url 'pw_compbarNumeric' dist_name fy %}?id1=Total_no_of_Still_Birth"
+                                            target="_blank">Compare</a>
+                                        </div>
+                                    </div>
                                         <button type="button" class="btn btn-light dropdown-toggle numeric lineColor"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             LINE
@@ -755,8 +1257,20 @@
                                 <td>4.1.3</td>
                                 <td colspan="6"> Percent of Still Birth: <span id="st_stbirth"></span><br><span id="sb_caption"> (% of Still Births per 1000 Live Births)</span></td>
                                 <td colspan="2">
-                                    <a href="{% url 'barchart' dist_name fy %}?id1=Still_Birth" class="lc_link"
-                                        target="_blank" style="color: #972097;">BAR</a>
+                                    <div class="btn-group dropright mr-1">
+                                        <button type="button" class="btn btn-light dropdown-toggle barColor"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            BAR
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item"
+                                                href="{% url 'barchart' dist_name fy %}?id1=Still_Birth"
+                                                target="_blank">Individual</a>
+                                            <a class="dropdown-item" 
+                                            href="{% url 'pw_compbar' dist_name fy %}?id1=Still_Birth"
+                                            target="_blank">Compare</a>
+                                        </div>
+                                    </div>
                                     <div class="btn-group dropright mr-1">
                                         <button type="button" class="btn btn-light dropdown-toggle lineColor"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -768,6 +1282,45 @@
                                                 target="_blank">Areawise</a>
                                             <a class="dropdown-item lc_link"
                                                 href="{% url 'fy_line' dist_name fy %}?id1=Still_Birth"
+                                                target="_blank">Yearwise</a>
+                                        </div>
+                                    </div>
+                                    <a href="{% url 'tablechart' dist_name fy %}" class="lc_link" target="_blank"
+                                        style="color: #a10404;">TABLE</a>
+                                    <a href="{% url 'pw_map' fy %}?id1=10" class="lc_link" target="_blank"
+                                        style="color: #05705e;">MAP</a>
+                                </td>
+                            </tr>
+                            <tr class="per_value">
+                                <td></td>
+                                <td colspan="6"> Pregnancy outcomes as a % of ANC registration:
+                                    <span id="dt_pwoutcome"></span></td>
+                                <td colspan="2">
+                                    <div class="btn-group dropright mr-1">
+                                        <button type="button" class="btn btn-light dropdown-toggle barColor"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            BAR
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item"
+                                                href="{% url 'barchart' dist_name fy %}?id1=Pregnancy_outcomes"
+                                                target="_blank">Individual</a>
+                                            <a class="dropdown-item" 
+                                                href="{% url 'pw_compbar' dist_name fy %}?id1=Pregnancy_outcomes"
+                                                target="_blank">Compare</a>
+                                        </div>
+                                    </div>
+                                    <div class="btn-group dropright mr-1">
+                                        <button type="button" class="btn btn-light dropdown-toggle lineColor"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            LINE
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item lc_link"
+                                                href="{% url 'linechart' dist_name fy %}?id1=Pregnancy_outcomes"
+                                                target="_blank">Areawise</a>
+                                            <a class="dropdown-item lc_link"
+                                                href="{% url 'fy_line' dist_name fy %}?id1=Pregnancy_outcomes"
                                                 target="_blank">Yearwise</a>
                                         </div>
                                     </div>
@@ -819,6 +1372,8 @@
                                     </div>
                                     <a href="{% url 'tablechart' dist_name fy %}" class="lc_link" target="_blank"
                                         style="color: #a10404;">TABLE</a>
+                                    <a href="{% url 'ci_pie' dist_name fy %}?id1=Total_no_of_Children_Born"
+                                        class="lc_link" target="_blank" style="color: #0414a1;">PIE</a>
                                     
                                 </td>
                             </tr>
@@ -996,65 +1551,6 @@
                                         style="color: #05705e;">MAP</a>
                                 </td>
                             </tr>
-
-                            <tr>
-                                <td>9.2.2</td>
-                                <td colspan="6">Child immunisation(9-11months)-Measles 1st dose: <span
-                                        id="st_nocimsl"></span></td>
-                                <td colspan="2"><a
-                                        href="{% url 'ci_barnumeric' dist_name fy %}?id1=Child_Immunisation(9-11_months)-Measles_1st_Dose"
-                                        class="lc_link" target="_blank" style="color: #972097;">BAR</a>
-
-                                    <div class="btn-group dropright mr-1">
-                                        <button type="button" class="btn btn-light dropdown-toggle numeric lineColor"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            LINE
-                                        </button>
-                                        <div class="dropdown-menu">
-                                        <a class="dropdown-item lc_link" href="{% url 'ci_linenumeric' dist_name fy %}?id1=Child_Immunisation(9-11_months)-Measles_1st_Dose"
-                                            target="_blank">Areawise</a>
-                                        <a class="dropdown-item lc_link"
-                                            href="{% url 'fy_ci_lineNum' dist_name fy %}?id1=Child_Immunisation(9-11_months)-Measles_1st_Dose"
-                                            target="_blank">Yearwise</a>
-                                        </div>
-                                    </div>
-
-                                    <a href="{% url 'tablechart' dist_name fy %}" class="lc_link" target="_blank"
-                                        style="color: #a10404;">TABLE</a>
-                                    <a href="{% url 'ci_pie' dist_name fy %}?id1=Child_Immunisation(9-11_months)-Measles_1st_Dose"
-                                        class="lc_link" target="_blank" style="color: #0414a1;">PIE</a>
-                                </td>
-                            </tr>
-
-                            <tr class="per_value">
-                                <td>9.2.2</td>
-                                <td colspan="6"> % of Child immunisation(9-11months)-Measles 1st dose out of total
-                                    children: <span id="st_cimsl"></span></td>
-                                <td colspan="2">
-                                    <a href="{% url 'ci_bar' dist_name fy %}?id1=Child_Immunisation(9-11_months)-Measles_1st_Dose"
-                                        class="lc_link" target="_blank" style="color: #972097;">BAR</a>
-                                    
-                                    <div class="btn-group dropright mr-1">
-                                        <button type="button" class="btn btn-light dropdown-toggle lineColor"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            LINE
-                                        </button>
-                                        <div class="dropdown-menu">
-                                            <a class="dropdown-item lc_link"
-                                                href="{% url 'ci_line' dist_name fy %}?id1=Child_Immunisation(9-11_months)-Measles_1st_Dose"
-                                                target="_blank">Areawise</a>
-                                            <a class="dropdown-item lc_link"
-                                                href="{% url 'fy_ci_line' dist_name fy %}?id1=Child_Immunisation(9-11_months)-Measles_1st_Dose"
-                                                target="_blank">Yearwise</a>
-                                        </div>
-                                    </div>
-                                    <a href="{% url 'tablechart' dist_name fy %}" class="lc_link" target="_blank"
-                                        style="color: #a10404;">TABLE</a>
-                                    <a href="{% url 'ci_map' fy %}?id1=1" class="lc_link" target="_blank"
-                                        style="color: #05705e;">MAP</a>
-                                </td>
-                            </tr>
-
                             <tr>
                                 <td>9.8.1</td>
                                 <td colspan="6">Child immunisation-Vitamin A Dose-1: <span id="st_nocivita"></span></td>
@@ -1160,6 +1656,177 @@
                                                 target="_blank">Areawise</a>
                                             <a class="dropdown-item lc_link"
                                                 href="{% url 'fy_ci_line' dist_name fy %}?id1=Children(12-59_months)_provided_Albendazole"
+                                                target="_blank">Yearwise</a>
+                                        </div>
+                                    </div>
+                                    <a href="{% url 'tablechart' dist_name fy %}" class="lc_link" target="_blank"
+                                        style="color: #a10404;">TABLE</a>
+                                    <a href="{% url 'ci_map' fy %}?id1=1" class="lc_link" target="_blank"
+                                        style="color: #05705e;">MAP</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>9.1.3+9.1.6</td>
+                                <td colspan="6">Child immunisation- DPT and Pentavalent 1st dose: <span
+                                        id="st_nodpt1penta1"></span></td>
+                                <td colspan="2"><a
+                                        href="{% url 'ci_barnumeric' dist_name fy %}?id1=Child_immunisation_DPT_and_Pentavalent_1st_dose"
+                                        class="lc_link" target="_blank" style="color: #972097;">BAR</a>
+
+                                    <div class="btn-group dropright mr-1">
+                                        <button type="button" class="btn btn-light dropdown-toggle numeric lineColor"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            LINE
+                                        </button>
+                                        <div class="dropdown-menu">
+                                        <a class="dropdown-item lc_link" href="{% url 'ci_linenumeric' dist_name fy %}?id1=Child_immunisation_DPT_and_Pentavalent_1st_dose"
+                                            target="_blank">Areawise</a>
+                                        <a class="dropdown-item lc_link"
+                                            href="{% url 'fy_ci_lineNum' dist_name fy %}?id1=Child_immunisation_DPT_and_Pentavalent_1st_dose"
+                                            target="_blank">Yearwise</a>
+                                        </div>
+                                    </div>
+
+                                    <a href="{% url 'tablechart' dist_name fy %}" class="lc_link" target="_blank"
+                                        style="color: #a10404;">TABLE</a>
+                                    <a href="{% url 'ci_pie' dist_name fy %}?id1=Child_immunisation_DPT_and_Pentavalent_1st_dose"
+                                        class="lc_link" target="_blank" style="color: #0414a1;">PIE</a>
+                                </td>
+                            </tr>
+                            <tr class="per_value">
+                                <td>9.1.3+9.1.6</td>
+                                <td colspan="6"> % of  Child immunisation DPT and Pentavalent 1st dose out of total children
+                                    : <span 
+                                        id="st_dpt1penta1"></span></td>
+                                <td colspan="2">
+                                    <a href="{% url 'ci_bar' dist_name fy %}?id1=Child_immunisation_DPT_and_Pentavalent_1st_dose"
+                                        class="lc_link" target="_blank" style="color: #972097;">BAR</a>
+
+                                    <div class="btn-group dropright mr-1">
+                                        <button type="button" class="btn btn-light dropdown-toggle lineColor"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            LINE
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item lc_link"
+                                                href="{% url 'ci_line' dist_name fy %}?id1=Child_immunisation_DPT_and_Pentavalent_1st_dose"
+                                                target="_blank">Areawise</a>
+                                            <a class="dropdown-item lc_link"
+                                                href="{% url 'fy_ci_line' dist_name fy %}?id1=Child_immunisation_DPT_and_Pentavalent_1st_dose"
+                                                target="_blank">Yearwise</a>
+                                        </div>
+                                    </div>
+                                    <a href="{% url 'tablechart' dist_name fy %}" class="lc_link" target="_blank"
+                                        style="color: #a10404;">TABLE</a>
+                                    <a href="{% url 'ci_map' fy %}?id1=1" class="lc_link" target="_blank"
+                                        style="color: #05705e;">MAP</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>9.1.4+9.1.7</td>
+                                <td colspan="6">Child immunisation DPT and Pentavalent 2nd dose:
+                                    <span
+                                        id="st_nodpt2penta2"></span></td>
+                                <td colspan="2"><a
+                                        href="{% url 'ci_barnumeric' dist_name fy %}?id1=Child_immunisation_DPT_and_Pentavalent_2nd_dose"
+                                        class="lc_link" target="_blank" style="color: #972097;">BAR</a>
+
+                                    <div class="btn-group dropright mr-1">
+                                        <button type="button" class="btn btn-light dropdown-toggle numeric lineColor"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            LINE
+                                        </button>
+                                        <div class="dropdown-menu">
+                                        <a class="dropdown-item lc_link" href="{% url 'ci_linenumeric' dist_name fy %}?id1=Child_immunisation_DPT_and_Pentavalent_2nd_dose"
+                                            target="_blank">Areawise</a>
+                                        <a class="dropdown-item lc_link"
+                                            href="{% url 'fy_ci_lineNum' dist_name fy %}?id1=Child_immunisation_DPT_and_Pentavalent_2nd_dose"
+                                            target="_blank">Yearwise</a>
+                                        </div>
+                                    </div>
+
+                                    <a href="{% url 'tablechart' dist_name fy %}" class="lc_link" target="_blank"
+                                        style="color: #a10404;">TABLE</a>
+                                    <a href="{% url 'ci_pie' dist_name fy %}?id1=Child_immunisation_DPT_and_Pentavalent_2nd_dose"
+                                        class="lc_link" target="_blank" style="color: #0414a1;">PIE</a>
+                                </td>
+                            </tr>
+                            <tr class="per_value">
+                                <td>9.1.4+9.1.7</td>
+                                <td colspan="6"> % of  Child immunisation DPT and Pentavalent 2nd dose out of total children
+                                    : <span id="st_nodpt2penta2"></span></td>
+                                <td colspan="2">
+                                    <a href="{% url 'ci_bar' dist_name fy %}?id1=Child_immunisation_DPT_and_Pentavalent_2nd_dose"
+                                        class="lc_link" target="_blank" style="color: #972097;">BAR</a>
+
+                                    <div class="btn-group dropright mr-1">
+                                        <button type="button" class="btn btn-light dropdown-toggle lineColor"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            LINE
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item lc_link"
+                                                href="{% url 'ci_line' dist_name fy %}?id1=Child_immunisation_DPT_and_Pentavalent_2nd_dose"
+                                                target="_blank">Areawise</a>
+                                            <a class="dropdown-item lc_link"
+                                                href="{% url 'fy_ci_line' dist_name fy %}?id1=Child_immunisation_DPT_and_Pentavalent_2nd_dose"
+                                                target="_blank">Yearwise</a>
+                                        </div>
+                                    </div>
+                                    <a href="{% url 'tablechart' dist_name fy %}" class="lc_link" target="_blank"
+                                        style="color: #a10404;">TABLE</a>
+                                    <a href="{% url 'ci_map' fy %}?id1=1" class="lc_link" target="_blank"
+                                        style="color: #05705e;">MAP</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>9.1.5+9.1.8</td>
+                                <td colspan="6">Child immunisation DPT and Pentavalent 3rd dose:
+                                    <span
+                                        id="st_nodpt3penta3"></span></td>
+                                <td colspan="2"><a
+                                        href="{% url 'ci_barnumeric' dist_name fy %}?id1=Child_immunisation_DPT_and_Pentavalent_3rd_dose"
+                                        class="lc_link" target="_blank" style="color: #972097;">BAR</a>
+
+                                    <div class="btn-group dropright mr-1">
+                                        <button type="button" class="btn btn-light dropdown-toggle numeric lineColor"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            LINE
+                                        </button>
+                                        <div class="dropdown-menu">
+                                        <a class="dropdown-item lc_link" href="{% url 'ci_linenumeric' dist_name fy %}?id1=Child_immunisation_DPT_and_Pentavalent_3rd_dose"
+                                            target="_blank">Areawise</a>
+                                        <a class="dropdown-item lc_link"
+                                            href="{% url 'fy_ci_lineNum' dist_name fy %}?id1=Child_immunisation_DPT_and_Pentavalent_3rd_dose"
+                                            target="_blank">Yearwise</a>
+                                        </div>
+                                    </div>
+
+                                    <a href="{% url 'tablechart' dist_name fy %}" class="lc_link" target="_blank"
+                                        style="color: #a10404;">TABLE</a>
+                                    <a href="{% url 'ci_pie' dist_name fy %}?id1=Child_immunisation_DPT_and_Pentavalent_3rd_dose"
+                                        class="lc_link" target="_blank" style="color: #0414a1;">PIE</a>
+                                </td>
+                            </tr>
+                            <tr class="per_value">
+                                <td>9.1.5+9.1.8</td>
+                                <td colspan="6"> % of Child immunisation DPT and Pentavalent 3rd dose out of total children:
+                                    <span id="st_nodpt3penta3"></span></td>
+                                <td colspan="2">
+                                    <a href="{% url 'ci_bar' dist_name fy %}?id1=Child_immunisation_DPT_and_Pentavalent_3rd_dose"
+                                        class="lc_link" target="_blank" style="color: #972097;">BAR</a>
+
+                                    <div class="btn-group dropright mr-1">
+                                        <button type="button" class="btn btn-light dropdown-toggle lineColor"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            LINE
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item lc_link"
+                                                href="{% url 'ci_line' dist_name fy %}?id1=Child_immunisation_DPT_and_Pentavalent_3rd_dose"
+                                                target="_blank">Areawise</a>
+                                            <a class="dropdown-item lc_link"
+                                                href="{% url 'fy_ci_line' dist_name fy %}?id1=Child_immunisation_DPT_and_Pentavalent_3rd_dose"
                                                 target="_blank">Yearwise</a>
                                         </div>
                                     </div>
@@ -1466,59 +2133,121 @@
                                         style="color: #05705e;">MAP</a>
                                 </td>
                             </tr>
-
-                            <!-- <tr>
-                <td>10.12</td>
-                <td colspan="6">Childhood Diseases-Diarrhoea treated in Inpatients: <span id="st_nocddiartrdip"></span></td>
-                <td colspan="2"><a href="{% url 'cd_barnumeric' dist_name fy %}?id1=Childhood_Diseases-Diarrhoea_treated_in_Inpatients" class="lc_link"
-                    target="_blank" style="color: #972097;">BAR</a>
-                <a href="{% url 'cd_linenumeric' dist_name fy %}?id1=Childhood_Diseases-Diarrhoea_treated_in_Inpatients" class="lc_link"
-                    target="_blank" style="color: #878a03;">LINE</a>
-                    <a href="{% url 'tablechart' dist_name fy %}" class="lc_link"
-                    target="_blank" style="color: #a10404;">TABLE</a>
-                </td>
-                </tr>
-
-                <tr class="per_value">
-                <td>10.12</td>
-                <td colspan="6"> % of Childhood Diseases-Diarrhoea treated in Inpatients out of total children: <span id="st_cddiartrdip"></span></td>
-                <td colspan="2">
-                    <a href="{% url 'cd_bar' dist_name fy %}?id1=Childhood_Diseases-Diarrhoea_treated_in_Inpatients" class="lc_link" target="_blank"
-                    style="color: #972097;">BAR</a>
-                <a href="{% url 'cd_line' dist_name fy %}?id1=Childhood_Diseases-Diarrhoea_treated_in_Inpatients" class="lc_link"
-                    target="_blank" style="color:  #878a03;">LINE</a>
-                    <a href="{% url 'tablechart' dist_name fy %}" class="lc_link"
-                    target="_blank" style="color: #a10404;">TABLE</a>
-                </td>
-                </tr>
-
-                <tr>
-                <td>10.13</td>
-                <td colspan="6">Children admitted with upper respiratory infections: <span id="st_nocduri"></span></td>
-                <td colspan="2"><a href="{% url 'cd_barnumeric' dist_name fy %}?id1=Children_admitted_with_upper_respiratory_infections" class="lc_link"
-                    target="_blank" style="color: #972097;">BAR</a>
-                <a href="{% url 'cd_linenumeric' dist_name fy %}?id1=Children_admitted_with_upper_respiratory_infections" class="lc_link"
-                    target="_blank" style="color: #878a03;">LINE</a>
-                    <a href="{% url 'tablechart' dist_name fy %}" class="lc_link"
-                    target="_blank" style="color: #a10404;">TABLE</a>
-                </td>
-                </tr>
-
-                <tr class="per_value">
-                <td>10.13</td>
-                <td colspan="6"> % of Children admitted with upper respiratory infections out of total children: <span id="st_cduri"></span></td>
-                <td colspan="2">
-                    <a href="{% url 'cd_bar' dist_name fy %}?id1=Children_admitted_with_upper_respiratory_infections" class="lc_link" target="_blank"
-                    style="color: #972097;">BAR</a>
-                <a href="{% url 'cd_line' dist_name fy %}?id1=Children_admitted_with_upper_respiratory_infections" class="lc_link"
-                    target="_blank" style="color:  #878a03;">LINE</a>
-                    <a href="{% url 'tablechart' dist_name fy %}" class="lc_link"
-                    target="_blank" style="color: #a10404;">TABLE</a>
-                </td>
-                </tr> -->
-
                             <tr>
-                                <td>10.14</td>
+                                <td>10.12</td>
+                                    <td colspan="6">Childhood Diseases-Diarrhoea treated in patient:
+                                         <span
+                                            id="st_nocddiartrdip"></span></td>
+                                    <td colspan="2"><a
+                                            href="{% url 'cd_barnumeric' dist_name fy %}?id1=Childhood_Diseases-Diarrhoea_treated_in_patient"
+                                            class="lc_link" target="_blank" style="color: #972097;">BAR</a>
+                                        <div class="btn-group dropright mr-1">
+                                            <button type="button" class="btn btn-light dropdown-toggle numeric lineColor"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                LINE
+                                            </button>
+                                            <div class="dropdown-menu">
+                                            <a class="dropdown-item lc_link" href="{% url 'cd_linenumeric' dist_name fy %}?id1=Childhood_Diseases-Diarrhoea_treated_in_patient"
+                                                target="_blank">Areawise</a>
+                                            <a class="dropdown-item lc_link"
+                                                href="{% url 'fy_cd_lineNum' dist_name fy %}?id1=Childhood_Diseases-Diarrhoea_treated_in_patient"
+                                                target="_blank">Yearwise</a>
+                                            </div>
+                                        </div>
+                                        <a href="{% url 'tablechart' dist_name fy %}" class="lc_link" target="_blank"
+                                            style="color: #a10404;">TABLE</a>
+                                        <a href="{% url 'cd_pie' dist_name fy %}?id1=Childhood_Diseases-Diarrhoea_treated_in_patient"
+                                            class="lc_link" target="_blank" style="color: #0414a1;">PIE</a>
+                                    </td>
+                                </tr>
+    
+                                <tr class="per_value">
+                                    <td>10.12</td>
+                                    <td colspan="6"> % of Childhood Diseases-Diarrhoea treated in patient out of total children: 
+                                        <span id="st_cddiartrdip"></span></td>
+                                    <td colspan="2">
+                                        <a href="{% url 'cd_bar' dist_name fy %}?id1=Childhood_Diseases-Diarrhoea_treated_in_patient"
+                                            class="lc_link" target="_blank" style="color: #972097;">BAR</a>
+                                            
+                                            <div class="btn-group dropright mr-1">
+                                                <button type="button" class="btn btn-light dropdown-toggle lineColor"
+                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    LINE
+                                                </button>
+                                                <div class="dropdown-menu">
+                                                    <a class="dropdown-item lc_link"
+                                                        href="{% url 'cd_line' dist_name fy %}?id1=Childhood_Diseases-Diarrhoea_treated_in_patient"
+                                                        target="_blank">Areawise</a>
+                                                    <a class="dropdown-item lc_link"
+                                                        href="{% url 'fy_cd_line' dist_name fy %}?id1=Childhood_Diseases-Diarrhoea_treated_in_patient"
+                                                        target="_blank">Yearwise</a>
+                                                </div>
+                                            </div>
+                                        <a href="{% url 'tablechart' dist_name fy %}" class="lc_link" target="_blank"
+                                            style="color: #a10404;">TABLE</a>
+                                        <a href="{% url 'cd_map' fy %}?id1=1" class="lc_link" target="_blank"
+                                            style="color: #05705e;">MAP</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>10.13</td>
+                                        <td colspan="6">Children admitted with upper respiratory infection:
+                                             <span
+                                                id="st_st_nocduri"></span></td>
+                                        <td colspan="2"><a
+                                                href="{% url 'cd_barnumeric' dist_name fy %}?id1=Children_admitted_with_upper_respiratory_infection"
+                                                class="lc_link" target="_blank" style="color: #972097;">BAR</a>
+                                            <div class="btn-group dropright mr-1">
+                                                <button type="button" class="btn btn-light dropdown-toggle numeric lineColor"
+                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    LINE
+                                                </button>
+                                                <div class="dropdown-menu">
+                                                <a class="dropdown-item lc_link" href="{% url 'cd_linenumeric' dist_name fy %}?id1=Children_admitted_with_upper_respiratory_infection"
+                                                    target="_blank">Areawise</a>
+                                                <a class="dropdown-item lc_link"
+                                                    href="{% url 'fy_cd_lineNum' dist_name fy %}?id1=Children_admitted_with_upper_respiratory_infection"
+                                                    target="_blank">Yearwise</a>
+                                                </div>
+                                            </div>
+                                            <a href="{% url 'tablechart' dist_name fy %}" class="lc_link" target="_blank"
+                                                style="color: #a10404;">TABLE</a>
+                                            <a href="{% url 'cd_pie' dist_name fy %}?id1=Children_admitted_with_upper_respiratory_infection"
+                                                class="lc_link" target="_blank" style="color: #0414a1;">PIE</a>
+                                        </td>
+                                    </tr>
+        
+                                    <tr class="per_value">
+                                        <td>10.13</td>
+                                        <td colspan="6"> % of Children admitted for upper respiratory infection out of total children: 
+                                            <span id="st_cduri"></span></td>
+                                        <td colspan="2">
+                                            <a href="{% url 'cd_bar' dist_name fy %}?id1=Children_admitted_with_upper_respiratory_infection"
+                                                class="lc_link" target="_blank" style="color: #972097;">BAR</a>
+                                                
+                                                <div class="btn-group dropright mr-1">
+                                                    <button type="button" class="btn btn-light dropdown-toggle lineColor"
+                                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        LINE
+                                                    </button>
+                                                    <div class="dropdown-menu">
+                                                        <a class="dropdown-item lc_link"
+                                                            href="{% url 'cd_line' dist_name fy %}?id1=Children_admitted_with_upper_respiratory_infection"
+                                                            target="_blank">Areawise</a>
+                                                        <a class="dropdown-item lc_link"
+                                                            href="{% url 'fy_cd_line' dist_name fy %}?id1=Children_admitted_with_upper_respiratory_infection"
+                                                            target="_blank">Yearwise</a>
+                                                    </div>
+                                                </div>
+                                            <a href="{% url 'tablechart' dist_name fy %}" class="lc_link" target="_blank"
+                                                style="color: #a10404;">TABLE</a>
+                                            <a href="{% url 'cd_map' fy %}?id1=1" class="lc_link" target="_blank"
+                                                style="color: #05705e;">MAP</a>
+                                        </td>
+                                    </tr>
+
+                         <tr>
+                            <td>10.14</td>
                                 <td colspan="6">Childhood Diseases-Severe Acute Malnutrition(SAM): <span
                                         id="st_nocdsam"></span></td>
                                 <td colspan="2"><a
@@ -1568,6 +2297,8 @@
                                         </div>
                                     <a href="{% url 'tablechart' dist_name fy %}" class="lc_link" target="_blank"
                                         style="color: #a10404;">TABLE</a>
+                                    <a href="{% url 'cd_map' fy %}?id1=1" class="lc_link" target="_blank"
+                                        style="color: #05705e;">MAP</a>
                                 </td>
                             </tr>
                         </tbody>
@@ -1655,20 +2386,20 @@
     data_from_django = {{ context.pw_data | safe }};
     var pw_data = []
     data_from_django.forEach(element => {
-        pw_data.push(element.fields);
+        pw_data.push(element);
     });
 
 
     data_from_django = {{ context.ci_data | safe }};
     var ci_data = []
     data_from_django.forEach(element => {
-        ci_data.push(element.fields);
+        ci_data.push(element);
     });
 
     data_from_django = {{ context.cd_data | safe }};
     var cd_data = []
     data_from_django.forEach(element => {
-        cd_data.push(element.fields);
+        cd_data.push(element);
     });
 
 
@@ -1695,10 +2426,8 @@
         document.getElementById('dt_pwtt1').innerHTML = pw_data[0].pw_tt1_given + "%";
 
         document.getElementById('st_nopwtt2').innerHTML = pw_data[0].no_pw_given_tt2;
-        document.getElementById('dt_pwtt2').innerHTML = pw_data[0].pw_tt2_given + "%";
 
         document.getElementById('st_nopwttbooster').innerHTML = pw_data[0].no_pw_given_tt_booster;
-        document.getElementById('dt_pwttbooster').innerHTML = pw_data[0].pw_tt_booster_given + "%";
 
         document.getElementById('st_nopwifa').innerHTML = pw_data[0].no_pw_given_ifa;
         document.getElementById('dt_pwifa').innerHTML = pw_data[0].pw_ifa + "%";
@@ -1709,8 +2438,30 @@
         document.getElementById('st_nopwalben').innerHTML = pw_data[0].no_pw_given_albendazole;
         document.getElementById('dt_pwalben').innerHTML = pw_data[0].pw_albendazole + "%";
 
+        document.getElementById('dt_tt1orttbooster').innerHTML = pw_data[0].per_pw_given_tt1_or_tt_booster + "%";
+
+        document.getElementById('dt_tt1tott2drop').innerHTML = pw_data[0].pw_tt2_given + "%";
+
+        document.getElementById('st_nopwmodanaemia').innerHTML = pw_data[0].no_pw_moderate_anaemia;
+        
+        document.getElementById('st_nopwsevanaemia').innerHTML = pw_data[0].no_pw_severe_anaemia;
+
+        document.getElementById('dt_sevanaemiatrtd').innerHTML = pw_data[0].per_severe_anaemia_tested_treated + "%";
+
+        document.getElementById('dt_pwoutcome').innerHTML = pw_data[0].per_pw_outcome + "%";
+        
+
+        document.getElementById('st_nopretermbirth').innerHTML = pw_data[0].no_preterm_birth;
+        document.getElementById('dt_pretermbirthrate').innerHTML = pw_data[0].preterm_birth_rate + "%";
+
+        document.getElementById('st_insti').innerHTML = pw_data[0].no_institutional_delivery;
+
+        document.getElementById('st_home').innerHTML = pw_data[0].no_home_delivery;
+
         document.getElementById('st_nocsection').innerHTML = pw_data[0].tot_c_section_deliveries;
         document.getElementById('dt_csection').innerHTML = pw_data[0].c_section_deliveries + "%";
+
+        document.getElementById('st_totchldborn').innerHTML = pw_data[0].tot_chld_born;
 
         document.getElementById('st_totstb').innerHTML = pw_data[0].tot_still_birth;
         document.getElementById('st_stbirth').innerHTML = pw_data[0].per_still_birth + "%";
@@ -1727,14 +2478,21 @@
         document.getElementById('st_nocimr').innerHTML = ci_data[0].chld_immunzt_9to11m_mr;
         document.getElementById('st_cimr').innerHTML = ci_data[0].per_chld_immunzt_9to11m_mr + "%";
 
-        document.getElementById('st_nocimsl').innerHTML = ci_data[0].chld_immunzt_9to11m_measl_1st_dose;
-        document.getElementById('st_cimsl').innerHTML = ci_data[0].per_chld_immunzt_9to11m_measl_1st_dose + "%";
-
         document.getElementById('st_nocivita').innerHTML = ci_data[0].chld_immunzt_vit_a_dose_1;
         document.getElementById('st_civita').innerHTML = ci_data[0].per_chld_immunzt_vit_a_dose_1 + "%";
 
         document.getElementById('st_nocialben').innerHTML = ci_data[0].no_chld_12to59m_albendazole;
         document.getElementById('st_cialben').innerHTML = ci_data[0].per_no_chld_12to59m_albendazole + "%";
+
+        document.getElementById('st_nodpt1penta1').innerHTML = ci_data[0].chld_immunzt_dpt1_penta1;
+        document.getElementById('st_dpt1penta1').innerHTML = ci_data[0].per_chld_immunzt_dpt1_penta1 + "%";
+
+        document.getElementById('st_nodpt2penta2').innerHTML = ci_data[0].chld_immunzt_dpt2_penta2;
+        document.getElementById('st_dpt2penta2').innerHTML = ci_data[0].per_chld_immunzt_dpt2_penta2 + "%";
+
+        document.getElementById('st_nodpt3penta3').innerHTML = ci_data[0].chld_immunzt_dpt3_penta3;
+        document.getElementById('st_dpt3penta3').innerHTML = ci_data[0].per_chld_immunzt_dpt3_penta3 + "%";
+
 
         //Child Disease Related
 
@@ -1753,11 +2511,11 @@
         document.getElementById('st_nocddiarh').innerHTML = cd_data[0].chld_disease_diarrhoea;
         document.getElementById('st_cddiarh').innerHTML = cd_data[0].per_chld_disease_diarrhoea + "%";
 
-        // document.getElementById('st_nocddiartrdip').innerHTML = cd_data[0].chld_disease_diarrhoea_trtd_inpatnt;
-        // document.getElementById('st_cddiartrdip').innerHTML = cd_data[0].per_chld_disease_diarrhoea_trtd_inpatnt + "%";
+        document.getElementById('st_nocddiartrdip').innerHTML = cd_data[0].chld_disease_diarrhoea_trtd_inpatnt;
+        document.getElementById('st_cddiartrdip').innerHTML = cd_data[0].per_chld_disease_diarrhoea_trtd_inpatnt + "%";
 
-        // document.getElementById('st_nocduri').innerHTML = cd_data[0].chld_admtd_upper_resp_infec;
-        // document.getElementById('st_cduri').innerHTML = cd_data[0].per_chld_admtd_upper_resp_infec + "%";
+        document.getElementById('st_nocduri').innerHTML = cd_data[0].chld_admtd_upper_resp_infec;
+        document.getElementById('st_cduri').innerHTML = cd_data[0].per_chld_admtd_upper_resp_infec + "%";
 
         document.getElementById('st_nocdsam').innerHTML = cd_data[0].chld_disease_sam;
         document.getElementById('st_cdsam').innerHTML = cd_data[0].per_chld_disease_sam + "%";
@@ -1767,7 +2525,7 @@
         // state =  state.replace(/ /g, '_');
         // if(pw_data[0].state != 'state')
         //     {
-        if (pw_data[0].area_parent_id == 22 ){
+        if (pw_data[0].area_parent_id == 405 ){
             newState = pw_data[0].area_parent_id;
         }
         else{
@@ -1793,7 +2551,7 @@ $(document).ready(function() {
     $('#areaSt').bind('change', function() {
         var elements = $('.dtList').children().hide(); // hide all the elements
         var value = $(this).val();
-        if (value == 22) { // if somethings' selected
+        if (value == 405) { // if somethings' selected
             elements.show(); // show the ones we want
         }
     }).trigger('change');

@@ -400,10 +400,10 @@ class pieStateLevel(LoginRequiredMixin, TemplateView):
         district = request.GET.get('dist_name', dist_name) 
         fy_name = request.GET.get('fy', fy) 
         if district == '405': 
-            data = list(PwPie.objects.filter(Q(financial_year=fy_name) & Q(area_parent_id=405)).values())
+            data = list(MhDSdPwPie.objects.filter(Q(financial_year=fy_name) & Q(area_parent_id=405)).values())
             
         else:    
-            data = list(PwPie.objects.filter(Q(financial_year=fy_name) & Q(area_parent_id=22)).values())
+            data = list(MhDSdPwPie.objects.filter(Q(financial_year=fy_name) & Q(area_parent_id=22)).values())
 
         for i in data:
             area_n = MhAreaDetails.objects.filter(Q(area_id = i['area_id'])).values('area_name')
@@ -423,10 +423,10 @@ class pieChildImmu(LoginRequiredMixin, TemplateView):
         fy_name = request.GET.get('fy', fy) 
         fy_name = request.GET.get('fy', fy) 
         if district == '405': 
-            data = list(CiPie.objects.filter(Q(financial_year=fy_name) & Q(area_parent_id=405)).values())
+            data = list(MhDSdCiPie.objects.filter(Q(financial_year=fy_name) & Q(area_parent_id=405)).values())
             
         else:    
-            data = list(CiPie.objects.filter(Q(financial_year=fy_name) & Q(area_parent_id=22)).values())
+            data = list(MhDSdCiPie.objects.filter(Q(financial_year=fy_name) & Q(area_parent_id=22)).values())
 
         for i in data:
             area_n = MhAreaDetails.objects.filter(Q(area_id = i['area_id'])).values('area_name')
@@ -445,10 +445,10 @@ class pieChildDisease(LoginRequiredMixin, TemplateView):
         district = request.GET.get('dist_name', dist_name)
         fy_name = request.GET.get('fy', fy) 
         if district == '405': 
-            data = list(CdPie.objects.filter(Q(financial_year=fy_name) & Q(area_parent_id=405)).values())
+            data = list(MhDSdCiPie.objects.filter(Q(financial_year=fy_name) & Q(area_parent_id=405)).values())
             
         else:    
-            data = list(CdPie.objects.filter(Q(financial_year=fy_name) & Q(area_parent_id=22)).values())
+            data = list(MhDSdCiPie.objects.filter(Q(financial_year=fy_name) & Q(area_parent_id=22)).values())
 
         for i in data:
             area_n = MhAreaDetails.objects.filter(Q(area_id = i['area_id'])).values('area_name')
