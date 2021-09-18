@@ -106,11 +106,14 @@
       <a class="dropdown-item" href="#">Child Immunisation-Vitamin K1(Birth Dose)</a>
       <a class="dropdown-item" href="#">Child Immunisation-BCG</a>
       <a class="dropdown-item" href="#">Child Immunisation(9-11 months)-Measles & Rubella (MR) 1st Dose</a>
-      <a class="dropdown-item" href="#">Child Immunisation(9-11 months)-Measles 1st Dose</a>
       <a class="dropdown-item" href="#">Child immunisation-Vitamin A Dose-1</a>
       <a class="dropdown-item" href="#">Children(12-59 months) provided Albendazole</a>
-    </div>
+      <a class="dropdown-item" href="#">Child immunisation DPT and Pentavalent 1st dose</a>
+      <a class="dropdown-item" href="#">Child immunisation DPT and Pentavalent 2nd dose</a>
+      <a class="dropdown-item" href="#">Child immunisation DPT and Pentavalent 3rd dose</a>
+
   </div>
+</div>
   <div class="dropdown m-1">
     <select name="state" id="state" class="selectpicker" multiple>
       {% for area_select in area_list %}
@@ -509,16 +512,18 @@
 
   data.forEach(function (d) {
 
-    d.per_chld_immunzt_vit_k1 = +d.per_chld_immunzt_vit_k1;
-    d.per_chld_immunzt_bcg = +d.per_chld_immunzt_bcg;
-    d.per_chld_immunzt_9to11m_mr = +d.per_chld_immunzt_9to11m_mr;
-    d.per_chld_immunzt_9to11m_measl_1st_dose = +d.per_chld_immunzt_9to11m_measl_1st_dose;
-    d.per_chld_immunzt_vit_a_dose_1 = +d.per_chld_immunzt_vit_a_dose_1;
-    d.per_no_chld_12to59m_albendazole = +d.per_no_chld_12to59m_albendazole;
-    d.area_id = +d.area_id;
-    d.area_name = d.area_name;
-    d.month = d.month;
-    d.financial_year = d.financial_year;
+        d.per_chld_immunzt_vit_k1 = +d.per_chld_immunzt_vit_k1;
+        d.per_chld_immunzt_bcg = +d.per_chld_immunzt_bcg;
+        d.per_chld_immunzt_9to11m_mr = +d.per_chld_immunzt_9to11m_mr;
+        d.per_chld_immunzt_vit_a_dose_1 = +d.per_chld_immunzt_vit_a_dose_1;
+        d.per_no_chld_12to59m_albendazole = +d.per_no_chld_12to59m_albendazole;
+        d.per_chld_immunzt_dpt1_penta1 = +d.per_chld_immunzt_dpt1_penta1;
+        d.per_chld_immunzt_dpt2_penta2 = +d.per_chld_immunzt_dpt2_penta2;
+        d.per_chld_immunzt_dpt3_penta3 = +d.per_chld_immunzt_dpt3_penta3;
+        d.area_id = +d.area_id;
+        d.area_name = d.area_name;
+        d.month = d.month;
+        d.financial_year = d.financial_year;
   });
 
   let section = 'per_chld_immunzt_vit_k1'
@@ -554,13 +559,17 @@
       section = 'per_chld_immunzt_bcg';
     else if (val == 'Child Immunisation(9-11 months)-Measles & Rubella (MR) 1st Dose')
       section = 'per_chld_immunzt_9to11m_mr';
-    else if (val == 'Child Immunisation(9-11 months)-Measles 1st Dose')
-      section = 'per_chld_immunzt_9to11m_measl_1st_dose';
     else if (val == 'Child immunisation-Vitamin A Dose-1')
       section = 'per_chld_immunzt_vit_a_dose_1';
 
-    else
+    else if (val == 'Children(12-59 months) provided Albendazole')
       section = 'per_no_chld_12to59m_albendazole'
+    else if (val == 'Child immunisation DPT and Pentavalent 1st dose')
+      section = 'per_chld_immunzt_dpt1_penta1';
+    else if (val == 'Child immunisation DPT and Pentavalent 2nd dose')
+      section = 'per_chld_immunzt_dpt2_penta2';
+    else
+      section = 'per_chld_immunzt_dpt3_penta3';
   }
   $("#state").change(function () {
     areaName = [];

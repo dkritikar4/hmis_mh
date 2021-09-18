@@ -106,14 +106,19 @@
       <a class="dropdown-item" href="#">Early ANC Registeration</a>
       <a class="dropdown-item" href="#">PW received 4 or more ANC check ups</a>
       <a class="dropdown-item" href="#">PW given TT1</a>
-      <a class="dropdown-item" href="#">PW given TT2</a>
-      <a class="dropdown-item" href="#">PW given TT Booster</a>
+      <a class="dropdown-item" href="#">PW given TT1 or TT Booster</a>
+      <a class="dropdown-item" href="#">PW given TT Booster as fraction of children born (or live births)</a>
+      <a class="dropdown-item" href="#">TT1 to TT2 Dropout</a>
       <a class="dropdown-item" href="#">PW given 360 Calcium tablets</a>
       <a class="dropdown-item" href="#">PW given 180 Iron Folic Acid (IFA) tablets</a>
       <a class="dropdown-item" href="#">PW given one Albendazole tablet after 1st trimester</a>
+      <a class="dropdown-item" href="#">Severely Anaemic PW given treatment</a>
+      <a class="dropdown-item" href="#">Still Birth Rate (Still births per 1000 Live Births)</a>
       <a class="dropdown-item" href="#">C-section deliveries</a>
-      <a class="dropdown-item" href="#">Still Birth</a>
-    </div>
+      <a class="dropdown-item" href="#">Preterm Birth Rate</a>
+      <a class="dropdown-item" href="#">Pregnancy outcomes as a % of ANC registration</a>
+
+  </div>
   </div>
   <div class="dropdown m-1">
     <select name="state" id="state" class="selectpicker" multiple>
@@ -514,20 +519,24 @@
 
   data.forEach(function (d) {
 
-    d.early_anc_register = +d.early_anc_register;
-    d.anc_4_or_more = +d.anc_4_or_more;
-    d.pw_tt1_given = +d.pw_tt1_given;
-    d.pw_tt2_given = +d.pw_tt2_given;
-    d.pw_tt_booster_given = +d.pw_tt_booster_given;
-    d.pw_calcium = +d.pw_calcium;
-    d.pw_albendazole = +d.pw_albendazole;
-    d.pw_ifa = +d.pw_ifa;
-    d.c_section_deliveries = +d.c_section_deliveries;
-    d.per_still_birth = +d.per_still_birth;
-    d.area_id = +d.area_id;
-    d.area_name = d.area_name;
-    d.month = d.month;
-    d.financial_year = d.financial_year;
+        d.early_anc_register = +d.early_anc_register;
+        d.anc_4_or_more = +d.anc_4_or_more;
+        d.pw_tt1_given = +d.pw_tt1_given;
+        d.per_pw_given_tt1_or_tt_booster = +d.per_pw_given_tt1_or_tt_booster;
+        d.pw_tt2_given = +d.pw_tt2_given;
+        d.pw_tt_booster_given = +d.pw_tt_booster_given;
+        d.pw_calcium = +d.pw_calcium;
+        d.pw_albendazole = +d.pw_albendazole;
+        d.pw_ifa = +d.pw_ifa;
+        d.per_severe_anaemia_tested_treated = +d.per_severe_anaemia_tested_treated;
+        d.c_section_deliveries = +d.c_section_deliveries;
+        d.per_still_birth = +d.per_still_birth;
+        d.preterm_birth_rate = +d.preterm_birth_rate;
+        d.per_pw_outcome = +d.per_pw_outcome;
+        d.area_id = +d.area_id;
+        d.area_name = d.area_name;
+        d.month = d.month;
+        d.financial_year = d.financial_year;
   });
 
   let section = 'early_anc_register'
@@ -563,9 +572,9 @@
       section = 'anc_4_or_more';
     else if (val == 'PW given TT1')
       section = 'pw_tt1_given';
-    else if (val == 'PW given TT2')
+    else if (val == 'TT1 to TT2 Dropout')
       section = 'pw_tt2_given';
-    else if (val == 'PW given TT Booster')
+    else if (val == 'PW given TT Booster as fraction of children born (or live births)')
       section = 'pw_tt_booster_given';
     else if (val == 'PW given 360 Calcium tablets')
       section = 'pw_calcium';
@@ -575,6 +584,14 @@
       section = 'pw_albendazole';
     else if (val = 'C-section deliveries')
       section = 'c_section_deliveries';
+    else if (val == 'PW given TT1 or TT Booster')
+      section = 'per_pw_given_tt1_or_tt_booster';
+    else if (val == 'Severely Anaemic PW given treatment')
+      section = 'per_severe_anaemia_tested_treated';
+    else if (val == 'Preterm Birth Rate')
+      section = 'preterm_birth_rate';
+    else if (val == 'Pregnancy outcomes as a % of ANC registration')
+      section = 'per_pw_outcome';
     else 
       section = 'per_still_birth'  
   }

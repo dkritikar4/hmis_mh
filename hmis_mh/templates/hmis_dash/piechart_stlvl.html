@@ -63,6 +63,7 @@
       <span class="selectedCategory"></span>
     </button>
     <div class="dropdown-menu category" aria-labelledby="dropdownMenuButton">
+      <a class="dropdown-item" href="#">Total no of PW registered for ANC</a>
       <a class="dropdown-item" href="#">Early ANC Registeration</a>
       <a class="dropdown-item" href="#">PW received 4 or more ANC check ups</a>
       <a class="dropdown-item" href="#">PW given TT1</a>
@@ -71,9 +72,14 @@
       <a class="dropdown-item" href="#">PW given 360 Calcium tablets</a>
       <a class="dropdown-item" href="#">PW given 180 Iron Folic Acid (IFA) tablets</a>
       <a class="dropdown-item" href="#">PW given one Albendazole tablet after 1st trimester</a>
+      <a class="dropdown-item" href="#">Number of Moderately Anaemic PW</a>
+      <a class="dropdown-item" href="#">Number of Severely Anaemic PW (tested)</a>
       <a class="dropdown-item" href="#">C-section deliveries</a>
-      <a class="dropdown-item" href="#">Total no of Still Birth</a>
-    </div>
+      <a class="dropdown-item" href="#">Number of Preterm Birth</a>
+      <a class="dropdown-item" href="#">Total number of Home Deliveries</a>
+      <a class="dropdown-item" href="#">Number of Institutional Deliveries</a>
+      <a class="dropdown-item" href="#">Total number of Still Birth</a>
+  </div>
   </div>
 
   <!-- <div class="dropdown m-1">
@@ -184,6 +190,9 @@
       if (opt == 'Early ANC Registeration') {
         arcInitial = d => d.early_anc_register;
         arcInitialNum = d => d.no_early_anc_register;
+      } else if (opt == 'Total no of PW registered for ANC') {
+        arcInitial = d => d.tot_no_pw_reg_anc;
+        arcInitialNum = d => d.tot_no_pw_reg_anc;
       } else if (opt == 'PW received 4 or more ANC check ups') {
         arcInitial = d => d.anc_4_or_more;
         arcInitialNum = d => d.no_anc_4_or_more;
@@ -205,6 +214,21 @@
       } else if (opt == 'PW given one Albendazole tablet after 1st trimester') {
         arcInitial = d => d.pw_albendazole;
         arcInitialNum = d => d.no_pw_given_albendazole;
+      } else if (opt == 'Number of Moderately Anaemic PW') {
+        arcInitial = d => d.no_pw_moderate_anaemia;
+        arcInitialNum = d => d.no_pw_moderate_anaemia;
+      } else if (opt == 'Number of Severely Anaemic PW (tested)') {
+        arcInitial = d => d.no_pw_severe_anaemia;
+        arcInitialNum = d => d.no_pw_severe_anaemia;
+      } else if (opt == 'Number of Preterm Birth') {
+        arcInitial = d => d.no_preterm_birth;
+        arcInitialNum = d => d.no_preterm_birth;
+      } else if (opt == 'Total number of Home Deliveries') {
+        arcInitial = d => d.no_home_delivery;
+        arcInitialNum = d => d.no_home_delivery;
+      } else if (opt == 'Number of Institutional Deliveries') {
+        arcInitial = d => d.no_institutional_delivery;
+        arcInitialNum = d => d.no_institutional_delivery;
       }
       else if(opt == 'C-section deliveries'){
         arcInitial = d => d.c_section_deliveries;

@@ -112,9 +112,14 @@
       <a class="dropdown-item" href="#">PW given 360 Calcium tablets</a>
       <a class="dropdown-item" href="#">PW given 180 Iron Folic Acid (IFA) tablets</a>
       <a class="dropdown-item" href="#">PW given one Albendazole tablet after 1st trimester</a>
+      <a class="dropdown-item" href="#">Number of Moderately Anaemic PW</a>
+      <a class="dropdown-item" href="#">Number of Severely Anaemic PW (tested)</a>
       <a class="dropdown-item" href="#">C-section deliveries</a>
-      <a class="dropdown-item" href="#">Total no of Still Birth</a>
-    </div>
+      <a class="dropdown-item" href="#">Number of Preterm Birth</a>
+      <a class="dropdown-item" href="#">Total number of Home Deliveries</a>
+      <a class="dropdown-item" href="#">Number of Institutional Deliveries</a>
+      <a class="dropdown-item" href="#">Total number of Still Birth</a>
+  </div>
   </div>
   <div class="dropdown m-1">
     <select name="state" id="state" class="selectpicker" multiple>
@@ -514,21 +519,26 @@
 
   data.forEach(function (d) {
 
-    d.tot_no_pw_reg_anc = +d.tot_no_pw_reg_anc;
-    d.no_early_anc_register = +d.no_early_anc_register;
-    d.no_anc_4_or_more = +d.no_anc_4_or_more;
-    d.no_pw_given_tt1 = +d.no_pw_given_tt1;
-    d.no_pw_given_tt2 = +d.no_pw_given_tt2;
-    d.no_pw_given_tt_booster = +d.no_pw_given_tt_booster;
-    d.no_pw_given_calcium = +d.no_pw_given_calcium;
-    d.no_pw_given_ifa = +d.no_pw_given_ifa;
-    d.no_pw_given_albendazole = +d.no_pw_given_albendazole;
-    d.tot_c_section_deliveries = +d.tot_c_section_deliveries;
-    d.tot_still_birth = +d.tot_still_birth;
-    d.area_id = +d.area_id;
-    d.area_name = d.area_name;
-    d.month = d.month;
-    d.financial_year = d.financial_year;
+        d.tot_no_pw_reg_anc = +d.tot_no_pw_reg_anc;
+        d.no_early_anc_register = +d.no_early_anc_register;
+        d.no_anc_4_or_more = +d.no_anc_4_or_more;
+        d.no_pw_given_tt1 = +d.no_pw_given_tt1;
+        d.no_pw_given_tt2 = +d.no_pw_given_tt2;
+        d.no_pw_given_tt_booster = +d.no_pw_given_tt_booster;
+        d.no_pw_given_calcium = +d.no_pw_given_calcium;
+        d.no_pw_given_albendazole = +d.no_pw_given_albendazole;
+        d.no_pw_given_ifa = +d.no_pw_given_ifa;
+        d.no_pw_moderate_anaemia = +d.no_pw_moderate_anaemia;
+        d.no_pw_severe_anaemia = +d.no_pw_severe_anaemia;
+        d.no_preterm_birth = +d.no_preterm_birth;
+        d.no_home_delivery = +d.no_home_delivery;
+        d.no_institutional_delivery = +d.no_institutional_delivery;
+        d.tot_c_section_deliveries = +d.tot_c_section_deliveries;
+        d.tot_still_birth = +d.tot_still_birth;
+        d.area_id = d.area_id;
+        d.area_name = d.area_name;
+        d.month = d.month;
+        d.financial_year = d.financial_year;
   });
 
   let section = 'no_early_anc_register'
@@ -578,6 +588,16 @@
       section = 'no_pw_given_albendazole';
     else if (val == 'C-section deliveries')
       section = 'tot_c_section_deliveries';
+      else if (val == 'Number of Moderately Anaemic PW')
+      section = 'no_pw_moderate_anaemia';
+    else if (val == 'Number of Severely Anaemic PW (tested)')
+      section = 'no_pw_severe_anaemia';
+    else if (val == 'Number of Preterm Birth')
+      section = 'no_preterm_birth';
+    else if (val == 'Total number of Home Deliveries')
+      section = 'no_home_delivery';
+    else if (val == 'Number of Institutional Deliveries')
+      section = 'no_institutional_delivery';
     else
       section = 'tot_still_birth'  
   }

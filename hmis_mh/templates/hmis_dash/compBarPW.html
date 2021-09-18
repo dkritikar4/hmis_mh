@@ -77,18 +77,22 @@
       </button>
 
       <div class="dropdown-menu category" aria-labelledby="dropdownMenuButton">
-
         <a class="dropdown-item" href="#">Early ANC Registeration</a>
         <a class="dropdown-item" href="#">PW received 4 or more ANC check ups</a>
         <a class="dropdown-item" href="#">PW given TT1</a>
-        <a class="dropdown-item" href="#">PW given TT2</a>
-        <a class="dropdown-item" href="#">PW given TT Booster</a>
+        <a class="dropdown-item" href="#">PW given TT1 or TT Booster</a>
+        <a class="dropdown-item" href="#">PW given TT Booster as fraction of children born (or live births)</a>
+        <a class="dropdown-item" href="#">TT1 to TT2 Dropout</a>
         <a class="dropdown-item" href="#">PW given 360 Calcium tablets</a>
         <a class="dropdown-item" href="#">PW given 180 Iron Folic Acid (IFA) tablets</a>
         <a class="dropdown-item" href="#">PW given one Albendazole tablet after 1st trimester</a>
+        <a class="dropdown-item" href="#">Severely Anaemic PW given treatment</a>
+        <a class="dropdown-item" href="#">Still Birth Rate (Still births per 1000 Live Births)</a>
         <a class="dropdown-item" href="#">C-section deliveries</a>
-        <a class="dropdown-item" href="#">Still Birth</a>
-      </div>
+        <a class="dropdown-item" href="#">Preterm Birth Rate</a>
+        <a class="dropdown-item" href="#">Pregnancy outcomes as a % of ANC registration</a>
+
+    </div>
 
 
 
@@ -111,20 +115,23 @@
 
       </button>
 
-      <div class="dropdown-menu category2" aria-labelledby="dropdownMenuButton">
-
+      <div class="dropdown-menu category" aria-labelledby="dropdownMenuButton">
         <a class="dropdown-item" href="#">Early ANC Registeration</a>
         <a class="dropdown-item" href="#">PW received 4 or more ANC check ups</a>
         <a class="dropdown-item" href="#">PW given TT1</a>
-        <a class="dropdown-item" href="#">PW given TT2</a>
-        <a class="dropdown-item" href="#">PW given TT Booster</a>
+        <a class="dropdown-item" href="#">PW given TT1 or TT Booster</a>
+        <a class="dropdown-item" href="#">PW given TT Booster as fraction of children born (or live births)</a>
+        <a class="dropdown-item" href="#">TT1 to TT2 Dropout</a>
         <a class="dropdown-item" href="#">PW given 360 Calcium tablets</a>
         <a class="dropdown-item" href="#">PW given 180 Iron Folic Acid (IFA) tablets</a>
         <a class="dropdown-item" href="#">PW given one Albendazole tablet after 1st trimester</a>
+        <a class="dropdown-item" href="#">Severely Anaemic PW given treatment</a>
+        <a class="dropdown-item" href="#">Still Birth Rate (Still births per 1000 Live Births)</a>
         <a class="dropdown-item" href="#">C-section deliveries</a>
-        <a class="dropdown-item" href="#">Still Birth</a>
+        <a class="dropdown-item" href="#">Preterm Birth Rate</a>
+        <a class="dropdown-item" href="#">Pregnancy outcomes as a % of ANC registration</a>
 
-      </div>
+    </div>
     </div>
   </div>
 
@@ -265,7 +272,7 @@
 
     let getColor;
 
-    if (xValue == 'd => d.c_section_deliveries' || xValue == 'd => d.per_still_birth' ) {
+    if (xValue == 'd => d.c_section_deliveries' || xValue == 'd => d.per_still_birth' || xValue == 'd => d.preterm_birth_rate' ) {
       getColor = d3.scaleSequential().domain([d3.max(data, xValue), d3.min(data, xValue)])
 
         .interpolator(d3.interpolateRdYlGn);
@@ -387,7 +394,7 @@
 
     let getColor;
 
-    if (xValueR == 'd => d.c_section_deliveries' || xValueR == 'd => d.per_still_birth' ) {
+    if (xValueR == 'd => d.c_section_deliveries' || xValueR == 'd => d.per_still_birth' || xValueR == 'd => d.preterm_birth_rate' ) {
       getColor = d3.scaleSequential().domain([d3.max(data, xValueR), d3.min(data, xValueR)])
         .interpolator(d3.interpolateRdYlGn);
     }
@@ -530,10 +537,12 @@
             element.anc_4_or_more = 200;
         if (element.pw_tt1_given > 200)
             element.pw_tt1_given = 200;
-        if (element.pw_tt2_given > 200)
-            element.pw_tt2_given = 200;
+        if (element.per_pw_given_tt1_or_tt_booster > 200)
+            element.per_pw_given_tt1_or_tt_booster = 200;
         if (element.pw_tt_booster_given > 200)
             element.pw_tt_booster_given = 200;
+        if (element.pw_tt2_given > 200)
+            element.pw_tt2_given = 200;
         if (element.pw_calcium > 200)
             element.pw_calcium = 200;
         if (element.pw_albendazole > 200)
@@ -542,8 +551,15 @@
             element.pw_ifa = 200;
         if (element.c_section_deliveries > 200)
             element.c_section_deliveries = 200;
+        if (element.per_severe_anaemia_tested_treated > 200)
+            element.per_severe_anaemia_tested_treated = 200;
         if (element.per_still_birth > 200)
             element.per_still_birth = 200;
+        if (element.preterm_birth_rate > 200)
+            element.preterm_birth_rate = 200;
+        if (element.per_pw_outcome > 200)
+            element.per_pw_outcome = 200;
+
 
         data.push(element);
     });
@@ -552,13 +568,17 @@
     d.early_anc_register = +d.early_anc_register;
         d.anc_4_or_more = +d.anc_4_or_more;
         d.pw_tt1_given = +d.pw_tt1_given;
+        d.per_pw_given_tt1_or_tt_booster = +d.per_pw_given_tt1_or_tt_booster;
         d.pw_tt2_given = +d.pw_tt2_given;
         d.pw_tt_booster_given = +d.pw_tt_booster_given;
         d.pw_calcium = +d.pw_calcium;
         d.pw_albendazole = +d.pw_albendazole;
         d.pw_ifa = +d.pw_ifa;
+        d.per_severe_anaemia_tested_treated = +d.per_severe_anaemia_tested_treated;
         d.c_section_deliveries = +d.c_section_deliveries;
         d.per_still_birth = +d.per_still_birth;
+        d.preterm_birth_rate = +d.preterm_birth_rate;
+        d.per_pw_outcome = +d.per_pw_outcome;
         d.area_id = +d.area_id;
         d.area_name = d.area_name;
         d.month = d.month;
@@ -598,23 +618,31 @@
 
         case "Early ANC Registeration": xValue = d => d.early_anc_register; sortByL = 'early_anc_register'; break;
 
-        case "PW received 4 or more ANC check ups": xValue = d => d.anc_4_or_more; sortByL = 'anc_4_or_more'; break;
+            case "PW received 4 or more ANC check ups": xValue = d => d.anc_4_or_more; sortByL = 'anc_4_or_more'; break;
 
-        case "PW given TT1": xValue = d => d.pw_tt1_given; sortByL = 'pw_tt1_given'; break;
+            case "PW given TT1": xValue = d => d.pw_tt1_given; sortByL = 'pw_tt1_given'; break;
+            
+            case "PW given TT1 or TT Booster": xValue = d => d.per_pw_given_tt1_or_tt_booster; sortByL = 'per_pw_given_tt1_or_tt_booster'; break;
 
-        case "PW given TT2": xValue = d => d.pw_tt2_given; sortByL = 'pw_tt2_given'; break;
+            case "PW given TT Booster as fraction of children born (or live births)": xValue = d => d.pw_tt_booster_given; sortByL = 'pw_tt_booster_given'; break;
 
-        case "PW given TT Booster": xValue = d => d.pw_tt_booster_given; sortByL = 'pw_tt_booster_given'; break;
+            case "TT1 to TT2 Dropout": xValue = d => d.pw_tt2_given; sortByL = 'pw_tt2_given'; break;
 
-        case "PW given 360 Calcium tablets": xValue = d => d.pw_calcium; sortByL = 'pw_calcium'; break;
+            case "PW given 360 Calcium tablets": xValue = d => d.pw_calcium; sortByL = 'pw_calcium'; break;
 
-        case "PW given 180 Iron Folic Acid (IFA) tablets": xValue = d => d.pw_ifa; sortByL = 'pw_ifa'; break;
+            case "PW given 180 Iron Folic Acid (IFA) tablets": xValue = d => d.pw_ifa; sortByL = 'pw_ifa'; break;
 
-        case "PW given one Albendazole tablet after 1st trimester": xValue = d => d.pw_albendazole; sortByL = 'pw_albendazole'; break;
+            case "PW given one Albendazole tablet after 1st trimester": xValue = d => d.pw_albendazole; sortByL = 'pw_albendazole'; break;
 
-        case "C-section deliveries": xValue = d => d.c_section_deliveries; sortByL = 'c_section_deliveries'; break;
+            case "Severely Anaemic PW given treatment": xValue = d => d.per_severe_anaemia_tested_treated; sortByL = 'per_severe_anaemia_tested_treated'; break;
 
-        case "Still Birth": xValue = d => d.per_still_birth; sortByL = 'per_still_birth'; break;
+            case "C-section deliveries": xValue = d => d.c_section_deliveries; sortByL = 'c_section_deliveries'; break;
+
+            case "Still Birth Rate (Still births per 1000 Live Births)": xValue = d => d.per_still_birth; sortByL = 'per_still_birth'; break;
+           
+            case "Preterm Birth Rate": xValue = d => d.preterm_birth_rate; sortByL = 'preterm_birth_rate'; break;
+            
+            case "Pregnancy outcomes as a % of ANC registration": xValue = d => d.per_pw_outcome; sortByL = 'per_pw_outcome'; break;
     }
 
     var valMonth = tickLabels[$('#monthSlider').slider('getValue')];
@@ -633,25 +661,33 @@
 
     switch (valCategory) {
 
-        case "Early ANC Registeration": xValueR = d => d.early_anc_register; sortByR = 'early_anc_register'; break;
+      case "Early ANC Registeration": xValueR = d => d.early_anc_register; sortByR = 'early_anc_register'; break;
 
-        case "PW received 4 or more ANC check ups": xValueR = d => d.anc_4_or_more; sortByR = 'anc_4_or_more'; break;
+      case "PW received 4 or more ANC check ups": xValueR = d => d.anc_4_or_more; sortByR = 'anc_4_or_more'; break;
 
-        case "PW given TT1": xValueR = d => d.pw_tt1_given; sortByR = 'pw_tt1_given'; break;
+      case "PW given TT1": xValueR = d => d.pw_tt1_given; sortByR = 'pw_tt1_given'; break;
 
-        case "PW given TT2": xValueR = d => d.pw_tt2_given; sortByR = 'pw_tt2_given'; break;
+      case "PW given TT1 or TT Booster": xValueR = d => d.per_pw_given_tt1_or_tt_booster; sortByR = 'per_pw_given_tt1_or_tt_booster'; break;
 
-        case "PW given TT Booster": xValueR = d => d.pw_tt_booster_given; sortByR = 'pw_tt_booster_given'; break;
+      case "PW given TT Booster as fraction of children born (or live births)": xValueR = d => d.pw_tt_booster_given; sortByR = 'pw_tt_booster_given'; break;
 
-        case "PW given 360 Calcium tablets": xValueR = d => d.pw_calcium; sortByR = 'pw_calcium'; break;
+      case "TT1 to TT2 Dropout": xValueR = d => d.pw_tt2_given; sortByR = 'pw_tt2_given'; break;
 
-        case "PW given 180 Iron Folic Acid (IFA) tablets": xValueR = d => d.pw_ifa; sortByR = 'pw_ifa'; break;
+      case "PW given 360 Calcium tablets": xValueR = d => d.pw_calcium; sortByR = 'pw_calcium'; break;
 
-        case "PW given one Albendazole tablet after 1st trimester": xValueR = d => d.pw_albendazole; sortByR = 'pw_albendazole'; break;
+      case "PW given 180 Iron Folic Acid (IFA) tablets": xValueR = d => d.pw_ifa; sortByR = 'pw_ifa'; break;
 
-        case "C-section deliveries": xValueR = d => d.c_section_deliveries; sortByR = 'c_section_deliveries'; break;
+      case "PW given one Albendazole tablet after 1st trimester": xValueR = d => d.pw_albendazole; sortByR = 'pw_albendazole'; break;
 
-        case "Still Birth": xValueR = d => d.per_still_birth; sortByR = 'per_still_birth'; break;
+      case "Severely Anaemic PW given treatment": xValueR = d => d.per_severe_anaemia_tested_treated; sortByR = 'per_severe_anaemia_tested_treated'; break;
+
+      case "C-section deliveries": xValueR = d => d.c_section_deliveries; sortByR = 'c_section_deliveries'; break;
+
+      case "Still Birth Rate (Still births per 1000 Live Births)": xValueR = d => d.per_still_birth; sortByR = 'per_still_birth'; break;
+
+      case "Preterm Birth Rate": xValueR = d => d.preterm_birth_rate; sortByR = 'preterm_birth_rate'; break;
+
+      case "Pregnancy outcomes as a % of ANC registration": xValueR = d => d.per_pw_outcome; sortByR = 'per_pw_outcome'; break;
 
     }
 
