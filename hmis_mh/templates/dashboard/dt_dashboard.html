@@ -527,7 +527,7 @@
                                 <td>1.2.3</td>
                                 <td colspan="6">% PW given TT1 or TT Booster as fraction of PW received 4 or more ANC check ups
                                     : <span
-                                        id="dt_pwttbooster"></span></td>
+                                        id="dt_tt1orttbooster"></span></td>
                                 <td colspan="2">
                                     <div class="btn-group dropright mr-1">
                                         <button type="button" class="btn btn-light dropdown-toggle barColor"
@@ -1754,7 +1754,7 @@
                             <tr class="per_value">
                                 <td>9.1.4+9.1.7</td>
                                 <td colspan="6"> % of  Child immunisation DPT and Pentavalent 2nd dose out of total children
-                                    : <span id="st_nodpt2penta2"></span></td>
+                                    : <span id="st_dpt2penta2"></span></td>
                                 <td colspan="2">
                                     <a href="{% url 'ci_bar' dist_name fy %}?id1=Child_immunisation_DPT_and_Pentavalent_2nd_dose"
                                         class="lc_link" target="_blank" style="color: #972097;">BAR</a>
@@ -1811,7 +1811,7 @@
                             <tr class="per_value">
                                 <td>9.1.5+9.1.8</td>
                                 <td colspan="6"> % of Child immunisation DPT and Pentavalent 3rd dose out of total children:
-                                    <span id="st_nodpt3penta3"></span></td>
+                                    <span id="st_dpt3penta3"></span></td>
                                 <td colspan="2">
                                     <a href="{% url 'ci_bar' dist_name fy %}?id1=Child_immunisation_DPT_and_Pentavalent_3rd_dose"
                                         class="lc_link" target="_blank" style="color: #972097;">BAR</a>
@@ -2193,7 +2193,7 @@
                                     <td>10.13</td>
                                         <td colspan="6">Children admitted with upper respiratory infection:
                                              <span
-                                                id="st_st_nocduri"></span></td>
+                                                id="st_nocduri"></span></td>
                                         <td colspan="2"><a
                                                 href="{% url 'cd_barnumeric' dist_name fy %}?id1=Children_admitted_with_upper_respiratory_infection"
                                                 class="lc_link" target="_blank" style="color: #972097;">BAR</a>
@@ -2384,27 +2384,28 @@
 
 
     data_from_django = {{ context.pw_data | safe }};
+    console.log(data_from_django)
     var pw_data = []
     data_from_django.forEach(element => {
-        pw_data.push(element.fields);
+        pw_data.push(element.fields);
     });
 
 
     data_from_django = {{ context.ci_data | safe }};
     var ci_data = []
     data_from_django.forEach(element => {
-        ci_data.push(element.fields);
+        ci_data.push(element.fields);
     });
 
     data_from_django = {{ context.cd_data | safe }};
     var cd_data = []
     data_from_django.forEach(element => {
-        cd_data.push(element.fields);
+        cd_data.push(element.fields);
     });
 
 
     $(function () {
-        $("#areaSt").val(1);
+        $("#areaSt").val(405);
         $("#month-1").val('All');
         updateData(pw_data, ci_data, cd_data);
 
@@ -2443,15 +2444,15 @@
         document.getElementById('dt_tt1tott2drop').innerHTML = pw_data[0].pw_tt2_given + "%";
 
         document.getElementById('st_nopwmodanaemia').innerHTML = pw_data[0].no_pw_moderate_anaemia;
-        
+        
         document.getElementById('st_nopwsevanaemia').innerHTML = pw_data[0].no_pw_severe_anaemia;
 
         document.getElementById('dt_sevanaemiatrtd').innerHTML = pw_data[0].per_severe_anaemia_tested_treated + "%";
 
         document.getElementById('dt_pwoutcome').innerHTML = pw_data[0].per_pw_outcome + "%";
-        
 
         document.getElementById('st_nopretermbirth').innerHTML = pw_data[0].no_preterm_birth;
+
         document.getElementById('dt_pretermbirthrate').innerHTML = pw_data[0].preterm_birth_rate + "%";
 
         document.getElementById('st_insti').innerHTML = pw_data[0].no_institutional_delivery;

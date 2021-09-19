@@ -8,6 +8,9 @@ from django.contrib.auth.models import User
 from django.db.models import Q
 from .models import (MhAreaDetails, MhDSdPw, MhDSdCd, MhDSdCi)
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core import serializers
+from django.core.serializers import serialize
+from .serializers import HmisPwSerializer, HmisCdSerializer, HmisCiSerializer
 import json
 from django.http import JsonResponse
 
@@ -56,16 +59,27 @@ class RegionOverview(LoginRequiredMixin, TemplateView):
         fy_name = request.POST['fy_select']
       
         area_name = 1
-        pw_data = MhDSdPw.objects.filter(Q(area_id=22) & Q(financial_year=fy_name) & Q(month='All'))
-        ci_data = MhDSdCi.objects.filter(Q(area_id=22) & Q(financial_year=fy_name) & Q(month='All'))
-        cd_data = MhDSdCd.objects.filter(Q(area_id=22) & Q(financial_year=fy_name) & Q(month='All'))
+        pw_data = MhDSdPw.objects.filter(Q(area_id=405) & Q(financial_year=fy_name) & Q(month='All'))
+        print(pw_data)
+        ci_data = MhDSdCi.objects.filter(Q(area_id=405) & Q(financial_year=fy_name) & Q(month='All'))
+        cd_data = MhDSdCd.objects.filter(Q(area_id=405) & Q(financial_year=fy_name) & Q(month='All'))
 
-        st_name = MhAreaDetails.objects.filter(Q(area_level = 2) | Q(area_level = 3)).values('area_name', 'area_id').distinct().order_by('area_id')
+        st_name = MhAreaDetails.objects.filter(Q(area_level = 3)).values('area_name', 'area_id').distinct().order_by('area_id')
         dt_name = MhAreaDetails.objects.filter(Q(area_parent_id = 405)).values('area_name', 'area_id').distinct().order_by('area_id')
 
         month_name = MhDSdPw.objects.filter(Q(financial_year=fy_name)).values('month').distinct().order_by('month')
+
+        pw_json = serializers.serialize('json',pw_data)
+        print(pw_json)
+        ci_json = serializers.serialize('json',ci_data)
+        cd_json = serializers.serialize('json',cd_data)
+        context = {
+            'pw_data':pw_json,
+            'ci_data':ci_json,
+            'cd_data':cd_json
+        }
         
-        return render(request,'dashboard/dt_dashboard.html', {'st_list':st_name, 'dt_list':dt_name ,'dist_name':area_name, 'months':month_name, 'fy': fy_name})
+        return render(request,'dashboard/dt_dashboard.html', {'st_list':st_name, 'dt_list':dt_name ,'dist_name':area_name, 'context':context, 'months':month_name, 'fy': fy_name})
 
 
 
