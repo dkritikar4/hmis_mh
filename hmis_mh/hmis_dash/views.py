@@ -25,7 +25,6 @@ class hmisBarChart(LoginRequiredMixin, TemplateView):
         fy_name = request.GET.get('fy', fy) 
         if district == '405': 
             data = list(MhDSdPw.objects.filter(Q(financial_year=fy_name) & Q(area_parent_id=405)).values())
-            
         else:    
             data = list(MhDSdPw.objects.filter(Q(financial_year=fy_name) & Q(area_parent_id=22)).values())
 

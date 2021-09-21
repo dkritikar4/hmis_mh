@@ -32,10 +32,10 @@ def create_post_area(request, fy=None, dist_name=None):
     ci_data = MhDSdCi.objects.filter(Q(area_id=areaSelected) & Q(financial_year=fy_name) & Q(month=monthSelected))
     cd_data = MhDSdCd.objects.filter(Q(area_id=areaSelected) & Q(financial_year=fy_name) & Q(month=monthSelected))
 
-    pw_json = json.dumps(HmisPwSerializer(pw_data,  many=True).data)
+    pw_json = json.dumps(HmisPwSerializer(pw_data, many=True).data)
+    ci_json = json.dumps(HmisCiSerializer(ci_data, many=True).data)
+    cd_json = json.dumps(HmisCdSerializer(cd_data, many=True).data)
 
-    ci_json = json.dumps(HmisCiSerializer(ci_data,  many=True).data)
-    cd_json = json.dumps(HmisCdSerializer(cd_data,  many=True).data)
     context = {
         'pw_data':pw_json,
         'ci_data':ci_json,
@@ -60,7 +60,6 @@ class RegionOverview(LoginRequiredMixin, TemplateView):
       
         area_name = 1
         pw_data = MhDSdPw.objects.filter(Q(area_id=405) & Q(financial_year=fy_name) & Q(month='All'))
-        print(pw_data)
         ci_data = MhDSdCi.objects.filter(Q(area_id=405) & Q(financial_year=fy_name) & Q(month='All'))
         cd_data = MhDSdCd.objects.filter(Q(area_id=405) & Q(financial_year=fy_name) & Q(month='All'))
 
@@ -69,10 +68,10 @@ class RegionOverview(LoginRequiredMixin, TemplateView):
 
         month_name = MhDSdPw.objects.filter(Q(financial_year=fy_name)).values('month').distinct().order_by('month')
 
-        pw_json = serializers.serialize('json',pw_data)
-        print(pw_json)
-        ci_json = serializers.serialize('json',ci_data)
-        cd_json = serializers.serialize('json',cd_data)
+        pw_json = serializers.serialize('json', pw_data)
+        ci_json = serializers.serialize('json', ci_data)
+        cd_json = serializers.serialize('json', cd_data)
+        
         context = {
             'pw_data':pw_json,
             'ci_data':ci_json,
