@@ -191,7 +191,7 @@
         arcInitial = d => d.early_anc_register;
         arcInitialNum = d => d.no_early_anc_register;
       } else if (opt == 'Total no of PW registered for ANC') {
-        arcInitial = d => d.tot_no_pw_reg_anc;
+        arcInitial = d => d.per_pw_reg_anc;
         arcInitialNum = d => d.tot_no_pw_reg_anc;
       } else if (opt == 'PW received 4 or more ANC check ups') {
         arcInitial = d => d.anc_4_or_more;
@@ -214,25 +214,25 @@
       } else if (opt == 'PW given one Albendazole tablet after 1st trimester') {
         arcInitial = d => d.pw_albendazole;
         arcInitialNum = d => d.no_pw_given_albendazole;
-      } else if (opt == 'Number of Moderately Anaemic PW') {
-        arcInitial = d => d.no_pw_moderate_anaemia;
-        arcInitialNum = d => d.no_pw_moderate_anaemia;
-      } else if (opt == 'Number of Severely Anaemic PW (tested)') {
-        arcInitial = d => d.no_pw_severe_anaemia;
-        arcInitialNum = d => d.no_pw_severe_anaemia;
-      } else if (opt == 'Number of Preterm Birth') {
-        arcInitial = d => d.no_preterm_birth;
-        arcInitialNum = d => d.no_preterm_birth;
-      } else if (opt == 'Total number of Home Deliveries') {
-        arcInitial = d => d.no_home_delivery;
-        arcInitialNum = d => d.no_home_delivery;
-      } else if (opt == 'Number of Institutional Deliveries') {
-        arcInitial = d => d.no_institutional_delivery;
-        arcInitialNum = d => d.no_institutional_delivery;
-      }
-      else if(opt == 'C-section deliveries'){
+      } else if(opt == 'C-section deliveries'){
         arcInitial = d => d.c_section_deliveries;
         arcInitialNum = d => d.tot_c_section_deliveries;
+      } else if (opt == 'Number of Moderately Anaemic PW') {
+        arcInitial = d => d.per_moderate_anaemia;
+        arcInitialNum = d => d.no_pw_moderate_anaemia;
+      } else if (opt == 'Number of Severely Anaemic PW (tested)') {
+        arcInitial = d => d.per_severe_anaemia;
+        arcInitialNum = d => d.no_pw_severe_anaemia;
+      } else if (opt == 'Number of Preterm Birth') {
+        arcInitial = d => d.per_preterm_birth;
+        arcInitialNum = d => d.no_preterm_birth;
+      } else if (opt == 'Number of Institutional Deliveries') {
+        arcInitial = d => d.per_institutional_delivery;
+        arcInitialNum = d => d.no_institutional_delivery;
+      } else if (opt == 'Total number of Home Deliveries') {
+        arcInitial = d => d.per_home_delivery;
+        arcInitialNum = d => d.no_home_delivery;
+    
       }else{
         arcInitial = d => d.per_still_birth;
         arcInitialNum = d => d.tot_still_birth
@@ -282,7 +282,7 @@
       div.html("<b>" + "<span id='paraText'>" + 10 + "</span>" + "</b><br>" + arcInitial(d.data) + "%");
     }
 
-    oi = { "area_name": [], "early_anc_register": [], "anc_4_or_more": [], "pw_tt1_given": [], "pw_tt2_given": [], "pw_tt_booster_given": [], "pw_calcium": [],"pw_albendazole": [],"pw_ifa": [],"c_section_deliveries": [],"per_pw_reg_anc": [], "per_still_birth": [] }
+    oi = { "area_name": [], "early_anc_register": [], "anc_4_or_more": [], "pw_tt1_given": [], "pw_tt2_given": [], "pw_tt_booster_given": [], "pw_calcium": [],"pw_albendazole": [],"pw_ifa": [],"c_section_deliveries": [],"per_pw_reg_anc": [], "per_still_birth": [], "per_moderate_anaemia": [], "per_severe_anaemia": [], "per_preterm_birth": [], "per_institutional_delivery": [], "per_home_delivery": [] }
 
     data.forEach(d => {
       oi.area_name.push(d.area_name);
@@ -297,6 +297,11 @@
       oi.c_section_deliveries.push(d.c_section_deliveries);
       oi.per_pw_reg_anc.push(d.per_pw_reg_anc);
       oi.per_still_birth.push(d.per_still_birth);
+      oi.per_moderate_anaemia.push(d.per_moderate_anaemia);
+      oi.per_severe_anaemia.push(d.per_severe_anaemia);
+      oi.per_preterm_birth.push(d.per_preterm_birth);
+      oi.per_institutional_delivery .push(d.per_institutional_delivery);
+      oi.per_home_delivery.push(d.per_home_delivery);
     });
 
     var color = d3.scaleSequential().domain([d3.min(arcInitial(oi)), d3.max(arcInitial(oi))])
@@ -505,6 +510,11 @@
     d.pw_albendazole = +d.pw_albendazole;
     d.pw_ifa = +d.pw_ifa;
     d.c_section_deliveries = +d.c_section_deliveries;
+    d.per_moderate_anaemia = +d.per_moderate_anaemia;
+    d.per_severe_anaemia = +d.per_severe_anaemia;
+    d.per_preterm_birth = +d.per_preterm_birth;
+    d.per_institutional_delivery = +d.per_institutional_delivery;
+    d.per_home_delivery = +d.per_home_delivery;
     d.tot_no_pw_reg_anc = +d.tot_no_pw_reg_anc;
     d.no_early_anc_register = +d.no_early_anc_register;
     d.no_anc_4_or_more = +d.no_anc_4_or_more;
@@ -517,6 +527,11 @@
     d.tot_c_section_deliveries = +d.tot_c_section_deliveries;
     d.tot_still_birth = +d.tot_still_birth;
     d.per_still_birth = +d.per_still_birth;
+    d.no_pw_moderate_anaemia = +d.no_pw_moderate_anaemia;
+    d.no_pw_severe_anaemia = +d.no_pw_severe_anaemia;
+    d.no_preterm_birth = +d.no_preterm_birth;
+    d.no_institutional_delivery = +d.no_institutional_delivery;
+    d.no_home_delivery = +d.no_home_delivery;
     d.per_pw_reg_anc = +d.per_pw_reg_anc;
     d.area_id = +d.area_id;
     d.area_name = d.area_name;

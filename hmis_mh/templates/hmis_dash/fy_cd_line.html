@@ -178,10 +178,10 @@
     let sel_fy = '{{ fy }}';
     let sel_st = '{{ dist_name }}';
     let areaName = [];
-    if (sel_st == '22')
-        areaName.push(405);  
+    if (sel_st == '405')
+        areaName.push(442);  
     else
-        areaName.push(1);
+        areaName.push(405);
     let selectedYear = [];
     selectedYear.push(sel_fy)
 
@@ -629,7 +629,7 @@
         if(sel_st == '22')
             $('#state').val(405);
         else
-            $('#state').val(1);
+            $('#state').val(442);
         $('#fyList').val(sel_fy);
 
         $(".category a").click(function () {

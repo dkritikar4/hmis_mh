@@ -175,10 +175,10 @@
   //   let prjType = 'Urban';
   let selectedArea = "{{ dist_name }}";
   let areaName = [];
-  if (selectedArea == '22')
-    areaName.push(405);  
+  if (selectedArea == '405')
+    areaName.push(442);  
   else
-    areaName.push(1);
+    areaName.push(405);
   let selectedYear = "{{fy}}";
 
   const svg = d3.select('#chart').append('svg').attr('id', 'svg1').attr('width', 1000)
@@ -280,7 +280,6 @@
   var color = d3.scale.category10();
 
   const render = data => {
-    console.log(data, "data in render")
     var width1;
 
     // Scale the range of the data
@@ -620,10 +619,10 @@
 
   $(function () {
     //bind event
-    if(selectedArea == '22')
-      $('#state').val(405);
+    if(selectedArea == '405')
+      $('#state').val(442);
     else
-      $('#state').val(1);
+      $('#state').val(405);
 
     // $('.state a').parents('.dropdown').find('.dropdown-toggle').html('All States' + ' <span class="selectedState"></span>');
 

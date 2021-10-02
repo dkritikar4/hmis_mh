@@ -200,7 +200,7 @@
             .attr('transform', `translate(${margin.left}, ${margin.top})`);
 
         let myColor; 
-        if (yValue == 'd => d.c_section_deliveries' || yValue == 'd => d.per_still_birth' || yValue == 'd => d.preterm_birth_rate' ) 
+        if (yValue == 'd => d.c_section_deliveries' || yValue == 'd => d.per_still_birth' || yValue == 'd => d.preterm_birth_rate'  ) 
         {
             myColor = d3.scaleSequential().domain([d3.max(data, yValue), d3.min(data, yValue)])
                 .interpolator(d3.interpolateRdYlGn);

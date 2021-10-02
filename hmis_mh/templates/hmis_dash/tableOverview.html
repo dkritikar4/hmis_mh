@@ -164,6 +164,9 @@
         d.pw_ifa = +d.pw_ifa;
         d.pw_albendazole = +d.pw_albendazole;
         d.c_section_deliveries = +d.c_section_deliveries;
+        d.per_severe_anaemia_tested_treated = +d.per_severe_anaemia_tested_treated;
+        d.preterm_birth_rate = +d.preterm_birth_rate;
+        d.per_pw_outcome = +d.per_pw_outcome;
         d.tot_no_pw_reg_anc = +d.tot_no_pw_reg_anc;
         d.no_early_anc_register = +d.no_early_anc_register;
         d.no_anc_4_or_more = +d.no_anc_4_or_more;
@@ -176,6 +179,11 @@
         d.tot_c_section_deliveries = +d.tot_c_section_deliveries;
         d.tot_still_birth = +d.tot_still_birth;
         d.per_still_birth = +d.per_still_birth;
+        d.no_pw_moderate_anaemia = +d.no_pw_moderate_anaemia;
+        d.no_pw_severe_anaemia = +d.no_pw_severe_anaemia;
+        d.no_preterm_birth = +d.no_preterm_birth;
+        d.no_home_delivery = +d.no_home_delivery;
+        d.no_institutional_delivery = +d.no_institutional_delivery;
         d.month = d.month;
     });
 
@@ -192,12 +200,16 @@
         d.per_chld_immunzt_bcg = +d.per_chld_immunzt_bcg;
         d.chld_immunzt_9to11m_mr = +d.chld_immunzt_9to11m_mr;
         d.per_chld_immunzt_9to11m_mr = +d.per_chld_immunzt_9to11m_mr;
-        d.chld_immunzt_9to11m_measl_1st_dose = +d.chld_immunzt_9to11m_measl_1st_dose;
-        d.per_chld_immunzt_9to11m_measl_1st_dose = +d.per_chld_immunzt_9to11m_measl_1st_dose;
         d.chld_immunzt_vit_a_dose_1 = +d.chld_immunzt_vit_a_dose_1;
         d.per_chld_immunzt_vit_a_dose_1 = +d.per_chld_immunzt_vit_a_dose_1;
         d.no_chld_12to59m_albendazole = +d.no_chld_12to59m_albendazole;
         d.per_no_chld_12to59m_albendazole = +d.per_no_chld_12to59m_albendazole;
+        d.per_chld_immunzt_dpt1_penta1 = +d.per_chld_immunzt_dpt1_penta1;
+        d.per_chld_immunzt_dpt2_penta2 = +d.per_chld_immunzt_dpt2_penta2;
+        d.per_chld_immunzt_dpt3_penta3 = +d.per_chld_immunzt_dpt3_penta3;
+        d.chld_immunzt_dpt1_penta1 = +d.chld_immunzt_dpt1_penta1;
+        d.chld_immunzt_dpt2_penta2 = +d.chld_immunzt_dpt2_penta2;
+        d.chld_immunzt_dpt3_penta3 = +d.chld_immunzt_dpt3_penta3;
         d.month = d.month;
     });
     console.log("data_childIm", data_childIm);
@@ -222,6 +234,10 @@
         d.per_chld_disease_diarrhoea = +d.per_chld_disease_diarrhoea;
         d.chld_disease_sam = +d.chld_disease_sam;
         d.per_chld_disease_sam = +d.per_chld_disease_sam;
+        d.per_chld_disease_diarrhoea_trtd_inpatnt = +d.per_chld_disease_diarrhoea_trtd_inpatnt;
+        d.per_chld_admtd_upper_resp_infec = +d.per_chld_admtd_upper_resp_infec;
+        d.chld_disease_diarrhoea_trtd_inpatnt = +d.chld_disease_diarrhoea_trtd_inpatnt;
+        d.chld_admtd_upper_resp_infec = +d.chld_admtd_upper_resp_infec;
         d.month = d.month;
     });
     
@@ -281,9 +297,9 @@
                 tbd['No. of PW given TT1'] = d.no_pw_given_tt1;
                 tbd['PW given TT1(%)'] = d.pw_tt1_given;
                 tbd['No. of PW given TT2'] = d.no_pw_given_tt2;
-                tbd['PW given TT2(%)'] = d.pw_tt2_given;
+                tbd['TT1 to TT2 Dropout(%)'] = d.pw_tt2_given;
                 tbd['No. of PW given TT Booster'] = d.no_pw_given_tt_booster;
-                tbd['PW given TT Booster(%)'] = d.pw_tt_booster_given;
+                tbd['PW given TT Booster as fraction of children born (or live births)(%)'] = d.pw_tt_booster_given;
                 tbd['No. of PW given 360 Calcium tablets'] = d.no_pw_given_calcium;
                 tbd['PW given 360 Calcium tablets(%)'] = d.pw_calcium;
                 tbd['No. of PW given 180 IFA tablets'] = d.no_pw_given_ifa;
@@ -294,13 +310,23 @@
                 tbd['C section deliveries(%)'] = d.c_section_deliveries;
                 tbd['Total no of Still Birth'] = d.tot_still_birth;
                 tbd['Still Birth(%)'] = d.per_still_birth;
+                tbd['Number of Moderately Anaemic PW'] = d.no_pw_moderate_anaemia;
+                tbd['Number of Severely Anaemic PW (tested)'] = d.no_pw_severe_anaemia;
+                tbd['Number of Preterm Birth'] = d.no_preterm_birth;
+                tbd['Total number of Home Deliveries'] = d.no_home_delivery;
+                tbd['Number of Institutional Deliveries'] = d.no_institutional_delivery;
+                tbd['Pregnancy outcomes as a % of ANC registration'] = d.per_pw_outcome;
+                tbd['Preterm Birth Rate(%)'] = d.preterm_birth_rate;
+                tbd['Severely Anaemic PW given treatment(%)'] = d.per_severe_anaemia_tested_treated;
+                tbd['PW given TT1 or TT Booster(%)'] = d.per_pw_given_tt1_or_tt_booster;
+
         
                 tbdata.push(tbd);
             });
             console.log("tbdata", tbdata);
             column_data = { "area_name": [], "tot_no_pw_reg_anc": [], "no_early_anc_register": [], "early_anc_register": [], "no_anc_4_or_more": [], "anc_4_or_more": [], "no_pw_given_tt1": [],
             "pw_tt1_given": [], "no_pw_given_tt2": [], "pw_tt2_given": [], "no_pw_given_tt_booster": [], "pw_tt_booster_given": [], "no_pw_given_calcium": [], "pw_calcium": [], "no_pw_given_ifa": [],
-            "pw_ifa": [], "no_pw_given_albendazole": [], "pw_albendazole": [], "tot_c_section_deliveries": [] , "c_section_deliveries": [], "tot_still_birth": [], "per_still_birth": [] } 
+            "pw_ifa": [], "no_pw_given_albendazole": [], "pw_albendazole": [], "tot_c_section_deliveries": [] , "c_section_deliveries": [], "tot_still_birth": [], "per_still_birth": [], "no_pw_moderate_anaemia": [], "no_pw_severe_anaemia": [], "no_preterm_birth": [], "no_home_delivery": [], "no_institutional_delivery": [], "per_pw_outcome": [], "preterm_birth_rate": [], "per_severe_anaemia_tested_treated": [], "per_pw_given_tt1_or_tt_booster": []  } 
 
 
             dataPw.forEach(d => {
@@ -326,6 +352,18 @@
                 column_data.c_section_deliveries.push(+d.c_section_deliveries);
                 column_data.tot_still_birth.push(+d.tot_still_birth);
                 column_data.per_still_birth.push(+d.per_still_birth);
+                column_data.no_pw_moderate_anaemia.push(+d.no_pw_moderate_anaemia);
+                column_data.no_pw_severe_anaemia.push(+d.no_pw_severe_anaemia);
+                column_data.no_preterm_birth.push(+d.no_preterm_birth);
+                column_data.no_home_delivery.push(+d.no_home_delivery);
+                column_data.no_institutional_delivery.push(+d.no_institutional_delivery);
+                column_data.per_pw_outcome.push(+d.per_pw_outcome);
+                column_data.preterm_birth_rate.push(+d.preterm_birth_rate);
+                column_data.per_severe_anaemia_tested_treated.push(+d.per_severe_anaemia_tested_treated);
+                column_data.per_pw_given_tt1_or_tt_booster.push(+d.per_pw_given_tt1_or_tt_booster);
+
+
+
 
             })
             var tot_pw_reg_color = d3.scaleSequential().domain([d3.min(column_data.tot_no_pw_reg_anc), d3.max(column_data.tot_no_pw_reg_anc)])
@@ -390,6 +428,34 @@
 
             var per_still_birth_color = d3.scaleSequential().domain([d3.max(column_data.per_still_birth), d3.min(column_data.per_still_birth)])
                 .interpolator(d3.interpolateRdYlGn);
+                                
+            var moderate_anaemia_color = d3.scaleSequential().domain([d3.max(column_data.no_pw_moderate_anaemia), d3.min(column_data.no_pw_moderate_anaemia)])
+                .interpolator(d3.interpolateRdYlGn);
+                    
+            var severe_anaemia_color = d3.scaleSequential().domain([d3.max(column_data.no_pw_severe_anaemia), d3.min(column_data.no_pw_severe_anaemia)])
+                .interpolator(d3.interpolateRdYlGn);
+                
+            var preterm_birth_color = d3.scaleSequential().domain([d3.max(column_data.no_preterm_birth), d3.min(column_data.no_preterm_birth)])
+                .interpolator(d3.interpolateRdYlGn);
+                
+            var home_delivery_color = d3.scaleSequential().domain([d3.max(column_data.no_home_delivery), d3.min(column_data.no_home_delivery)])
+                .interpolator(d3.interpolateRdYlGn);
+                
+            var institutional_delivery_color = d3.scaleSequential().domain([d3.max(column_data.no_institutional_delivery), d3.min(column_data.no_institutional_delivery)])
+                .interpolator(d3.interpolateRdYlGn);
+                
+            var pw_outcome_color = d3.scaleSequential().domain([d3.max(column_data.per_pw_outcome), d3.min(column_data.per_pw_outcome)])
+                .interpolator(d3.interpolateRdYlGn);
+               
+            var preterm_birth_rate_color = d3.scaleSequential().domain([d3.max(column_data.preterm_birth_rate), d3.min(column_data.preterm_birth_rate)])
+                .interpolator(d3.interpolateRdYlGn);
+                
+            var severe_anaemia_tested_treated_color = d3.scaleSequential().domain([d3.max(column_data.per_severe_anaemia_tested_treated), d3.min(column_data.per_severe_anaemia_tested_treated)])
+                .interpolator(d3.interpolateRdYlGn);
+                
+            var tt1_or_tt_booster_color = d3.scaleSequential().domain([d3.max(column_data.per_pw_given_tt1_or_tt_booster), d3.min(column_data.per_pw_given_tt1_or_tt_booster)])
+                .interpolator(d3.interpolateRdYlGn);
+                
 
             var sortAscending = true;
             var table = d3.select('div#table').append('table')
@@ -457,13 +523,13 @@
                     else if (d.name == 'No. of PW given TT2') {
                         return 'white';
                     }
-                    else if (d.name == 'PW given TT2(%)') {
+                    else if (d.name == 'PW given TT Booster as fraction of children born (or live births)(%)') {
                         return pw_tt2_color(d.value);
                     }
                     else if (d.name == 'No. of PW given TT Booster') {
                         return 'white';
                     }
-                    else if (d.name == 'PW given TT Booster(%)') {
+                    else if (d.name == 'TT1 to TT2 Dropout(%)') {
                         return pw_tt_booster_color(d.value);
                     }
                     else if (d.name == 'No. of PW given 360 Calcium tablets') {
@@ -496,6 +562,34 @@
                     else if (d.name == 'Still Birth(%)') {
                         return per_still_birth_color(d.value);
                     }
+                    else if (d.name == 'Number of Moderately Anaemic PW') {
+                        return 'white';
+                    }
+                    else if (d.name == 'PW given TT1 or TT Booster(%)') {
+                        return tt1_or_tt_booster_color(d.value);
+                    }
+                    else if (d.name == 'Number of Severely Anaemic PW (tested)') {
+                        return 'white';
+                    }
+                    else if (d.name == 'Severely Anaemic PW given treatment(%)') {
+                        return severe_anaemia_tested_treated_color(d.value);
+                    }
+                    else if (d.name == 'Number of Preterm Birth') {
+                        return 'white';
+                    }
+                    else if (d.name == 'Preterm Birth Rate(%)') {
+                        return preterm_birth_rate_color(d.value);
+                    }
+                    else if (d.name == 'Total number of Home Deliveries') {
+                        return 'white';
+                    }
+                    else if (d.name == 'Pregnancy outcomes as a % of ANC registration') {
+                        return pw_outcome_color(d.value);
+                    }
+                    else if (d.name == 'Number of Institutional Deliveries') {
+                        return 'white';
+                    }
+                    
                 })
                 .text(function (d) {
                     // if (d.name == 'Stunted Children') {
@@ -531,19 +625,25 @@
                 tabdt['Child immunisation - BCG(%)'] = d.per_chld_immunzt_bcg;
                 tabdt['Child immunisation (9-11months) - Measles & Rubella (MR)- 1st Dose'] = d.chld_immunzt_9to11m_mr;
                 tabdt['Child immunisation (9-11months) - Measles & Rubella (MR)- 1st Dose(%)'] = d.per_chld_immunzt_9to11m_mr;
-                tabdt['Child immunisation (9-11months) - Measles 1st dose'] = d.chld_immunzt_9to11m_measl_1st_dose;
-                tabdt['Child immunisation (9-11months) - Measles 1st dose(%)'] = d.per_chld_immunzt_9to11m_measl_1st_dose;
                 tabdt['Child immunisation - Vitamin A Dose'] = d.chld_immunzt_vit_a_dose_1;
                 tabdt['Child immunisation - Vitamin A Dose(%)'] = d.per_chld_immunzt_vit_a_dose_1;
                 tabdt['Number of children (12-59 months) provided Albendazole'] = d.no_chld_12to59m_albendazole;
                 tabdt['Number of children (12-59 months) provided Albendazole(%)'] = d.per_no_chld_12to59m_albendazole;
+                tabdt['Child immunisation DPT and Pentavalent 1st dose'] = d.chld_immunzt_dpt1_penta1;
+                tabdt['Child immunisation DPT and Pentavalent 1st dose(%)'] = d.per_chld_immunzt_dpt1_penta1;
+                tabdt['Child immunisation DPT and Pentavalent 2nd dose'] = d.chld_immunzt_dpt2_penta2;
+                tabdt['Child immunisation DPT and Pentavalent 2nd dose(%)'] = d.per_chld_immunzt_dpt2_penta2;
+                tabdt['Child immunisation DPT and Pentavalent 3rd dose'] = d.chld_immunzt_dpt3_penta3;
+                tabdt['Child immunisation DPT and Pentavalent 3rd dose(%)'] = d.per_chld_immunzt_dpt3_penta3;
+
+
 
                 tbdata2.push(tabdt);
             });
 
            console.log("tbdata2", tbdata2)
            console.log("dataChildIm", dataChildIm)
-            column_data = { "area_name": [], "chld_immunzt_vit_k1": [], "per_chld_immunzt_vit_k1": [], "chld_immunzt_bcg": [], "per_chld_immunzt_bcg": [], "chld_immunzt_9to11m_mr": [], "per_chld_immunzt_9to11m_mr": [], "chld_immunzt_9to11m_measl_1st_dose": [], "per_chld_immunzt_9to11m_measl_1st_dose": [], "chld_immunzt_vit_a_dose_1": [],"per_chld_immunzt_vit_a_dose_1": [],"no_chld_12to59m_albendazole": [], "per_no_chld_12to59m_albendazole": []} //"HeightP":[],"WeightP":[], "HeightWeightP":[] }
+            column_data = { "area_name": [], "chld_immunzt_vit_k1": [], "per_chld_immunzt_vit_k1": [], "chld_immunzt_bcg": [], "per_chld_immunzt_bcg": [], "chld_immunzt_9to11m_mr": [], "per_chld_immunzt_9to11m_mr": [], "chld_immunzt_9to11m_measl_1st_dose": [], "per_chld_immunzt_9to11m_measl_1st_dose": [], "chld_immunzt_vit_a_dose_1": [],"per_chld_immunzt_vit_a_dose_1": [],"no_chld_12to59m_albendazole": [], "per_no_chld_12to59m_albendazole": [], "chld_immunzt_dpt1_penta1": [], "per_chld_immunzt_dpt1_penta1": [], "chld_immunzt_dpt2_penta2": [], "per_chld_immunzt_dpt2_penta2": [], "chld_immunzt_dpt3_penta3": [], "per_chld_immunzt_dpt3_penta3": []} //"HeightP":[],"WeightP":[], "HeightWeightP":[] }
 
 
             dataChildIm.forEach(d => {
@@ -554,12 +654,16 @@
                 column_data.per_chld_immunzt_bcg.push(+d.per_chld_immunzt_bcg);
                 column_data.chld_immunzt_9to11m_mr.push(+d.chld_immunzt_9to11m_mr);
                 column_data.per_chld_immunzt_9to11m_mr.push(+d.per_chld_immunzt_9to11m_mr);
-                column_data.chld_immunzt_9to11m_measl_1st_dose.push(+d.chld_immunzt_9to11m_measl_1st_dose);
-                column_data.per_chld_immunzt_9to11m_measl_1st_dose.push(+d.per_chld_immunzt_9to11m_measl_1st_dose);
                 column_data.chld_immunzt_vit_a_dose_1.push(+d.chld_immunzt_vit_a_dose_1);
                 column_data.per_chld_immunzt_vit_a_dose_1.push(+d.per_chld_immunzt_vit_a_dose_1);
                 column_data.no_chld_12to59m_albendazole.push(+d.no_chld_12to59m_albendazole);
                 column_data.per_no_chld_12to59m_albendazole.push(+d.per_no_chld_12to59m_albendazole);
+                column_data.chld_immunzt_dpt1_penta1.push(d.chld_immunzt_dpt1_penta1);
+                column_data.per_chld_immunzt_dpt1_penta1.push(d.per_chld_immunzt_dpt1_penta1);
+                column_data.chld_immunzt_dpt2_penta2.push(d.chld_immunzt_dpt2_penta2);
+                column_data.per_chld_immunzt_dpt2_penta2.push(d.per_chld_immunzt_dpt2_penta2);
+                column_data.chld_immunzt_dpt3_penta3.push(d.chld_immunzt_dpt3_penta3);
+                column_data.per_chld_immunzt_dpt3_penta3.push(d.per_chld_immunzt_dpt3_penta3);
 
             })
 
@@ -599,6 +703,24 @@
                 .interpolator(d3.interpolateRdYlGn);
 
             var chld_alben_percent_color = d3.scaleSequential().domain([d3.min(column_data.per_no_chld_12to59m_albendazole), d3.max(column_data.per_no_chld_12to59m_albendazole)])
+                .interpolator(d3.interpolateRdYlGn);
+
+            var chld_DPT1_penta1_percent_color = d3.scaleSequential().domain([d3.min(column_data.chld_immunzt_dpt1_penta1), d3.max(column_data.chld_immunzt_dpt1_penta1)])
+                .interpolator(d3.interpolateRdYlGn);
+            
+            var chld_DPT1_penta1_percent_color = d3.scaleSequential().domain([d3.min(column_data.per_chld_immunzt_dpt1_penta1), d3.max(column_data.per_chld_immunzt_dpt1_penta1)])
+                .interpolator(d3.interpolateRdYlGn);
+                
+            var chld_DPT2_penta2_color = d3.scaleSequential().domain([d3.min(column_data.chld_immunzt_dpt2_penta2), d3.max(column_data.chld_immunzt_dpt2_penta2)])
+                .interpolator(d3.interpolateRdYlGn);
+                
+            var chld_DPT2_penta2_percent_color = d3.scaleSequential().domain([d3.min(column_data.per_chld_immunzt_dpt2_penta2), d3.max(column_data.per_chld_immunzt_dpt2_penta2)])
+                .interpolator(d3.interpolateRdYlGn);
+                
+            var chld_DPT3_penta3_color = d3.scaleSequential().domain([d3.min(column_data.chld_immunzt_dpt3_penta3), d3.max(column_data.chld_immunzt_dpt3_penta3)])
+                .interpolator(d3.interpolateRdYlGn);
+                
+            var chld_DPT3_penta3_percent_color = d3.scaleSequential().domain([d3.min(column_data.per_chld_immunzt_dpt3_penta3), d3.max(column_data.per_chld_immunzt_dpt3_penta3)])
                 .interpolator(d3.interpolateRdYlGn);
 
             var sortAscending = true;
@@ -662,12 +784,6 @@
                     else if (d.name == 'Child immunisation (9-11months) - Measles & Rubella (MR)- 1st Dose(%)') {
                         return chld_mr_percent_color(d.value);
                     }
-                    else if (d.name == 'Child immunisation (9-11months) - Measles 1st dose') {
-                        return 'white';
-                    }
-                    else if (d.name == 'Child immunisation (9-11months) - Measles 1st dose(%)') {
-                        return chld_meas_percent_color(d.value);
-                    }
                     else if (d.name == 'Child immunisation - Vitamin A Dose') {
                          return 'white';
                     }
@@ -679,6 +795,24 @@
                     }
                     else if (d.name == 'Number of children (12-59 months) provided Albendazole(%)') {
                         return chld_alben_percent_color(d.value);
+                    }
+                    else if (d.name == 'Child immunisation DPT and Pentavalent 1st dose') {
+                        return 'white';
+                    }
+                    else if (d.name == 'Child immunisation DPT and Pentavalent 1st dose(%)') {
+                        return chld_DPT1_penta1_percent_color(d.value);
+                    }
+                    else if (d.name == 'Child immunisation DPT and Pentavalent 2nd dose') {
+                        return 'white';
+                    }
+                    else if (d.name == 'Child immunisation DPT and Pentavalent 2nd dose(%)') {
+                        return chld_DPT2_penta2_percent_color(d.value);
+                    }
+                    else if (d.name == 'Child immunisation DPT and Pentavalent 3rd dose') {
+                        return 'white';
+                    }
+                    else if (d.name == 'Child immunisation DPT and Pentavalent 3rd dose(%)') {
+                        return chld_DPT3_penta3_percent_color(d.value);
                     }
                 })
                 .attr('data-th', function (d) {
@@ -710,11 +844,16 @@
                 tbdt['Childhood Diseases - Diarrhoea(%)'] = d.per_chld_disease_diarrhoea;
                 tbdt['Childhood Diseases - Severe Acute Malnutrition (SAM)'] = d.chld_disease_sam;
                 tbdt['Childhood Diseases - Severe Acute Malnutrition (SAM)(%)'] = d.per_chld_disease_sam;
+                tbdt['Childhood Diseases-Diarrhoea treated in Inpatients'] = d.chld_disease_diarrhoea_trtd_inpatnt;
+                tbdt['Childhood Diseases-Diarrhoea treated in Inpatients(%)'] = d.per_chld_disease_diarrhoea_trtd_inpatnt;
+                tbdt['Children admitted with upper respiratory infections'] = d.chld_admtd_upper_resp_infec;
+                tbdt['Children admitted with upper respiratory infections(%)'] = d.per_chld_admtd_upper_resp_infec;
+
 
 
                 tbdata2.push(tbdt);
             });
-            column_data = { "area_name": [], "chld_disease_pneumonia": [], "per_chld_disease_pneumonia": [], "chld_disease_sepsis": [], "per_chld_disease_sepsis": [], "chld_disease_tb": [], "per_chld_disease_tb": [], "chld_disease_malaria": [], "per_chld_disease_malaria": [], "chld_disease_diarrhoea": [], "per_chld_disease_diarrhoea": [], "chld_disease_sam": [] , "per_chld_disease_sam": []  } //"HeightP":[],"WeightP":[], "HeightWeightP":[] }
+            column_data = { "area_name": [], "chld_disease_pneumonia": [], "per_chld_disease_pneumonia": [], "chld_disease_sepsis": [], "per_chld_disease_sepsis": [], "chld_disease_tb": [], "per_chld_disease_tb": [], "chld_disease_malaria": [], "per_chld_disease_malaria": [], "chld_disease_diarrhoea": [], "per_chld_disease_diarrhoea": [], "chld_disease_sam": [] , "per_chld_disease_sam": [], "chld_disease_diarrhoea_trtd_inpatnt": [], "per_chld_disease_diarrhoea_trtd_inpatnt": [], "chld_admtd_upper_resp_infec": [], "per_chld_admtd_upper_resp_infec": [] } //"HeightP":[],"WeightP":[], "HeightWeightP":[] }
             console.log("dataChildDi", dataChildDi);
 
             dataChildDi.forEach(d => {
@@ -731,6 +870,11 @@
                 column_data.per_chld_disease_diarrhoea.push(+d.per_chld_disease_diarrhoea);
                 column_data.chld_disease_sam.push(+d.chld_disease_sam);
                 column_data.per_chld_disease_sam.push(+d.per_chld_disease_sam);
+                column_data.chld_disease_diarrhoea_trtd_inpatnt.push(+d.chld_disease_diarrhoea_trtd_inpatnt);
+                column_data.per_chld_disease_diarrhoea_trtd_inpatnt.push(+d.per_chld_disease_diarrhoea_trtd_inpatnt);
+                column_data.chld_admtd_upper_resp_infec.push(+d.chld_admtd_upper_resp_infec);
+                column_data.per_chld_admtd_upper_resp_infec.push(+d.per_chld_admtd_upper_resp_infec);
+
             })
             console.log("column_data di", column_data);
             var chld_pneumonia = d3.scaleSequential().domain([d3.max(column_data.chld_disease_pneumonia), d3.min(column_data.chld_disease_pneumonia)])
@@ -767,6 +911,18 @@
                 .interpolator(d3.interpolateRdYlGn);
 
             var chld_sam_percent_color = d3.scaleSequential().domain([d3.max(column_data.per_chld_disease_sam), d3.min(column_data.per_chld_disease_sam)])
+                .interpolator(d3.interpolateRdYlGn);
+            
+            var chld_diarrhoea_trtd_percent_color = d3.scaleSequential().domain([d3.max(column_data.per_chld_disease_diarrhoea_trtd_inpatnt), d3.min(column_data.per_chld_disease_diarrhoea_trtd_inpatnt)])
+                .interpolator(d3.interpolateRdYlGn);
+                
+            var chld_diarrhoea_trtd_color = d3.scaleSequential().domain([d3.max(column_data.chld_disease_diarrhoea_trtd_inpatnt), d3.min(column_data.chld_disease_diarrhoea_trtd_inpatnt)])
+                .interpolator(d3.interpolateRdYlGn);
+                
+            var chld_resp_infec_percent_color = d3.scaleSequential().domain([d3.max(column_data.per_chld_admtd_upper_resp_infec), d3.min(column_data.per_chld_admtd_upper_resp_infec)])
+                .interpolator(d3.interpolateRdYlGn);
+                
+            var chld_resp_infec_color = d3.scaleSequential().domain([d3.max(column_data.chld_admtd_upper_resp_infec), d3.min(column_data.chld_admtd_upper_resp_infec)])
                 .interpolator(d3.interpolateRdYlGn);
 
 
@@ -849,6 +1005,18 @@
                     }
                     else if (d.name == 'Childhood Diseases - Severe Acute Malnutrition (SAM)(%)') {
                         return chld_sam_percent_color(d.value);
+                    }
+                    else if (d.name == 'Childhood Diseases-Diarrhoea treated in Inpatients') {
+                         return 'white';
+                    }
+                    else if (d.name == 'Childhood Diseases-Diarrhoea treated in Inpatients(%)') {
+                        return chld_diarrhoea_trtd_percent_color(d.value);
+                    }
+                    else if (d.name == 'Children admitted with upper respiratory infections') {
+                         return 'white';
+                    }
+                    else if (d.name == 'Children admitted with upper respiratory infections(%)') {
+                        return chld_resp_infec_percent_color(d.value);
                     }
                 })
                 .text(function (d) {
