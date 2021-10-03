@@ -183,10 +183,11 @@
   //   let prjType = 'Urban';
   let selectedArea = "{{ dist_name }}";
   let areaName = [];
-  if (selectedArea == '22')
-    areaName.push(405);  
+  let selectint = parseInt(selectedArea)
+  if (selectint > 440 )
+    areaName.push(441);  
   else
-    areaName.push(1);
+    areaName.push(405);
   let selectedYear = "{{fy}}";
 
   const svg = d3.select('#chart').append('svg').attr('id', 'svg1').attr('width', 1000)
@@ -644,10 +645,10 @@
 
   $(function () {
     //bind event
-    if(selectedArea == '22')
-      $('#state').val(405);
+    if (selectint > 440 )
+      $('#state').val(441);
     else
-      $('#state').val(1);
+      $('#state').val(405);
 
     $(".category a").click(function () {
       var valCategory = $(this).text();

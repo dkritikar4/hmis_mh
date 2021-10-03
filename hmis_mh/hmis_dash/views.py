@@ -22,8 +22,9 @@ class hmisBarChart(LoginRequiredMixin, TemplateView):
 
     def get(self, request, fy= None, dist_name = None):
         district = request.GET.get('dist_name', dist_name) 
+        dtInt = int(district)
         fy_name = request.GET.get('fy', fy) 
-        if district == '405': 
+        if dtint > 440:
             data = list(MhDSdPw.objects.filter(Q(financial_year=fy_name) & Q(area_parent_id=405)).values())
         else:    
             data = list(MhDSdPw.objects.filter(Q(financial_year=fy_name) & Q(area_parent_id=22)).values())
@@ -43,9 +44,10 @@ class hmisLineChart(LoginRequiredMixin, TemplateView):
 
     def get(self,request,fy=None, dist_name = None):
         district = request.GET.get('dist_name', dist_name) 
+        dtint = int(district) 
         fy_name = request.GET.get('fy', fy) 
 
-        if district == '405': 
+        if dtint > 440:
             data = list(MhDSdPw.objects.filter(Q(financial_year=fy_name) & Q(area_parent_id=405)).order_by('month').exclude(month='All').values())
             area_list = MhAreaDetails.objects.filter(Q(area_parent_id=405)).values('area_name', 'area_id').distinct().order_by('area_id')
             
@@ -68,8 +70,9 @@ class fyLine(LoginRequiredMixin, TemplateView):
 
     def get(self,request,fy=None, dist_name = None):
         district = request.GET.get('dist_name', dist_name) 
+        dtint = int(district) 
         fy_name = request.GET.get('fy', fy)
-        if district == '405': 
+        if dtint > 440:
             data = list(MhDSdPw.objects.filter(Q(area_parent_id=405)).order_by('month').exclude(month='All').values())
             area_list = MhAreaDetails.objects.filter(Q(area_parent_id=405)).values('area_name', 'area_id').distinct().order_by('area_id')
             
@@ -93,8 +96,9 @@ class fyLineNum(LoginRequiredMixin, TemplateView):
 
     def get(self,request,fy=None, dist_name = None):
         district = request.GET.get('dist_name', dist_name) 
+        dtint = int(district) 
         fy_name = request.GET.get('fy', fy)
-        if district == '405': 
+        if dtint > 440:
             data = list(MhDSdPw.objects.filter( Q(area_parent_id=405)).order_by('month').exclude(month='All').values())
             area_list = MhAreaDetails.objects.filter(Q(area_parent_id=405)).values('area_name', 'area_id').distinct().order_by('area_id')
             
@@ -117,8 +121,9 @@ class hmisBarNumericChart(LoginRequiredMixin, TemplateView):
 
     def get(self, request, fy= None, dist_name = None):
         district = request.GET.get('dist_name', dist_name) 
+        dtint = int(district) 
         fy_name = request.GET.get('fy', fy) 
-        if district == '405': 
+        if dtint > 440:
             data = list(MhDSdPw.objects.filter(Q(financial_year=fy_name) & Q(area_parent_id=405)).values())
             
         else:    
@@ -140,9 +145,10 @@ class hmisLineNumericChart(LoginRequiredMixin, TemplateView):
 
     def get(self,request,fy=None, dist_name = None):
         district = request.GET.get('dist_name', dist_name) 
+        dtint = int(district) 
         fy_name = request.GET.get('fy', fy) 
 
-        if district == '405': 
+        if dtint > 440:
             data = list(MhDSdPw.objects.filter(Q(financial_year=fy_name) & Q(area_parent_id=405)).exclude(month='All').values())
             area_list = MhAreaDetails.objects.filter(Q(area_parent_id=405)).values('area_name', 'area_id').distinct().order_by('area_id')
             
@@ -165,8 +171,9 @@ class chldImmuBar(LoginRequiredMixin, TemplateView):
 
     def get(self, request, fy= None, dist_name = None):
         district = request.GET.get('dist_name', dist_name) 
+        dtint = int(district) 
         fy_name = request.GET.get('fy', fy) 
-        if district == '405': 
+        if dtint > 440:
             data = list(MhDSdCi.objects.filter(Q(financial_year=fy_name) & Q(area_parent_id=405)).values())
             
         else:    
@@ -187,9 +194,10 @@ class chldImmuLine(LoginRequiredMixin, TemplateView):
 
     def get(self,request,fy=None, dist_name = None):
         district = request.GET.get('dist_name', dist_name) 
+        dtint = int(district) 
         fy_name = request.GET.get('fy', fy) 
 
-        if district == '405': 
+        if dtint > 440:
             data = list(MhDSdCi.objects.filter(Q(financial_year=fy_name) & Q(area_parent_id=405)).order_by('month').exclude(month='All').values())
             area_list = MhAreaDetails.objects.filter(Q(area_parent_id=405)).values('area_name', 'area_id').distinct().order_by('area_id')
             
@@ -213,8 +221,9 @@ class chldImmuBarNumeric(LoginRequiredMixin, TemplateView):
 
     def get(self, request, fy= None, dist_name = None):
         district = request.GET.get('dist_name', dist_name) 
+        dtint = int(district) 
         fy_name = request.GET.get('fy', fy) 
-        if district == '405': 
+        if dtint > 440:
             data = list(MhDSdCi.objects.filter(Q(financial_year=fy_name) & Q(area_parent_id=405)).values())
             
         else:    
@@ -235,9 +244,10 @@ class chldImmuLineNumeric(LoginRequiredMixin, TemplateView):
 
     def get(self,request,fy=None, dist_name = None):
         district = request.GET.get('dist_name', dist_name) 
+        dtint = int(district) 
         fy_name = request.GET.get('fy', fy) 
 
-        if district == '405': 
+        if dtint > 440:
             data = list(MhDSdCi.objects.filter(Q(financial_year=fy_name) & Q(area_parent_id=405)).order_by('month').exclude(month='All').values())
             area_list = MhAreaDetails.objects.filter(Q(area_parent_id=405)).values('area_name', 'area_id').distinct().order_by('area_id')
             
@@ -261,8 +271,9 @@ class chldDiseaseBar(LoginRequiredMixin, TemplateView):
 
     def get(self, request, fy= None, dist_name = None):
         district = request.GET.get('dist_name', dist_name) 
+        dtint = int(district) 
         fy_name = request.GET.get('fy', fy) 
-        if district == '405': 
+        if dtint > 440:
             data = list(MhDSdCd.objects.filter(Q(financial_year=fy_name) & Q(area_parent_id=405)).values())
             
         else:    
@@ -283,9 +294,10 @@ class chldDiseaseLine(LoginRequiredMixin, TemplateView):
 
     def get(self,request,fy=None, dist_name = None):
         district = request.GET.get('dist_name', dist_name) 
+        dtint = int(district) 
         fy_name = request.GET.get('fy', fy) 
-
-        if district == '405': 
+        print(dtint)
+        if dtint > 440:
             data = list(MhDSdCd.objects.filter(Q(financial_year=fy_name) & Q(area_parent_id=405)).order_by('month').exclude(month='All').values())
             area_list = MhAreaDetails.objects.filter(Q(area_parent_id=405)).values('area_name', 'area_id').distinct().order_by('area_id')
             
@@ -308,8 +320,9 @@ class chldDiseaseBarNumeric(LoginRequiredMixin, TemplateView):
 
     def get(self, request, fy= None, dist_name = None):
         district = request.GET.get('dist_name', dist_name) 
+        dtint = int(district) 
         fy_name = request.GET.get('fy', fy) 
-        if district == '405': 
+        if dtint > 440:
             data = list(MhDSdCd.objects.filter(Q(financial_year=fy_name) & Q(area_parent_id=405)).values())
             
         else:    
@@ -330,9 +343,10 @@ class chldDiseaseLineNumeric(LoginRequiredMixin, TemplateView):
 
     def get(self,request,fy=None, dist_name = None):
         district = request.GET.get('dist_name', dist_name) 
+        dtint = int(district) 
         fy_name = request.GET.get('fy', fy) 
 
-        if district == '405': 
+        if dtint > 440:
             data = list(MhDSdCd.objects.filter(Q(financial_year=fy_name) & Q(area_parent_id=405)).exclude(month='All').values())
             area_list = MhAreaDetails.objects.filter(Q(area_parent_id=405)).values('area_name', 'area_id').distinct().order_by('area_id')
             
@@ -356,8 +370,9 @@ class hmisTableChart(LoginRequiredMixin, TemplateView):
 
     def get(self,request,fy=None, dist_name = None):
         district = request.GET.get('dist_name', dist_name) 
+        dtint = int(district) 
         fy_name = request.GET.get('fy', fy) 
-        if district == '405': 
+        if dtint > 440:
             pw_data = list(MhDSdPw.objects.filter(Q(financial_year=fy_name) & Q(area_parent_id=405)).values())
             childIm_data = list(MhDSdCi.objects.filter(Q(financial_year=fy_name) & Q(area_parent_id=405)).values())
             childDi_data = list(MhDSdCd.objects.filter(Q(financial_year=fy_name) & Q(area_parent_id=405)).values())
@@ -397,8 +412,9 @@ class pieStateLevel(LoginRequiredMixin, TemplateView):
 
     def get(self, request, fy= None, dist_name = None):
         district = request.GET.get('dist_name', dist_name) 
+        dtint = int(district) 
         fy_name = request.GET.get('fy', fy) 
-        if district == '405': 
+        if dtint > 440:
             data = list(MhDSdPwPie.objects.filter(Q(financial_year=fy_name) & Q(area_parent_id=405)).values())
             
         else:    
@@ -419,9 +435,10 @@ class pieChildImmu(LoginRequiredMixin, TemplateView):
 
     def get(self, request, fy= None, dist_name = None):
         district = request.GET.get('dist_name', dist_name) 
+        dtint = int(district) 
         fy_name = request.GET.get('fy', fy) 
         fy_name = request.GET.get('fy', fy) 
-        if district == '405': 
+        if dtint > 440:
             data = list(MhDSdCiPie.objects.filter(Q(financial_year=fy_name) & Q(area_parent_id=405)).values())
             
         else:    
@@ -441,9 +458,10 @@ class pieChildDisease(LoginRequiredMixin, TemplateView):
     redirect_field_name = 'login'
 
     def get(self, request, fy= None, dist_name = None):
-        district = request.GET.get('dist_name', dist_name)
+        district = request.GET.get('dist_name', dist_name) 
+        dtint = int(district)
         fy_name = request.GET.get('fy', fy) 
-        if district == '405': 
+        if dtint > 440:
             data = list(MhDSdCiPie.objects.filter(Q(financial_year=fy_name) & Q(area_parent_id=405)).values())
             
         else:    
@@ -586,8 +604,9 @@ class fyChldImmuLine(LoginRequiredMixin, TemplateView):
 
     def get(self,request,fy=None, dist_name = None):
         district = request.GET.get('dist_name', dist_name) 
+        dtint = int(district) 
         fy_name = request.GET.get('fy', fy)
-        if district == '405': 
+        if dtint > 440:
             data = list(MhDSdCi.objects.filter( Q(area_parent_id=405)).order_by('month').exclude(month='All').values())
             area_list = MhAreaDetails.objects.filter(Q(area_parent_id=405)).values('area_name', 'area_id').distinct().order_by('area_id')
             
@@ -611,8 +630,9 @@ class fyChldImmuLineNum(LoginRequiredMixin, TemplateView):
 
     def get(self,request,fy=None, dist_name = None):
         district = request.GET.get('dist_name', dist_name) 
+        dtint = int(district) 
         fy_name = request.GET.get('fy', fy)
-        if district == '405': 
+        if dtint > 440:
             data = list(MhDSdCi.objects.filter( Q(area_parent_id=405)).order_by('month').exclude(month='All').values())
             area_list = MhAreaDetails.objects.filter(Q(area_parent_id=405)).values('area_name', 'area_id').distinct().order_by('area_id')
             
@@ -635,8 +655,9 @@ class fyChldDiseaseLine(LoginRequiredMixin, TemplateView):
 
     def get(self,request,fy=None, dist_name = None):
         district = request.GET.get('dist_name', dist_name) 
+        dtint = int(district) 
         fy_name = request.GET.get('fy', fy)
-        if district == '405': 
+        if dtint > 440:
             data = list(MhDSdCd.objects.filter( Q(area_parent_id=405)).order_by('month').exclude(month='All').values())
             area_list = MhAreaDetails.objects.filter(Q(area_parent_id=405)).values('area_name', 'area_id').distinct().order_by('area_id')
             
@@ -659,8 +680,9 @@ class fyChldDiseaseLineNum(LoginRequiredMixin, TemplateView):
 
     def get(self,request,fy=None, dist_name = None):
         district = request.GET.get('dist_name', dist_name) 
+        dtint = int(district) 
         fy_name = request.GET.get('fy', fy)
-        if district == '405': 
+        if dtint > 440:
             data = list(MhDSdCd.objects.filter( Q(area_parent_id=405)).order_by('month').exclude(month='All').values())
             area_list = MhAreaDetails.objects.filter(Q(area_parent_id=405)).values('area_name', 'area_id').distinct().order_by('area_id')
             
@@ -683,8 +705,9 @@ class CompBarPw(LoginRequiredMixin, TemplateView):
 
     def get(self, request, fy= None, dist_name = None):
         district = request.GET.get('dist_name', dist_name) 
+        dtint = int(district) 
         fy_name = request.GET.get('fy', fy) 
-        if district == '405': 
+        if dtint > 440:
             data = list(MhDSdPw.objects.filter(Q(financial_year=fy_name) & Q(area_parent_id=405)).values())
             
         else:    
@@ -705,8 +728,9 @@ class CompBarPwNumeric(LoginRequiredMixin, TemplateView):
 
     def get(self, request, fy= None, dist_name = None):
         district = request.GET.get('dist_name', dist_name) 
+        dtint = int(district) 
         fy_name = request.GET.get('fy', fy) 
-        if district == '405': 
+        if dtint > 440:
             data = list(MhDSdPw.objects.filter(Q(financial_year=fy_name) & Q(area_parent_id=405)).values())
             
         else:    

@@ -78,16 +78,21 @@
 
       <div class="dropdown-menu category" aria-labelledby="dropdownMenuButton">
         <a class="dropdown-item" href="#">Total no of PW registered for ANC</a>
-        <a class="dropdown-item" href="#">Early ANC Registeration</a>
-        <a class="dropdown-item" href="#">PW received 4 or more ANC check ups</a>
-        <a class="dropdown-item" href="#">PW given TT1</a>
-        <a class="dropdown-item" href="#">PW given TT2</a>
-        <a class="dropdown-item" href="#">PW given TT Booster</a>
-        <a class="dropdown-item" href="#">PW given 360 Calcium tablets</a>
-        <a class="dropdown-item" href="#">PW given 180 Iron Folic Acid (IFA) tablets</a>
-        <a class="dropdown-item" href="#">PW given one Albendazole tablet after 1st trimester</a>
-        <a class="dropdown-item" href="#">C-section deliveries</a>
-        <a class="dropdown-item" href="#">Total no of Still Birth</a>
+            <a class="dropdown-item" href="#">Early ANC Registeration</a>
+            <a class="dropdown-item" href="#">PW received 4 or more ANC check ups</a>
+            <a class="dropdown-item" href="#">PW given TT1</a>
+            <a class="dropdown-item" href="#">PW given TT2</a>
+            <a class="dropdown-item" href="#">PW given TT Booster</a>
+            <a class="dropdown-item" href="#">PW given 360 Calcium tablets</a>
+            <a class="dropdown-item" href="#">PW given 180 Iron Folic Acid (IFA) tablets</a>
+            <a class="dropdown-item" href="#">PW given one Albendazole tablet after 1st trimester</a>
+            <a class="dropdown-item" href="#">Number of Moderately Anaemic PW</a>
+            <a class="dropdown-item" href="#">Number of Severely Anaemic PW (tested)</a>
+            <a class="dropdown-item" href="#">C-section deliveries</a>
+            <a class="dropdown-item" href="#">Number of Preterm Birth</a>
+            <a class="dropdown-item" href="#">Total number of Home Deliveries</a>
+            <a class="dropdown-item" href="#">Number of Institutional Deliveries</a>
+            <a class="dropdown-item" href="#">Total number of Still Birth</a>
       </div>
 
 
@@ -113,16 +118,21 @@
 
       <div class="dropdown-menu category2" aria-labelledby="dropdownMenuButton">
         <a class="dropdown-item" href="#">Total no of PW registered for ANC</a>
-        <a class="dropdown-item" href="#">Early ANC Registeration</a>
-        <a class="dropdown-item" href="#">PW received 4 or more ANC check ups</a>
-        <a class="dropdown-item" href="#">PW given TT1</a>
-        <a class="dropdown-item" href="#">PW given TT2</a>
-        <a class="dropdown-item" href="#">PW given TT Booster</a>
-        <a class="dropdown-item" href="#">PW given 360 Calcium tablets</a>
-        <a class="dropdown-item" href="#">PW given 180 Iron Folic Acid (IFA) tablets</a>
-        <a class="dropdown-item" href="#">PW given one Albendazole tablet after 1st trimester</a>
-        <a class="dropdown-item" href="#">C-section deliveries</a>
-        <a class="dropdown-item" href="#">Total no of Still Birth</a>
+            <a class="dropdown-item" href="#">Early ANC Registeration</a>
+            <a class="dropdown-item" href="#">PW received 4 or more ANC check ups</a>
+            <a class="dropdown-item" href="#">PW given TT1</a>
+            <a class="dropdown-item" href="#">PW given TT2</a>
+            <a class="dropdown-item" href="#">PW given TT Booster</a>
+            <a class="dropdown-item" href="#">PW given 360 Calcium tablets</a>
+            <a class="dropdown-item" href="#">PW given 180 Iron Folic Acid (IFA) tablets</a>
+            <a class="dropdown-item" href="#">PW given one Albendazole tablet after 1st trimester</a>
+            <a class="dropdown-item" href="#">Number of Moderately Anaemic PW</a>
+            <a class="dropdown-item" href="#">Number of Severely Anaemic PW (tested)</a>
+            <a class="dropdown-item" href="#">C-section deliveries</a>
+            <a class="dropdown-item" href="#">Number of Preterm Birth</a>
+            <a class="dropdown-item" href="#">Total number of Home Deliveries</a>
+            <a class="dropdown-item" href="#">Number of Institutional Deliveries</a>
+            <a class="dropdown-item" href="#">Total number of Still Birth</a>
 
       </div>
     </div>
@@ -265,7 +275,7 @@
 
     let getColor;
 
-    if (xValue == 'd => d.tot_c_section_deliveries' || xValue == 'd => d.tot_still_birth' ) {
+    if (xValue == 'd => d.tot_c_section_deliveries' || xValue == 'd => d.tot_still_birth'|| xValue == 'd => d.no_pw_moderate_anaemia' || xValue == 'd => d.no_pw_severe_anaemia' || xValue == 'd => d.no_preterm_birth'|| xValue == 'd => d.no_home_delivery'  ) {
       getColor = d3.scaleSequential().domain([d3.max(data, xValue), d3.min(data, xValue)])
 
         .interpolator(d3.interpolateRdYlGn);
@@ -388,7 +398,7 @@
 
     let getColor;
 
-    if (xValueR == 'd => d.tot_c_section_deliveries' || xValueR == 'd => d.tot_still_birth' ) {
+    if (xValueR == 'd => d.tot_c_section_deliveries' || xValueR == 'd => d.tot_still_birth' || xValueR == 'd => d.no_pw_moderate_anaemia' || xValueR == 'd => d.no_pw_severe_anaemia' || xValueR == 'd => d.no_preterm_birth'|| xValueR == 'd => d.no_home_delivery' ) {
       getColor = d3.scaleSequential().domain([d3.max(data, xValueR), d3.min(data, xValueR)])
         .interpolator(d3.interpolateRdYlGn);
     }
@@ -529,21 +539,26 @@
     });
 
   data.forEach(d => {
-    d.tot_no_pw_reg_anc = +d.tot_no_pw_reg_anc;
-    d.no_early_anc_register = +d.no_early_anc_register;
-    d.no_anc_4_or_more = +d.no_anc_4_or_more;
-    d.no_pw_given_tt1 = +d.no_pw_given_tt1;
-    d.no_pw_given_tt2 = +d.no_pw_given_tt2;
-    d.no_pw_given_tt_booster = +d.no_pw_given_tt_booster;
-    d.no_pw_given_calcium = +d.no_pw_given_calcium;
-    d.no_pw_given_albendazole = +d.no_pw_given_albendazole;
-    d.no_pw_given_ifa = +d.no_pw_given_ifa;
-    d.tot_c_section_deliveries = +d.tot_c_section_deliveries;
-    d.tot_still_birth = +d.tot_still_birth;
-    d.area_id = d.area_id;
-    d.area_name = d.area_name;
-    d.month = d.month;
-    d.financial_year = d.financial_year;
+        d.tot_no_pw_reg_anc = +d.tot_no_pw_reg_anc;
+        d.no_early_anc_register = +d.no_early_anc_register;
+        d.no_anc_4_or_more = +d.no_anc_4_or_more;
+        d.no_pw_given_tt1 = +d.no_pw_given_tt1;
+        d.no_pw_given_tt2 = +d.no_pw_given_tt2;
+        d.no_pw_given_tt_booster = +d.no_pw_given_tt_booster;
+        d.no_pw_given_calcium = +d.no_pw_given_calcium;
+        d.no_pw_given_albendazole = +d.no_pw_given_albendazole;
+        d.no_pw_given_ifa = +d.no_pw_given_ifa;
+        d.no_pw_moderate_anaemia = +d.no_pw_moderate_anaemia;
+        d.no_pw_severe_anaemia = +d.no_pw_severe_anaemia;
+        d.no_preterm_birth = +d.no_preterm_birth;
+        d.no_home_delivery = +d.no_home_delivery;
+        d.no_institutional_delivery = +d.no_institutional_delivery;
+        d.tot_c_section_deliveries = +d.tot_c_section_deliveries;
+        d.tot_still_birth = +d.tot_still_birth;
+        d.area_id = d.area_id;
+        d.area_name = d.area_name;
+        d.month = d.month;
+        d.financial_year = d.financial_year;
 
   });
 
@@ -573,7 +588,7 @@
   {
     var displayVal = valCategory.substring(0, valCategory.length);
         let fy = '{{ fy }}';
-        document.getElementById('barTitle').innerHTML = "(%) Indicator: " + displayVal + " (" + fy + ")";
+        document.getElementById('barTitle').innerHTML = " Indicator: " + displayVal + " (" + fy + ")";
 
     switch (valCategory) {
         case "Total no of PW registered for ANC": xValue = d => d.tot_no_pw_reg_anc; sortByL = 'tot_no_pw_reg_anc'; break;
@@ -597,6 +612,16 @@
         case "C-section deliveries": xValue = d => d.tot_c_section_deliveries; sortByL = 'tot_c_section_deliveries'; break;
 
         case "Total no of Still Birth": xValue = d => d.tot_still_birth; sortByL = 'tot_still_birth'; break;
+
+        case "Number of Moderately Anaemic PW": xValue = d => d.no_pw_moderate_anaemia; sortByL = 'no_pw_moderate_anaemia'; break;
+
+        case "Number of Severely Anaemic PW (tested)": xValue = d => d.no_pw_severe_anaemia; sortByL = 'no_pw_severe_anaemia'; break;
+
+        case "Number of Preterm Birth": xValue = d => d.no_preterm_birth; sortByL = 'no_preterm_birth'; break;
+
+        case "Total number of Home Deliveries": xValue = d => d.no_home_delivery; sortByL = 'no_home_delivery'; break;
+
+        case "Number of Institutional Deliveries": xValue = d => d.no_institutional_delivery; sortByL = 'no_institutional_delivery'; break;
     }
 
     var valMonth = tickLabels[$('#monthSlider').slider('getValue')];
@@ -636,6 +661,16 @@
         case "C-section deliveries": xValueR = d => d.tot_c_section_deliveries; sortByR = 'tot_c_section_deliveries'; break;
 
         case "Total no of Still Birth": xValueR = d => d.tot_still_birth; sortByR = 'tot_still_birth'; break;
+        
+        case "Number of Moderately Anaemic PW": xValueR = d => d.no_pw_moderate_anaemia; sortByR = 'no_pw_moderate_anaemia'; break;
+
+        case "Number of Severely Anaemic PW (tested)": xValueR = d => d.no_pw_severe_anaemia; sortByR = 'no_pw_severe_anaemia'; break;
+            
+        case "Number of Preterm Birth": xValueR = d => d.no_preterm_birth; sortByR = 'no_preterm_birth'; break;
+
+        case "Total number of Home Deliveries": xValueR = d => d.no_home_delivery; sortByR = 'no_home_delivery'; break;
+
+        case "Number of Institutional Deliveries": xValueR = d => d.no_institutional_delivery; sortByR = 'no_institutional_delivery'; break;
     }
 
     var valMonth = tickLabels[$('#monthSlider').slider('getValue')];

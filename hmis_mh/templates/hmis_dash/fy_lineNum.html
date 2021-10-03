@@ -107,8 +107,13 @@
             <a class="dropdown-item" href="#">PW given 360 Calcium tablets</a>
             <a class="dropdown-item" href="#">PW given 180 Iron Folic Acid (IFA) tablets</a>
             <a class="dropdown-item" href="#">PW given one Albendazole tablet after 1st trimester</a>
+            <a class="dropdown-item" href="#">Number of Moderately Anaemic PW</a>
+            <a class="dropdown-item" href="#">Number of Severely Anaemic PW (tested)</a>
             <a class="dropdown-item" href="#">C-section deliveries</a>
-            <a class="dropdown-item" href="#">Total no of Still Birth</a>
+            <a class="dropdown-item" href="#">Number of Preterm Birth</a>
+            <a class="dropdown-item" href="#">Total number of Home Deliveries</a>
+            <a class="dropdown-item" href="#">Number of Institutional Deliveries</a>
+            <a class="dropdown-item" href="#">Total number of Still Birth</a>
         </div>
     </div>
     <div class="dropdown m-1">
@@ -180,12 +185,13 @@
 
     let sel_fy = '{{ fy }}';
     let sel_st = '{{ dist_name }}';
+    let selectint = parseInt(sel_st)
 
     let areaName = [];
-    if (sel_st == '22')
-        areaName.push(405);  
+    if (selectint > 440 )
+        areaName.push(441);  
     else
-        areaName.push(1);
+        areaName.push(405);
     let selectedYear = [];
     selectedYear.push(sel_fy)
 
@@ -527,11 +533,16 @@
         d.no_pw_given_tt2 = +d.no_pw_given_tt2;
         d.no_pw_given_tt_booster = +d.no_pw_given_tt_booster;
         d.no_pw_given_calcium = +d.no_pw_given_calcium;
-        d.no_pw_given_ifa = +d.no_pw_given_ifa;
         d.no_pw_given_albendazole = +d.no_pw_given_albendazole;
+        d.no_pw_given_ifa = +d.no_pw_given_ifa;
+        d.no_pw_moderate_anaemia = +d.no_pw_moderate_anaemia;
+        d.no_pw_severe_anaemia = +d.no_pw_severe_anaemia;
+        d.no_preterm_birth = +d.no_preterm_birth;
+        d.no_home_delivery = +d.no_home_delivery;
+        d.no_institutional_delivery = +d.no_institutional_delivery;
         d.tot_c_section_deliveries = +d.tot_c_section_deliveries;
         d.tot_still_birth = +d.tot_still_birth;
-        d.area_id = +d.area_id;
+        d.area_id = d.area_id;
         d.area_name = d.area_name;
         d.month = d.month;
         d.financial_year = d.financial_year;
@@ -567,7 +578,7 @@
     }
 
     function setSection(val) {
-        if (val == 'Total no of PW registered for ANC')
+    if (val == 'Total no of PW registered for ANC')
       section = 'tot_no_pw_reg_anc';
     else if (val == 'Early ANC Registeration')
       section = 'no_early_anc_register';
@@ -587,9 +598,20 @@
       section = 'no_pw_given_albendazole';
     else if (val == 'C-section deliveries')
       section = 'tot_c_section_deliveries';
+      else if (val == 'Number of Moderately Anaemic PW')
+      section = 'no_pw_moderate_anaemia';
+    else if (val == 'Number of Severely Anaemic PW (tested)')
+      section = 'no_pw_severe_anaemia';
+    else if (val == 'Number of Preterm Birth')
+      section = 'no_preterm_birth';
+    else if (val == 'Total number of Home Deliveries')
+      section = 'no_home_delivery';
+    else if (val == 'Number of Institutional Deliveries')
+      section = 'no_institutional_delivery';
     else
       section = 'tot_still_birth'  
-  }
+  }  
+  
 
     $("#state").change(function () {
         areaName = [];
@@ -639,10 +661,10 @@
 
     $(function () {
         //bind event
-        if(sel_st == '22')
-            $('#state').val(405);
+        if (selectint > 440 )
+            $('#state').val(441);
         else
-            $('#state').val(1);
+            $('#state').val(405);
         $('#fyList').val(sel_fy);
 
         $(".category a").click(function () {

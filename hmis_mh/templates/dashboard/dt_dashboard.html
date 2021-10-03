@@ -2551,12 +2551,10 @@
         // state =  state.replace(/ /g, '_');
         // if(pw_data[0].state != 'state')
         //     {
-        if (pw_data[0].area_parent_id == 405) {
-            newState = pw_data[0].area_parent_id;
-        }
-        else {
+       
             newState = pw_data[0].area_id;
-        }
+            console.log(newState, "okay");
+        
 
         // newState = newState.replace(/ /g, '_');
         $('a.lc_link').each(function () {
@@ -2566,6 +2564,7 @@
                 var newUrl = oldUrl.replace(stateVal, newState); // Create new url
 
             $(this).attr("href", newUrl); // Set href value
+            console.log(newUrl);
         });
 
         // }

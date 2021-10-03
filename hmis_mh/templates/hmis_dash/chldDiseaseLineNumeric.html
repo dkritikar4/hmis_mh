@@ -175,8 +175,9 @@
   //   let prjType = 'Urban';
   let selectedArea = "{{ dist_name }}";
   let areaName = [];
-  if (selectedArea == '405')
-    areaName.push(442);  
+  let selectint = parseInt(selectedArea)
+  if (selectint > 440 )
+    areaName.push(441);  
   else
     areaName.push(405);
   let selectedYear = "{{fy}}";
@@ -619,8 +620,8 @@
 
   $(function () {
     //bind event
-    if(selectedArea == '405')
-      $('#state').val(442);
+    if (selectint > 440 )
+      $('#state').val(441);
     else
       $('#state').val(405);
 

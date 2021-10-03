@@ -52,8 +52,10 @@
 </style>
 {% endblock %}
 {% block feature %}
-<div class='heading text-dark mt-2 text-center'><span id="bartitleCategory">Pie Chart</span> <span
-    id="bartitleMonth"></span></div>
+<div class='heading text-dark mt-2 text-center'><span id="bartitleCategory">Pie Chart</span> 
+  <!-- <span
+    id="bartitleMonth"></span>-->
+  </div> 
 
 <div class="row h-100 mb-3 bg-info">
 
@@ -63,16 +65,13 @@
       <span class="selectedCategory"></span>
     </button>
     <div class="dropdown-menu category" aria-labelledby="dropdownMenuButton">
-      <a class="dropdown-item" href="#">Total no of Children Born</a>
       <a class="dropdown-item" href="#">Child Immunisation-Vitamin K1(Birth Dose)</a>
       <a class="dropdown-item" href="#">Child Immunisation-BCG</a>
       <a class="dropdown-item" href="#">Child Immunisation(9-11 months)-Measles & Rubella (MR) 1st Dose</a>
+      <a class="dropdown-item" href="#">Child Immunisation(9-11 months)-Measles 1st Dose</a>
       <a class="dropdown-item" href="#">Child immunisation-Vitamin A Dose-1</a>
       <a class="dropdown-item" href="#">Children(12-59 months) provided Albendazole</a>
-      <a class="dropdown-item" href="#">Child immunisation DPT and Pentavalent 1st dose</a>
-      <a class="dropdown-item" href="#">Child immunisation DPT and Pentavalent 2nd dose</a>
-      <a class="dropdown-item" href="#">Child immunisation DPT and Pentavalent 3rd dose</a>
-  </div>
+    </div>
   </div>
 
   <!-- <div class="dropdown m-1">
@@ -165,17 +164,21 @@
       svg.attr('height', targetHeight);
     }
   }
+
+
+  const margin = { left: 750, top: 320, right: 170, bottom: 20 };
+  const innerWidth = 1100 - margin.left - margin.right;
+  const innerHeight = 750 - margin.top - margin.bottom;
+
   let fy = '{{ fy }}';
+  let dist_name = '{{ dist_name }}';
+  let dtInt = parseInt(dist_name);
 
   var radius = Math.min(1100, 750) / 3;
   let choices = parseURLParameters(window.location.href);
 
-  // let prjType = 'Urban';
-
-  const render = data => {
-
-    let arcInitial = d => d.per_chld_immunzt_vit_k1;
-    let arcInitialNum = d => d.chld_disease_pneumonia;
+  let arcInitial = d => d.per_chld_immunzt_vit_k1;
+  let arcInitialNum = d => d.chld_disease_pneumonia;
 
     const setArcInitial = opt =>
     {
@@ -188,38 +191,20 @@
       } else if (opt == 'Child Immunisation(9-11 months)-Measles & Rubella (MR) 1st Dose') {
         arcInitial = d => d.per_chld_immunzt_9to11m_mr;
         arcInitialNum = d => d.chld_immunzt_9to11m_mr;
+      } else if (opt == 'Child Immunisation(9-11 months)-Measles 1st Dose') {
+        arcInitial = d => d.per_chld_immunzt_9to11m_measl_1st_dose;
+        arcInitialNum = d => d.chld_immunzt_9to11m_measl_1st_dose;
       } else if (opt == 'Child immunisation-Vitamin A Dose-1') {
         arcInitial = d => d.per_chld_immunzt_vit_a_dose_1;
         arcInitialNum = d => d.chld_immunzt_vit_a_dose_1;
-      } else if (opt == 'Child immunisation DPT and Pentavalent 1st dose') {
-        arcInitial = d => d.per_chld_immunzt_dpt1_penta1;
-        arcInitialNum = d => d.chld_immunzt_dpt1_penta1;
-      } else if (opt == 'Child immunisation DPT and Pentavalent 2nd dose') {
-        arcInitial = d => d.per_chld_immunzt_dpt2_penta2;
-        arcInitialNum = d => d.chld_immunzt_dpt2_penta2;
-      } else if (opt == 'Child immunisation DPT and Pentavalent 3rd dose') {
-        arcInitial = d => d.per_chld_immunzt_dpt3_penta3;
-        arcInitialNum = d => d.chld_immunzt_dpt3_penta3;
       } else {
         arcInitial = d => d.per_no_chld_12to59m_albendazole;
-        arcInitialNum = d => d.no_chld_12to59m_albendazole;
+        arcInitialNum = d => d.chld_immunzt_vit_a_dose_1;
       }
       
     }
 
-    const margin = { left: 750, top: 320, right: 170, bottom: 20 };
-    const innerWidth = 1100 - margin.left - margin.right;
-    const innerHeight = 750 - margin.top - margin.bottom;
-
-    if (choices.length > 0) 
-    {
-      let selectedCat = choices[0].replace(/_/g, ' ');
-      var displayVal = selectedCat.substring(0, selectedCat.length - 3);
-      document.getElementById('paraText').innerHTML = displayVal + " Contribution: ";
-      document.getElementById('bartitleCategory').innerHTML = displayVal + " : State wise Contribution " + "(" + fy + ")";
-      $('.category a').parents('.dropdown').find('.dropdown-toggle').html(selectedCat + ' <span class="selectedCategory"></span>');
-      setArcInitial(selectedCat); 
-    }
+  const render = data => {
 
     const g = svg.append('g')
       .attr('transform', `translate(${margin.left}, ${margin.top})`);
@@ -249,20 +234,17 @@
       div.html("<b>" + "<span id='paraText'>" + 10 + "</span>" + "</b><br>" + arcInitial(d.data) + "%");
     }
 
-    oi = { "area_name": [], "per_chld_immunzt_vit_k1": [], "per_chld_immunzt_bcg": [], "per_chld_immunzt_9to11m_mr": [], "per_chld_immunzt_9to11m_measl_1st_dose": [], "per_chld_immunzt_vit_a_dose_1": [], "per_chld_disease_diarrhoea_trtd_inpatnt": [],"per_no_chld_12to59m_albendazole": [],"per_chld_admtd_upper_resp_infec": [],"per_chld_born": [], "per_chld_immunzt_dpt1_penta1": [], "per_chld_immunzt_dpt2_penta2": [], "per_chld_immunzt_dpt3_penta3": [] }
+    oi = { "area_name": [], "per_chld_immunzt_vit_k1": [], "per_chld_immunzt_bcg": [], "per_chld_immunzt_9to11m_mr": [], "per_chld_immunzt_9to11m_measl_1st_dose": [], "per_chld_immunzt_vit_a_dose_1": [], "per_chld_disease_diarrhoea_trtd_inpatnt": [],"per_no_chld_12to59m_albendazole": [],"per_chld_admtd_upper_resp_infec": [],"per_chld_born": [] }
 
     data.forEach(d => {
       oi.area_name.push(d.area_name);
       oi.per_chld_immunzt_vit_k1.push(d.per_chld_immunzt_vit_k1);
       oi.per_chld_immunzt_bcg.push(d.per_chld_immunzt_bcg);
       oi.per_chld_immunzt_9to11m_mr.push(d.per_chld_immunzt_9to11m_mr);
+      oi.per_chld_immunzt_9to11m_measl_1st_dose.push(d.per_chld_immunzt_9to11m_measl_1st_dose);
       oi.per_chld_immunzt_vit_a_dose_1.push(d.per_chld_immunzt_vit_a_dose_1);
       oi.per_no_chld_12to59m_albendazole.push(d.per_no_chld_12to59m_albendazole);
       oi.per_chld_born.push(d.per_chld_born);
-      oi.per_chld_immunzt_dpt1_penta1.push(d.per_chld_immunzt_dpt1_penta1);
-      oi.per_chld_immunzt_dpt2_penta2.push(d.per_chld_immunzt_dpt2_penta2);
-      oi.per_chld_immunzt_dpt3_penta3.push(d.per_chld_immunzt_dpt3_penta3);
-
     });
 
     var color = d3.scaleSequential().domain([d3.min(arcInitial(oi)), d3.max(arcInitial(oi))])
@@ -387,28 +369,48 @@
         })
     }
 
-    const dropdownChange = () => {
-      var sel = document.getElementById('opt');
-      val = document.getElementById("opt").value
-    }
+    // const dropdownChange = () => {
+    //   var sel = document.getElementById('opt');
+    //   val = document.getElementById("opt").value
+    // }
 
     makeviz(arcInitial);
+    
+  }
+
+  if (choices.length > 0) 
+    {
+      let selectedCat = choices[0].replace(/_/g, ' ');
+      var displayVal = selectedCat.substring(0, selectedCat.length);
+      document.getElementById('paraText').innerHTML = displayVal + " Contribution: ";
+      if( dtInt > 440 ){
+            document.getElementById('bartitleCategory').innerHTML = displayVal + " : District wise Contribution " + "(" + fy + ")";
+          }
+      else
+        document.getElementById('bartitleCategory').innerHTML = displayVal + " : State wise Contribution " + "(" + fy + ")";
+      $('.category a').parents('.dropdown').find('.dropdown-toggle').html(selectedCat + ' <span class="selectedCategory"></span>');
+      setArcInitial(selectedCat); 
+    }
+
+    function displayPie(valCategory)
+    {
+        var displayVal = valCategory.substring(0, valCategory.length);
+          document.getElementById('paraText').innerHTML = displayVal + " Contribution: ";
+          if( dtInt > 440 ){
+            document.getElementById('bartitleCategory').innerHTML = displayVal + " : District wise Contribution " + "(" + fy + ")";
+          }
+          else
+            document.getElementById('bartitleCategory').innerHTML = displayVal + " : State wise Contribution " + "(" + fy + ")";
+          setArcInitial(valCategory);
+          makeviz(arcInitial);
+    }
+
     $(".category a").click(function () {
       $(this).parents(".dropdown").find('.btn').html($(this).text() + ' <span class="selectedCategory"></span>');
       $(this).parents(".dropdown").find('.btn').val($(this).data('value'));
       var valCategory = $(this).text();
       displayPie(valCategory);
     });
-
-    function displayPie(valCategory)
-    {
-        var displayVal = valCategory.substring(0, valCategory.length);
-          document.getElementById('paraText').innerHTML = displayVal + " Contribution: ";
-          document.getElementById('bartitleCategory').innerHTML = displayVal + " : State wise Contribution " + "(" + fy + ")";
-          setArcInitial(valCategory);
-          makeviz(arcInitial);
-    }
-  }
 
   // $(".ptype a").click(function () {
   //   $(this).parents(".dropdown").find('.btn').html($(this).text() + ' <span class="selectedPtype"></span>');
@@ -439,7 +441,11 @@
       var displayVal = valCategory.substring(0, valCategory.length);
 
       document.getElementById('paraText').innerHTML = displayVal + " Contribution: ";
-      document.getElementById('bartitleCategory').innerHTML = displayVal + " : State wise Contribution " + "(" + fy + ")";
+      if( dtInt > 440 ){
+            document.getElementById('bartitleCategory').innerHTML = displayVal + " : District wise Contribution " + "(" + fy + ")";
+          }
+      else
+        document.getElementById('bartitleCategory').innerHTML = displayVal + " : State wise Contribution " + "(" + fy + ")";
 
       $(this).parents('.dropdown').find('.dropdown-toggle').html(valCategory + ' <span class="selectedCategory"></span>');
     });
@@ -462,18 +468,15 @@
     d.per_chld_immunzt_vit_k1 = +d.per_chld_immunzt_vit_k1;
     d.per_chld_immunzt_bcg = +d.per_chld_immunzt_bcg;
     d.per_chld_immunzt_9to11m_mr = +d.per_chld_immunzt_9to11m_mr;
+    d.per_chld_immunzt_9to11m_measl_1st_dose = +d.per_chld_immunzt_9to11m_measl_1st_dose;
     d.per_chld_immunzt_vit_a_dose_1 = +d.per_chld_immunzt_vit_a_dose_1;
-    d.per_chld_immunzt_dpt1_penta1 = +d.per_chld_immunzt_dpt1_penta1;
-    d.per_chld_immunzt_dpt2_penta2 = +d.per_chld_immunzt_dpt2_penta2;
-    d.per_chld_immunzt_dpt3_penta3 = +d.per_chld_immunzt_dpt3_penta3;
     d.per_no_chld_12to59m_albendazole = +d.per_no_chld_12to59m_albendazole;
     d.chld_immunzt_bcg = +d.chld_immunzt_bcg;
     d.chld_immunzt_vit_k1 = +d.chld_immunzt_vit_k1;
     d.chld_immunzt_9to11m_mr = +d.chld_immunzt_9to11m_mr;
+    d.chld_immunzt_9to11m_measl_1st_dose = +d.chld_immunzt_9to11m_measl_1st_dose;
     d.chld_immunzt_vit_a_dose_1 = +d.chld_immunzt_vit_a_dose_1;
-    d.chld_immunzt_dpt1_penta1 = +d.chld_immunzt_dpt1_penta1;
-    d.chld_immunzt_dpt2_penta2 = +d.chld_immunzt_dpt2_penta2;
-    d.chld_immunzt_dpt3_penta3 = +d.chld_immunzt_dpt3_penta3;
+    d.chld_immunzt_vit_a_dose_1 = +d.chld_immunzt_vit_a_dose_1;
     d.per_chld_born = +d.per_chld_born;
     d.tot_chld_born = +d.tot_chld_born;
     d.area_id = +d.area_id;
@@ -487,9 +490,8 @@ let tickLabels = ["All", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov",
 
 $('#monthSlider').slider().on('slideStop', function (ev) {
     var val = tickLabels[ev.value];
-    document.getElementById('bartitleMonth').innerHTML = val;
+    // document.getElementById('bartitleMonth').innerHTML = val;
     mydata = filterCSV(data, 'month', val);
-    console.log("MonthSlider Data", mydata)
     svg.selectAll("*").remove();
     render(mydata);
 });

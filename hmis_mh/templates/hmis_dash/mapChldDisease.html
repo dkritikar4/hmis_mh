@@ -70,7 +70,7 @@
 
 <div class="row">
   <div class="col-12 h-75">
-    <div class="heading text-center"> Indicators ({{ fy }})</div>
+    <div class="heading text-center"> Indicator ({{ fy }})</div>
   </div>
 </div>
 
@@ -83,12 +83,14 @@
         <span class="selectedCategory"></span>
         </button>
         <div class="dropdown-menu drop-category" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item" href="#">Child Immunisation-Vitamin K1(Birth Dose)</a>
-          <a class="dropdown-item" href="#">Child Immunisation-BCG</a>
-          <a class="dropdown-item" href="#">Child Immunisation(9-11 months)-Measles & Rubella (MR) 1st Dose</a>
-          <a class="dropdown-item" href="#">Child Immunisation(9-11 months)-Measles 1st Dose</a>
-          <a class="dropdown-item" href="#">Child immunisation-Vitamin A Dose-1</a>
-          <a class="dropdown-item" href="#">Children(12-59 months) provided Albendazole</a>
+          <a class="dropdown-item" href="#">Childhood Diseases-Pneumonia</a>
+            <a class="dropdown-item" href="#">Childhood Diseases-Sepsis</a>
+            <a class="dropdown-item" href="#">Childhood Diseases-Tuberculosis(TB)</a>
+            <a class="dropdown-item" href="#">Childhood Diseases-Malaria</a>
+            <a class="dropdown-item" href="#">Childhood Diseases-Diarrhoea</a>
+            <a class="dropdown-item" href="#">Childhood Diseases-Diarrhoea treated in Inpatients</a>
+            <a class="dropdown-item" href="#">Children admitted with upper respiratory infections</a>
+            <a class="dropdown-item" href="#">Childhood Diseases-Severe Acute Malnutrition(SAM)</a>
         </div>
     </div>
   <div id="slider-range" class="mx-auto">
@@ -223,7 +225,7 @@
 
   const pathGenerator = d3.geoPath().projection(mercator);
   let choices = parseURLParameters(window.location.href);
-  let selectedCategory = "Child Immunisation-Vitamin K1(Birth Dose)";
+  let selectedCategory = "Childhood Diseases-Pneumonia";
   selectedCategory.replace(/ /g, '_');
 
   const render = (
@@ -239,13 +241,13 @@
     
       //initail value of tooltip
    let TextValue = null;
-    let Tooltipheader1 = d => "Child Immunisation-Vitamin K1(Birth Dose):";
+    let Tooltipheader1 = d => "Childhood Diseases-Pneumonia:";
     // let Tooltipheader2 = d => "";
-    let TooltipVal1 = d => d.properties.chld_immunzt_vit_k1;
+    let TooltipVal1 = d => d.properties.chld_disease_pneumonia;
     // let TooltipVal2 = d => "";
-    let ColorValue = d => d.properties.per_chld_immunzt_vit_k1;
-    let TPercentValue = d => d.per_chld_immunzt_vit_k1;
-    let TActualValue = d => d.chld_immunzt_vit_k1;
+    let ColorValue = d => d.properties.per_chld_disease_pneumonia;
+    let TPercentValue = d => d.per_chld_disease_pneumonia;
+    let TActualValue = d => d.chld_disease_pneumonia;
     let low = 25.00;
     let high = 50.00;
     let updatedCat;
@@ -272,70 +274,93 @@
         //update tooltip
         switch (selectedCat) {
           case 1:
-            updatedCat = "Child Immunisation-Vitamin K1(Birth Dose)";
-            Tooltipheader1 = d => "Child Immunisation-Vitamin K1(Birth Dose):";
+            updatedCat = "Childhood Diseases-Pneumonia";
+            Tooltipheader1 = d => "Childhood Diseases-Pneumonia:";
             // Tooltipheader2 = d => "";
-            TooltipVal1 = d => d.chld_immunzt_vit_k1;
+            TooltipVal1 = d => d.chld_disease_pneumonia;
             // TooltipVal2 = d => "-";
-            ColorValue = d => d.properties.per_chld_immunzt_vit_k1;
-            TPercentValue = d => d.per_chld_immunzt_vit_k1;
-            TActualValue = d => d.chld_immunzt_vit_k1;
+            ColorValue = d => d.properties.per_chld_disease_pneumonia;
+            TPercentValue = d => d.per_chld_disease_pneumonia;
+            TActualValue = d => d.chld_disease_pneumonia;
 
             break;
           case 2:
-            updatedCat = "Child Immunisation-BCG";
-            Tooltipheader1 = d => "Child Immunisation-BCG:";
+            updatedCat = "Childhood Diseases-Sepsis";
+            Tooltipheader1 = d => "Childhood Diseases-Sepsis:";
             // Tooltipheader2 = d => "Moderately PW received 4 or more ANC check ups:";
-            TooltipVal1 = d => d.properties.chld_immunzt_bcg;
+            TooltipVal1 = d => d.properties.chld_disease_sepsis;
             // TooltipVal2 = d => d.properties.mdrtly_stntd;
-            ColorValue = d => d.properties.per_chld_immunzt_bcg;
-            TPercentValue = d => d.per_chld_immunzt_bcg;
-            TActualValue = d => d.chld_immunzt_bcg;
+            ColorValue = d => d.properties.per_chld_disease_sepsis;
+            TPercentValue = d => d.per_chld_disease_sepsis;
+            TActualValue = d => d.chld_disease_sepsis;
 
             break;
           case 3:
-            updatedCat = "Child Immunisation(9-11 months)-Measles & Rubella (MR) 1st Dose";
-            Tooltipheader1 = d => "Child Immunisation(9-11 months)-Measles & Rubella (MR) 1st Dose:";
+            updatedCat = "Childhood Diseases-Tuberculosis(TB)";
+            Tooltipheader1 = d => "Childhood Diseases-Tuberculosis(TB):";
             // Tooltipheader2 = d => "";
-            TooltipVal1 = d => d.properties.chld_immunzt_9to11m_mr;
+            TooltipVal1 = d => d.properties.chld_disease_tb;
             // TooltipVal2 = d => "-";
-            ColorValue = d => d.properties.per_chld_immunzt_9to11m_mr;
-            TPercentValue = d => d.per_chld_immunzt_9to11m_mr;
-            TActualValue = d => d.chld_immunzt_9to11m_mr;
+            ColorValue = d => d.properties.per_chld_disease_tb;
+            TPercentValue = d => d.per_chld_disease_tb;
+            TActualValue = d => d.chld_disease_tb;
 
 
             break;
           case 4:
-            updatedCat = "Child Immunisation(9-11 months)-Measles 1st Dose";
-            Tooltipheader1 = d => "Child Immunisation(9-11 months)-Measles 1st Dose:";
+            updatedCat = "Childhood Diseases-Malaria";
+            Tooltipheader1 = d => "Childhood Diseases-Malaria:";
             // Tooltipheader2 = d => "Moderately PW given TT2:";
-            TooltipVal1 = d => d.properties.chld_immunzt_9to11m_measl_1st_dose;
+            TooltipVal1 = d => d.properties.chld_disease_malaria;
             // TooltipVal2 = d => d.properties.mdrtly_wstd;
-            ColorValue = d => d.properties.per_chld_immunzt_9to11m_measl_1st_dose;
-            TPercentValue = d => d.per_chld_immunzt_9to11m_measl_1st_dose;
-            TActualValue = d => d.chld_immunzt_9to11m_measl_1st_dose;
+            ColorValue = d => d.properties.per_chld_disease_malaria;
+            TPercentValue = d => d.per_chld_disease_malaria;
+            TActualValue = d => d.chld_disease_malaria;
 
             break;
           case 5:
-            updatedCat = "Child immunisation-Vitamin A Dose-1";
-            Tooltipheader1 = d => "Child immunisation-Vitamin A Dose-1:";
+            updatedCat = "Childhood Diseases-Diarrhoea";
+            Tooltipheader1 = d => "Childhood Diseases-Diarrhoea:";
             // Tooltipheader2 = d => "";
-            TooltipVal1 = d => d.properties.chld_immunzt_vit_a_dose_1;
+            TooltipVal1 = d => d.properties.chld_disease_diarrhoea;
             // TooltipVal2 = d => "-";
-            ColorValue = d => d.properties.per_chld_immunzt_vit_a_dose_1;
-            TPercentValue = d => d.per_chld_immunzt_vit_a_dose_1;
-            TActualValue = d => d.chld_immunzt_vit_a_dose_1;
+            ColorValue = d => d.properties.per_chld_disease_diarrhoea;
+            TPercentValue = d => d.per_chld_disease_diarrhoea;
+            TActualValue = d => d.chld_disease_diarrhoea;
 
             break;
           case 6:
-            updatedCat = "Children(12-59 months) provided Albendazole";
-            Tooltipheader1 = d => "Children(12-59 months) provided Albendazole:";
+            updatedCat = "Childhood Diseases-Diarrhoea treated in Inpatients";
+            Tooltipheader1 = d => "Childhood Diseases-Diarrhoea treated in Inpatients:";
             // Tooltipheader2 = d => "Moderately PW given 360 Calcium tablets:";
-            TooltipVal1 = d => d.properties.no_chld_12to59m_albendazole;
+            TooltipVal1 = d => d.properties.chld_disease_diarrhoea_trtd_inpatnt;
             // TooltipVal2 = d => d.properties.mdrtly_uw;
-            ColorValue = d => d.properties.per_no_chld_12to59m_albendazole;
-            TPercentValue = d => d.per_no_chld_12to59m_albendazole;
-            TActualValue = d => d.no_chld_12to59m_albendazole;
+            ColorValue = d => d.properties.per_chld_disease_diarrhoea_trtd_inpatnt;
+            TPercentValue = d => d.per_chld_disease_diarrhoea_trtd_inpatnt;
+            TActualValue = d => d.chld_disease_diarrhoea_trtd_inpatnt;
+
+            break;
+          case 7:
+            updatedCat = "Children admitted with upper respiratory infections";
+            Tooltipheader1 = d => "Children admitted with upper respiratory infections:";
+            // Tooltipheader2 = d => "Moderately PW given 360 Calcium tablets:";
+            TooltipVal1 = d => d.properties.chld_admtd_upper_resp_infec;
+            // TooltipVal2 = d => d.properties.mdrtly_uw;
+            ColorValue = d => d.properties.per_chld_admtd_upper_resp_infec;
+            TPercentValue = d => d.per_chld_admtd_upper_resp_infec;
+            TActualValue = d => d.chld_admtd_upper_resp_infec;
+
+            break;
+          
+          case 8:
+            updatedCat = "Childhood Diseases-Severe Acute Malnutrition(SAM)";
+            Tooltipheader1 = d => "Childhood Diseases-Severe Acute Malnutrition(SAM) ,              :";
+            // Tooltipheader2 = d => "Moderately PW given 360 Calcium tablets:";
+            TooltipVal1 = d => d.properties.chld_disease_sam;
+            // TooltipVal2 = d => d.properties.mdrtly_uw;
+            ColorValue = d => d.properties.per_chld_disease_sam;
+            TPercentValue = d => d.per_chld_disease_sam;
+            TActualValue = d => d.chld_disease_sam;
 
             break;
 
@@ -345,14 +370,10 @@
     if (choices.length > 0) {
      updateviz(parseInt(choices[0])); 
      selectedCategory = updatedCat;
-     if (selectedCategory != 'C-section deliveries' && selectedCategory != 'Still Birth') {
+     
           d3.select("line.leftcolor").attr("stroke", "red");
           d3.select("line.track-inset").attr("stroke", "green");
-        }
-        else {
-          d3.select("line.leftcolor").attr("stroke", "green");
-          d3.select("line.track-inset").attr("stroke", "red");
-        }
+        
      $('.drop-category a').parents('.dropdown').find('.dropdown-toggle').html(updatedCat + ' <span class="selectedCategory"></span>');
      }
 
@@ -531,18 +552,7 @@
       });
       let percentageColor;
         let actualColor;
-        if (PercentageValue == 'd => d.c_section_deliveries' || PercentageValue == 'd => d.per_still_birth') {
-          percentageColor = d3
-            .scaleSequential()
-            .domain([d3.max(tdata, PercentageValue), d3.min(tdata, PercentageValue)])
-            .interpolator(d3.interpolateRdYlGn);
-
-          actualColor = d3
-            .scaleSequential()
-            .domain([d3.max(tdata, ActualValue), d3.min(tdata, ActualValue)])
-            .interpolator(d3.interpolateRdYlGn);
-        }
-        else {
+        
             percentageColor = d3
             .scaleSequential()
             .domain([d3.min(tdata, PercentageValue), d3.max(tdata, PercentageValue)])
@@ -552,7 +562,7 @@
             .scaleSequential()
             .domain([d3.min(tdata, ActualValue), d3.max(tdata, ActualValue)])
             .interpolator(d3.interpolateRdYlGn);
-        }
+        
 
       rowEnter = row
         .data(tbdata)
@@ -579,22 +589,20 @@
 
         let selCat = $(this).text();
         let val;
-        if (selCat != 'C-section deliveries' && selCat != 'Still Birth' ) {
+        
           d3.select("line.leftcolor").attr("stroke", "red");
           d3.select("line.track-inset").attr("stroke", "green");
-        }
-        else {
-          d3.select("line.leftcolor").attr("stroke", "green");
-          d3.select("line.track-inset").attr("stroke", "red");
-        }
+        
 
         switch (selCat) {
-          case "Child Immunisation-Vitamin K1(Birth Dose)": val = 1; break;
-          case "Child Immunisation-BCG": val = 2; break;
-          case "Child Immunisation(9-11 months)-Measles & Rubella (MR) 1st Dose": val = 3; break;
-          case "Child Immunisation(9-11 months)-Measles 1st Dose": val = 4; break;
-          case "Child immunisation-Vitamin A Dose-1": val = 5; break;
-          case "Children(12-59 months) provided Albendazole": val = 6; break;
+          case "Childhood Diseases-Pneumonia": val = 1; break;
+          case "Childhood Diseases-Sepsis": val = 2; break;
+          case "Childhood Diseases-Tuberculosis(TB)": val = 3; break;
+          case "Childhood Diseases-Malaria": val = 4; break;
+          case "Childhood Diseases-Diarrhoea": val = 5; break;
+          case "Childhood Diseases-Diarrhoea treated in Inpatients": val = 6; break;
+          case "Children admitted with upper respiratory infections": val = 6; break;
+          case "Childhood Diseases-Severe Acute Malnutrition(SAM)": val = 6; break;
         }
         updateviz(val);
         updateMap(geojson);
@@ -652,28 +660,36 @@
         rowEnter.selectAll("*").remove();
         switch (selCat) {
           case 1:
-            PercentageValue = d => d.per_chld_immunzt_vit_k1;
-            ActualValue = d => d.chld_immunzt_vit_k1;
+            PercentageValue = d => d.per_chld_disease_pneumonia;
+            ActualValue = d => d.chld_disease_pneumonia;
             break;
           case 2:
-            PercentageValue = d => d.per_chld_immunzt_bcg;
-            ActualValue = d => d.chld_immunzt_bcg;
+            PercentageValue = d => d.per_chld_disease_sepsis;
+            ActualValue = d => d.chld_disease_sepsis;
             break;
           case 3:
-            PercentageValue = d => d.per_chld_immunzt_9to11m_mr;
-            ActualValue = d => d.chld_immunzt_9to11m_mr;
+            PercentageValue = d => d.per_chld_disease_tb;
+            ActualValue = d => d.chld_disease_tb;
             break;
           case 4:
-            PercentageValue = d => d.per_chld_immunzt_9to11m_measl_1st_dose;
-            ActualValue = d => d.chld_immunzt_9to11m_measl_1st_dose;
+            PercentageValue = d => d.per_chld_disease_malaria;
+            ActualValue = d => d.chld_disease_malaria;
             break;
           case 5:
-            PercentageValue = d => d.per_chld_immunzt_vit_a_dose_1;
-            ActualValue = d => d.chld_immunzt_vit_a_dose_1;
+            PercentageValue = d => d.per_chld_disease_diarrhoea;
+            ActualValue = d => d.chld_disease_diarrhoea;
             break;
           case 6:
-            PercentageValue = d => d.per_no_chld_12to59m_albendazole;
-            ActualValue = d => d.no_chld_12to59m_albendazole;
+            PercentageValue = d => d.per_chld_disease_diarrhoea_trtd_inpatnt;
+            ActualValue = d => d.chld_disease_diarrhoea_trtd_inpatnt;
+            break;
+          case 7:
+            PercentageValue = d => d.per_chld_admtd_upper_resp_infec;
+            ActualValue = d => d.chld_admtd_upper_resp_infec;
+            break;
+          case 8:
+            PercentageValue = d => d.per_chld_disease_sam;
+            ActualValue = d => d.chld_disease_sam;
             break;
           
         }
@@ -697,18 +713,7 @@
         
         let percentageColor;
         let actualColor;
-        if (PercentageValue == 'd => d.c_section_deliveries' || PercentageValue == 'd => d.per_still_birth') {
-          percentageColor = d3
-            .scaleSequential()
-            .domain([d3.max(tdata, PercentageValue), d3.min(tdata, PercentageValue)])
-            .interpolator(d3.interpolateRdYlGn);
-
-          actualColor = d3
-            .scaleSequential()
-            .domain([d3.max(tdata, ActualValue), d3.min(tdata, ActualValue)])
-            .interpolator(d3.interpolateRdYlGn);
-        }
-        else {
+        
             percentageColor = d3
             .scaleSequential()
             .domain([d3.min(tdata, PercentageValue), d3.max(tdata, PercentageValue)])
@@ -718,7 +723,7 @@
             .scaleSequential()
             .domain([d3.min(tdata, ActualValue), d3.max(tdata, ActualValue)])
             .interpolator(d3.interpolateRdYlGn);
-        }
+        
         rowEnter = row
           .data(newtbdata)
           .enter()
@@ -742,21 +747,13 @@
 
 
       let myColor = (v, low, high) => {
-  if (ColorValue == 'd => d.properties.c_section_deliveries' || ColorValue == 'd => d.properties.per_still_birth') {
-    if (v < low) return "#24562B"
+  
+    if (v < low) return "#24562B";
     //matte red
     else if (v >= low && v <= high) return "#F4BC1C";
     //matte yellow
     else if (v > high) return "#B2022F"; //matte green
-
-  }
-  else {
-    if (v < low) return "#B2022F";
-    //matte red
-    else if (v >= low && v <= high) return "#F4BC1C";
-    //matte yellow
-    else if (v > high) return "#24562B"; //matte green
-  }
+  
 };
   
 d3.select(".back-button").on("click", function () {
@@ -783,7 +780,7 @@ d3.select(".back-button").on("click", function () {
           else
             svgTrans.call(zzoom.transform, d3.zoomIdentity.translate(transX, transY).scale(scaleV))
 
-          updateCategory("Child Immunisation-Vitamin K1(Birth Dose)");
+          updateCategory("Childhood Diseases-Pneumonia");
           let LocationMonth, LocationDataMonth;
           if (level === 0) {
             LocationDataMonth = filterCSV(stData, 'month', month_hack);
@@ -1152,20 +1149,23 @@ let tickLabels = ["All", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov",
     //   if (d.project_n) d.project_n = d.project_n;
     //   if (d.awc_with_code) d.awc_with_code = d.awc_with_code;
       // d.block_n = d.block_n;
-        d.per_chld_immunzt_vit_k1 = +d.per_chld_immunzt_vit_k1;
-        d.per_chld_immunzt_bcg = +d.per_chld_immunzt_bcg;
-        d.per_chld_immunzt_9to11m_mr = +d.per_chld_immunzt_9to11m_mr;
-        d.per_chld_immunzt_9to11m_measl_1st_dose = +d.per_chld_immunzt_9to11m_measl_1st_dose;
-        d.per_chld_immunzt_vit_a_dose_1 = +d.per_chld_immunzt_vit_a_dose_1;
-        d.per_no_chld_12to59m_albendazole = +d.per_no_chld_12to59m_albendazole;
+        d.per_chld_disease_pneumonia = +d.per_chld_disease_pneumonia;
+        d.per_chld_disease_sepsis = +d.per_chld_disease_sepsis;
+        d.per_chld_disease_tb = +d.per_chld_disease_tb;
+        d.per_chld_disease_malaria = +d.per_chld_disease_malaria;
+        d.per_chld_disease_diarrhoea = +d.per_chld_disease_diarrhoea;
+        d.per_chld_disease_diarrhoea_trtd_inpatnt = +d.per_chld_disease_diarrhoea_trtd_inpatnt;
+        d.per_chld_admtd_upper_resp_infec = +d.per_chld_admtd_upper_resp_infec;
+        d.per_chld_disease_sam = +d.per_chld_disease_sam;
 
-        d.tot_chld_born = +d.tot_chld_born;
-        d.chld_immunzt_vit_k1 = +d.chld_immunzt_vit_k1;
-        d.chld_immunzt_bcg = +d.chld_immunzt_bcg;
-        d.chld_immunzt_9to11m_mr = +d.chld_immunzt_9to11m_mr;
-        d.chld_immunzt_9to11m_measl_1st_dose = +d.chld_immunzt_9to11m_measl_1st_dose;
-        d.chld_immunzt_vit_a_dose_1 = +d.chld_immunzt_vit_a_dose_1;
-        d.no_chld_12to59m_albendazole = +d.no_chld_12to59m_albendazole;
+        d.chld_disease_pneumonia = +d.chld_disease_pneumonia;
+        d.chld_disease_sepsis = +d.chld_disease_sepsis;
+        d.chld_disease_tb = +d.chld_disease_tb;
+        d.chld_disease_malaria = +d.chld_disease_malaria;
+        d.chld_disease_diarrhoea = +d.chld_disease_diarrhoea;
+        d.chld_disease_diarrhoea_trtd_inpatnt = +d.chld_disease_diarrhoea_trtd_inpatnt;
+        d.chld_admtd_upper_resp_infec = +d.chld_admtd_upper_resp_infec;
+        d.chld_disease_sam = +d.chld_disease_sam;
         d.area_name = d.area_name;
         d.month = d.month;
         d.financial_year = d.financial_year;
@@ -1199,21 +1199,24 @@ let tickLabels = ["All", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov",
           geojson[j].properties.area_name = data[i].area_name;
           geojson[j].properties.area_parent_id = data[i].area_parent_id;
           geojson[j].properties.financial_year = data[i].financial_year;
-          geojson[j].properties.tot_chld_born = data[i].tot_chld_born;
-          geojson[j].properties.chld_immunzt_vit_k1 = data[i].chld_immunzt_vit_k1;
-          geojson[j].properties.chld_immunzt_bcg = data[i].chld_immunzt_bcg;
-          geojson[j].properties.chld_immunzt_9to11m_mr = data[i].chld_immunzt_9to11m_mr;
-          geojson[j].properties.chld_immunzt_9to11m_measl_1st_dose = data[i].chld_immunzt_9to11m_measl_1st_dose;
-          geojson[j].properties.chld_immunzt_vit_a_dose_1 = data[i].chld_immunzt_vit_a_dose_1;
-          geojson[j].properties.no_chld_12to59m_albendazole = data[i].no_chld_12to59m_albendazole;
+          geojson[j].properties.chld_disease_pneumonia = data[i].chld_disease_pneumonia;
+          geojson[j].properties.chld_disease_sepsis = data[i].chld_disease_sepsis;
+          geojson[j].properties.chld_disease_tb = data[i].chld_disease_tb;
+          geojson[j].properties.chld_disease_malaria = data[i].chld_disease_malaria;
+          geojson[j].properties.chld_disease_diarrhoea = data[i].chld_disease_diarrhoea;
+          geojson[j].properties.chld_disease_diarrhoea_trtd_inpatnt = data[i].chld_disease_diarrhoea_trtd_inpatnt;
+          geojson[j].properties.chld_admtd_upper_resp_infec = data[i].chld_admtd_upper_resp_infec;
+          geojson[j].properties.chld_disease_sam = data[i].chld_disease_sam;
           
 
-          geojson[j].properties.per_chld_immunzt_vit_k1 = data[i].per_chld_immunzt_vit_k1;
-          geojson[j].properties.per_chld_immunzt_bcg = data[i].per_chld_immunzt_bcg;
-          geojson[j].properties.per_chld_immunzt_9to11m_mr = data[i].per_chld_immunzt_9to11m_mr;
-          geojson[j].properties.per_chld_immunzt_9to11m_measl_1st_dose = data[i].per_chld_immunzt_9to11m_measl_1st_dose;
-          geojson[j].properties.per_chld_immunzt_vit_a_dose_1 = data[i].per_chld_immunzt_vit_a_dose_1;
-          geojson[j].properties.per_no_chld_12to59m_albendazole = data[i].per_no_chld_12to59m_albendazole;
+          geojson[j].properties.per_chld_disease_pneumonia = data[i].per_chld_disease_pneumonia;
+          geojson[j].properties.per_chld_disease_sepsis = data[i].per_chld_disease_sepsis;
+          geojson[j].properties.per_chld_disease_tb = data[i].per_chld_disease_tb;
+          geojson[j].properties.per_chld_disease_malaria = data[i].per_chld_disease_malaria;
+          geojson[j].properties.per_chld_disease_diarrhoea = data[i].per_chld_disease_diarrhoea;
+          geojson[j].properties.per_chld_disease_diarrhoea_trtd_inpatnt = data[i].per_chld_disease_diarrhoea_trtd_inpatnt;
+          geojson[j].properties.per_chld_admtd_upper_resp_infec = data[i].per_chld_admtd_upper_resp_infec;
+          geojson[j].properties.per_chld_disease_sam = data[i].per_chld_disease_sam;
 
         }
       }
