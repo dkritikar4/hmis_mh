@@ -65,12 +65,15 @@
       <span class="selectedCategory"></span>
     </button>
     <div class="dropdown-menu category" aria-labelledby="dropdownMenuButton">
+      <a class="dropdown-item" href="#">Total no of Children Born</a>
       <a class="dropdown-item" href="#">Child Immunisation-Vitamin K1(Birth Dose)</a>
       <a class="dropdown-item" href="#">Child Immunisation-BCG</a>
       <a class="dropdown-item" href="#">Child Immunisation(9-11 months)-Measles & Rubella (MR) 1st Dose</a>
-      <a class="dropdown-item" href="#">Child Immunisation(9-11 months)-Measles 1st Dose</a>
       <a class="dropdown-item" href="#">Child immunisation-Vitamin A Dose-1</a>
       <a class="dropdown-item" href="#">Children(12-59 months) provided Albendazole</a>
+      <a class="dropdown-item" href="#">Child immunisation DPT and Pentavalent 1st dose</a>
+      <a class="dropdown-item" href="#">Child immunisation DPT and Pentavalent 2nd dose</a>
+      <a class="dropdown-item" href="#">Child immunisation DPT and Pentavalent 3rd dose</a>
     </div>
   </div>
 
@@ -191,15 +194,21 @@
       } else if (opt == 'Child Immunisation(9-11 months)-Measles & Rubella (MR) 1st Dose') {
         arcInitial = d => d.per_chld_immunzt_9to11m_mr;
         arcInitialNum = d => d.chld_immunzt_9to11m_mr;
-      } else if (opt == 'Child Immunisation(9-11 months)-Measles 1st Dose') {
-        arcInitial = d => d.per_chld_immunzt_9to11m_measl_1st_dose;
-        arcInitialNum = d => d.chld_immunzt_9to11m_measl_1st_dose;
       } else if (opt == 'Child immunisation-Vitamin A Dose-1') {
         arcInitial = d => d.per_chld_immunzt_vit_a_dose_1;
         arcInitialNum = d => d.chld_immunzt_vit_a_dose_1;
+      } else if (opt == 'Child immunisation DPT and Pentavalent 1st dose') {
+        arcInitial = d => d.per_chld_immunzt_dpt1_penta1;
+        arcInitialNum = d => d.chld_immunzt_dpt1_penta1;
+      } else if (opt == 'Child immunisation DPT and Pentavalent 2nd dose') {
+        arcInitial = d => d.per_chld_immunzt_dpt2_penta2;
+        arcInitialNum = d => d.chld_immunzt_dpt2_penta2;
+      } else if (opt == 'Child immunisation DPT and Pentavalent 3rd dose') {
+        arcInitial = d => d.per_chld_immunzt_dpt3_penta3;
+        arcInitialNum = d => d.chld_immunzt_dpt3_penta3;
       } else {
         arcInitial = d => d.per_no_chld_12to59m_albendazole;
-        arcInitialNum = d => d.chld_immunzt_vit_a_dose_1;
+        arcInitialNum = d => d.no_chld_12to59m_albendazole;
       }
       
     }
@@ -234,17 +243,19 @@
       div.html("<b>" + "<span id='paraText'>" + 10 + "</span>" + "</b><br>" + arcInitial(d.data) + "%");
     }
 
-    oi = { "area_name": [], "per_chld_immunzt_vit_k1": [], "per_chld_immunzt_bcg": [], "per_chld_immunzt_9to11m_mr": [], "per_chld_immunzt_9to11m_measl_1st_dose": [], "per_chld_immunzt_vit_a_dose_1": [], "per_chld_disease_diarrhoea_trtd_inpatnt": [],"per_no_chld_12to59m_albendazole": [],"per_chld_admtd_upper_resp_infec": [],"per_chld_born": [] }
+    oi = { "area_name": [], "per_chld_immunzt_vit_k1": [], "per_chld_immunzt_bcg": [], "per_chld_immunzt_9to11m_mr": [], "per_chld_immunzt_vit_a_dose_1": [], "per_chld_disease_diarrhoea_trtd_inpatnt": [],"per_no_chld_12to59m_albendazole": [],"per_chld_admtd_upper_resp_infec": [],"per_chld_born": [], "per_chld_immunzt_dpt1_penta1": [], "per_chld_immunzt_dpt2_penta2": [], "per_chld_immunzt_dpt3_penta3": [] }
 
     data.forEach(d => {
       oi.area_name.push(d.area_name);
       oi.per_chld_immunzt_vit_k1.push(d.per_chld_immunzt_vit_k1);
       oi.per_chld_immunzt_bcg.push(d.per_chld_immunzt_bcg);
       oi.per_chld_immunzt_9to11m_mr.push(d.per_chld_immunzt_9to11m_mr);
-      oi.per_chld_immunzt_9to11m_measl_1st_dose.push(d.per_chld_immunzt_9to11m_measl_1st_dose);
       oi.per_chld_immunzt_vit_a_dose_1.push(d.per_chld_immunzt_vit_a_dose_1);
       oi.per_no_chld_12to59m_albendazole.push(d.per_no_chld_12to59m_albendazole);
       oi.per_chld_born.push(d.per_chld_born);
+      oi.per_chld_immunzt_dpt1_penta1.push(d.per_chld_immunzt_dpt1_penta1);
+      oi.per_chld_immunzt_dpt2_penta2.push(d.per_chld_immunzt_dpt2_penta2);
+      oi.per_chld_immunzt_dpt3_penta3.push(d.per_chld_immunzt_dpt3_penta3);
     });
 
     var color = d3.scaleSequential().domain([d3.min(arcInitial(oi)), d3.max(arcInitial(oi))])
@@ -468,15 +479,18 @@
     d.per_chld_immunzt_vit_k1 = +d.per_chld_immunzt_vit_k1;
     d.per_chld_immunzt_bcg = +d.per_chld_immunzt_bcg;
     d.per_chld_immunzt_9to11m_mr = +d.per_chld_immunzt_9to11m_mr;
-    d.per_chld_immunzt_9to11m_measl_1st_dose = +d.per_chld_immunzt_9to11m_measl_1st_dose;
     d.per_chld_immunzt_vit_a_dose_1 = +d.per_chld_immunzt_vit_a_dose_1;
+    d.per_chld_immunzt_dpt1_penta1 = +d.per_chld_immunzt_dpt1_penta1;
+    d.per_chld_immunzt_dpt2_penta2 = +d.per_chld_immunzt_dpt2_penta2;
+    d.per_chld_immunzt_dpt3_penta3 = +d.per_chld_immunzt_dpt3_penta3;
     d.per_no_chld_12to59m_albendazole = +d.per_no_chld_12to59m_albendazole;
     d.chld_immunzt_bcg = +d.chld_immunzt_bcg;
     d.chld_immunzt_vit_k1 = +d.chld_immunzt_vit_k1;
     d.chld_immunzt_9to11m_mr = +d.chld_immunzt_9to11m_mr;
-    d.chld_immunzt_9to11m_measl_1st_dose = +d.chld_immunzt_9to11m_measl_1st_dose;
     d.chld_immunzt_vit_a_dose_1 = +d.chld_immunzt_vit_a_dose_1;
-    d.chld_immunzt_vit_a_dose_1 = +d.chld_immunzt_vit_a_dose_1;
+    d.chld_immunzt_dpt1_penta1 = +d.chld_immunzt_dpt1_penta1;
+    d.chld_immunzt_dpt2_penta2 = +d.chld_immunzt_dpt2_penta2;
+    d.chld_immunzt_dpt3_penta3 = +d.chld_immunzt_dpt3_penta3;
     d.per_chld_born = +d.per_chld_born;
     d.tot_chld_born = +d.tot_chld_born;
     d.area_id = +d.area_id;

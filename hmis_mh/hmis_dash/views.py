@@ -8,7 +8,7 @@ from django.db.models import Q
 from dashboard.models import MhAreaDetails, MhDSdPw, MhDSdCi, MhDSdCd
 from django.core.serializers.json import DjangoJSONEncoder 
 from django.db.models import F
-from .models import (MhDSdPwPie, MhDSdCdPie, MhDSdCiPie, MhDtGeojson)
+from .models import (MhDSdPwPie, MhDSdCdPie, MhDSdCiPie, MhDtGeojson, MhSubdtGeojson)
 
 # Create your views here.
 
@@ -22,7 +22,7 @@ class hmisBarChart(LoginRequiredMixin, TemplateView):
 
     def get(self, request, fy= None, dist_name = None):
         district = request.GET.get('dist_name', dist_name) 
-        dtInt = int(district)
+        dtint = int(district)
         fy_name = request.GET.get('fy', fy) 
         if dtint > 440:
             data = list(MhDSdPw.objects.filter(Q(financial_year=fy_name) & Q(area_parent_id=405)).values())
@@ -498,13 +498,13 @@ class mapStPW(LoginRequiredMixin, TemplateView):
 
         dt_jsondata = json.dumps(dt_data, cls=DjangoJSONEncoder)
         
-        st_geodata = serialize('geojson', GeojsonIndiaLevel.objects.all(),
+        st_geodata = serialize('geojson', MhDtGeojson.objects.all(),
                                 geometry_field = 'wkb_geometry',
-                                fields = ('ogc_fid','state', 'area_id'))
+                                fields = ('ogc_fid','state', 'district', 'area_id'))
 
-        dt_geodata = serialize('geojson', MhDtGeojson.objects.all(),
+        dt_geodata = serialize('geojson', MhSubdtGeojson.objects.all(),
                                 geometry_field = 'wkb_geometry',
-                                fields = ('ogc_fid','state', 'district', 'area_id'))                                
+                                fields = ('ogc_fid', 'state', 'district', 'block', 'area_id'))                                
         
         context = {
             'st_data': st_jsondata,
@@ -538,13 +538,13 @@ class mapStChldImmu(LoginRequiredMixin, TemplateView):
 
         dt_jsondata = json.dumps(dt_data, cls=DjangoJSONEncoder)
         
-        st_geodata = serialize('geojson', GeojsonIndiaLevel.objects.all(),
+        st_geodata = serialize('geojson', MhDtGeojson.objects.all(),
                                 geometry_field = 'wkb_geometry',
-                                fields = ('ogc_fid','state', 'area_id'))
+                                fields = ('ogc_fid','state', 'district','area_id'))
 
-        dt_geodata = serialize('geojson', MhDtGeojson.objects.all(),
+        dt_geodata = serialize('geojson', MhSubdtGeojson.objects.all(),
                                 geometry_field = 'wkb_geometry',
-                                fields = ('ogc_fid','state', 'district', 'area_id'))                                
+                                fields = ('ogc_fid','state', 'district', 'block', 'area_id'))                                
         
         context = {
             'st_data': st_jsondata,
@@ -579,13 +579,13 @@ class mapStChldDisease(LoginRequiredMixin, TemplateView):
 
         dt_jsondata = json.dumps(dt_data, cls=DjangoJSONEncoder)
         
-        st_geodata = serialize('geojson', GeojsonIndiaLevel.objects.all(),
+        st_geodata = serialize('geojson', MhDtGeojson.objects.all(),
                                 geometry_field = 'wkb_geometry',
-                                fields = ('ogc_fid','state', 'area_id'))
+                                fields = ('ogc_fid','state', 'district','area_id'))
 
-        dt_geodata = serialize('geojson', MhDtGeojson.objects.all(),
+        dt_geodata = serialize('geojson', MhSubdtGeojson.objects.all(),
                                 geometry_field = 'wkb_geometry',
-                                fields = ('ogc_fid','state', 'district', 'area_id'))                                
+                                fields = ('ogc_fid','state', 'district', 'block', 'area_id'))                                
         
         context = {
             'st_data': st_jsondata,

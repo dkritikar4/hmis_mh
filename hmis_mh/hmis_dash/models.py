@@ -123,3 +123,16 @@ class MhDtGeojson(models.Model):
     class Meta:
         managed = False
         db_table = 'mh_dt_geojson'
+
+class MhSubdtGeojson(models.Model):
+    ogc_fid = models.AutoField(primary_key=True)
+    block = models.CharField(max_length=1, blank=True, null=True)
+    district = models.CharField(max_length=1, blank=True, null=True)
+    wkb_geometry = models.MultiPolygonField(blank=True, null=True)
+    state = models.CharField(max_length=50, blank=True, null=True)
+    area_parent_id = models.IntegerField(blank=True, null=True)
+    area_id = models.IntegerField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'mh_subdt_geojson'
