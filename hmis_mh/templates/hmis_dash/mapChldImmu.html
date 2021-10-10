@@ -70,7 +70,7 @@
 
 <div class="row">
   <div class="col-12 h-75">
-    <div class="heading text-center"> Indicators ({{ fy }})</div>
+    <div class="heading text-center">Child Immunisation related Indicators ({{ fy }})</div>
   </div>
 </div>
 
@@ -83,7 +83,7 @@
         <span class="selectedCategory"></span>
         </button>
         <div class="dropdown-menu drop-category" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item" href="#">Child Immunisation-Vitamin K1(Birth Dose)</a>
+            <a class="dropdown-item" href="#">Child Immunisation-Vitamin K1(Birth Dose)</a>
             <a class="dropdown-item" href="#">Child Immunisation-BCG</a>
             <a class="dropdown-item" href="#">Child Immunisation(9-11 months)-Measles & Rubella (MR) 1st Dose</a>
             <a class="dropdown-item" href="#">Child immunisation-Vitamin A Dose-1</a>
@@ -114,7 +114,7 @@
   <div class="col-12">
     <button type="button" class="btn btn-dark back-button m-2">back</button>
     <span class='info info-hirar'>{{dist_name}}</span>
-    <p>Click on the Polygon(District) to view the Lower Level <span class="drilldown">(Drilldown)</span>
+    <p>Click on the Polygon(State) to view the Lower Level <span class="drilldown">(Drilldown)</span>
       </p>
   </div>
 </div>
@@ -190,7 +190,7 @@
     .select("div#table")
     .append("table")
     .attr("class", "table update-table");
-  let headerName = ["Location", "Percentage", "Actual Number"];
+  let headerName = ["Location", "Percentage", "Reported Data"];
   let headers = table
     .append("thead")
     .append("tr")
@@ -255,7 +255,7 @@
 
     const fillCellColor = (d, percentageColor, actualColor) => {
       if (d.name == "Percentage") return percentageColor(d.value);
-      else if (d.name == "Actual Number") return actualColor(d.value);
+      else if (d.name == "Reported Data") return actualColor(d.value);
     };
 
     //info-div
@@ -277,7 +277,7 @@
             updatedCat = "Child Immunisation-Vitamin K1(Birth Dose)";
             Tooltipheader1 = d => "Child Immunisation-Vitamin K1(Birth Dose):";
             // Tooltipheader2 = d => "";
-            TooltipVal1 = d => d.chld_immunzt_vit_k1;
+            TooltipVal1 = d => d.properties.chld_immunzt_vit_k1;
             // TooltipVal2 = d => "-";
             ColorValue = d => d.properties.per_chld_immunzt_vit_k1;
             TPercentValue = d => d.per_chld_immunzt_vit_k1;
@@ -287,7 +287,7 @@
           case 2:
             updatedCat = "Child Immunisation-BCG";
             Tooltipheader1 = d => "Child Immunisation-BCG:";
-            // Tooltipheader2 = d => "Moderately PW received 4 or more ANC check ups:";
+            // Tooltipheader2 = d => "Moderately Child Immunisation-BCG:";
             TooltipVal1 = d => d.properties.chld_immunzt_bcg;
             // TooltipVal2 = d => d.properties.mdrtly_stntd;
             ColorValue = d => d.properties.per_chld_immunzt_bcg;
@@ -307,8 +307,18 @@
 
 
             break;
-
           case 4:
+            updatedCat = "Child Immunisation(9-11 months)-Measles 1st Dose";
+            Tooltipheader1 = d => "Child Immunisation(9-11 months)-Measles 1st Dose:";
+            // Tooltipheader2 = d => "Moderately Child Immunisation(9-11 months)-Measles 1st Dose:";
+            TooltipVal1 = d => d.properties.chld_immunzt_9to11m_measl_1st_dose;
+            // TooltipVal2 = d => d.properties.mdrtly_wstd;
+            ColorValue = d => d.properties.per_chld_immunzt_9to11m_measl_1st_dose;
+            TPercentValue = d => d.per_chld_immunzt_9to11m_measl_1st_dose;
+            TActualValue = d => d.chld_immunzt_9to11m_measl_1st_dose;
+
+            break;
+          case 5:
             updatedCat = "Child immunisation-Vitamin A Dose-1";
             Tooltipheader1 = d => "Child immunisation-Vitamin A Dose-1:";
             // Tooltipheader2 = d => "";
@@ -319,10 +329,10 @@
             TActualValue = d => d.chld_immunzt_vit_a_dose_1;
 
             break;
-          case 5:
+          case 6:
             updatedCat = "Children(12-59 months) provided Albendazole";
             Tooltipheader1 = d => "Children(12-59 months) provided Albendazole:";
-            // Tooltipheader2 = d => "Moderately PW given 360 Calcium tablets:";
+            // Tooltipheader2 = d => "Moderately Children(12-59 months) provided Albendazole:";
             TooltipVal1 = d => d.properties.no_chld_12to59m_albendazole;
             // TooltipVal2 = d => d.properties.mdrtly_uw;
             ColorValue = d => d.properties.per_no_chld_12to59m_albendazole;
@@ -366,37 +376,39 @@
 
             break;
 
-
         }
       };
 
     if (choices.length > 0) {
      updateviz(parseInt(choices[0])); 
      selectedCategory = updatedCat;
-     
-          d3.select("line.leftcolor").attr("stroke", "green");
-          d3.select("line.track-inset").attr("stroke", "red");
-        
+    //  if (selectedCategory != 'C-section deliveries' && selectedCategory != 'Still Birth') {
+    //       d3.select("line.leftcolor").attr("stroke", "red");
+    //       d3.select("line.track-inset").attr("stroke", "green");
+    //     }
+    //     else {
+    //       d3.select("line.leftcolor").attr("stroke", "green");
+    //       d3.select("line.track-inset").attr("stroke", "red");
+    //     }
      $('.drop-category a').parents('.dropdown').find('.dropdown-toggle').html(updatedCat + ' <span class="selectedCategory"></span>');
      }
 
     //makemap
     const makemap = (geojson, tdata) => {
       d3.select('.info-hirar').text(function () {
-        // let displayVal = d => d.properties.area_name; 
-        // console.log(displayVal, "d")
         let hirarchy = "Maharashtra";
+        let displayAreaName = geojson[0].properties.district
         levelLocation.forEach(loc => {
-          hirarchy += ">" + loc;
+          hirarchy += ">" + displayAreaName;
         })
         return hirarchy;
       })
 
       if (level == 0 && direction == 1) {
-        TextValue = d => d.properties.state;
+        TextValue = d => d.properties.district;
       } 
       else if (level == 1 && direction == 1) {
-        TextValue = d => d.properties.district;
+        TextValue = d => d.properties.block;
       }
       //  else if (level == 2 && direction == 1) {
       //   TextValue = d => d.properties.beat_na;
@@ -550,12 +562,23 @@
 
         temp["Location"] = LocationValue(d);
         temp["Percentage"] = PercentageValue(d);
-        temp["Actual Number"] = ActualValue(d);
+        temp["Reported Data"] = ActualValue(d);
         tbdata.push(temp);
       });
       let percentageColor;
         let actualColor;
-        
+        if (PercentageValue == 'd => d.c_section_deliveries' || PercentageValue == 'd => d.per_still_birth') {
+          percentageColor = d3
+            .scaleSequential()
+            .domain([d3.max(tdata, PercentageValue), d3.min(tdata, PercentageValue)])
+            .interpolator(d3.interpolateRdYlGn);
+
+          actualColor = d3
+            .scaleSequential()
+            .domain([d3.max(tdata, ActualValue), d3.min(tdata, ActualValue)])
+            .interpolator(d3.interpolateRdYlGn);
+        }
+        else {
             percentageColor = d3
             .scaleSequential()
             .domain([d3.min(tdata, PercentageValue), d3.max(tdata, PercentageValue)])
@@ -565,7 +588,7 @@
             .scaleSequential()
             .domain([d3.min(tdata, ActualValue), d3.max(tdata, ActualValue)])
             .interpolator(d3.interpolateRdYlGn);
-        
+        }
 
       rowEnter = row
         .data(tbdata)
@@ -592,10 +615,14 @@
 
         let selCat = $(this).text();
         let val;
-        
+        if (selCat != 'C-section deliveries' && selCat != 'Still Birth' ) {
+          d3.select("line.leftcolor").attr("stroke", "red");
+          d3.select("line.track-inset").attr("stroke", "green");
+        }
+        else {
           d3.select("line.leftcolor").attr("stroke", "green");
           d3.select("line.track-inset").attr("stroke", "red");
-        
+        }
 
         switch (selCat) {
           case "Child Immunisation-Vitamin K1(Birth Dose)": val = 1; break;
@@ -606,6 +633,7 @@
           case "Child immunisation DPT and Pentavalent 1st dose": val = 6; break;
           case "Child immunisation DPT and Pentavalent 2nd dose": val = 7; break;
           case "Child immunisation DPT and Pentavalent 3rd dose": val = 8; break;
+          
         }
         updateviz(val);
         updateMap(geojson);
@@ -710,13 +738,24 @@
           let temp = {};
           temp["Location"] = LocationValue(d);
           temp["Percentage"] = PercentageValue(d);
-          temp["Actual Number"] = ActualValue(d);
+          temp["Reported Data"] = ActualValue(d);
           newtbdata.push(temp);
         });
         
         let percentageColor;
         let actualColor;
-       
+        if (PercentageValue == 'd => d.c_section_deliveries' || PercentageValue == 'd => d.per_still_birth') {
+          percentageColor = d3
+            .scaleSequential()
+            .domain([d3.max(tdata, PercentageValue), d3.min(tdata, PercentageValue)])
+            .interpolator(d3.interpolateRdYlGn);
+
+          actualColor = d3
+            .scaleSequential()
+            .domain([d3.max(tdata, ActualValue), d3.min(tdata, ActualValue)])
+            .interpolator(d3.interpolateRdYlGn);
+        }
+        else {
             percentageColor = d3
             .scaleSequential()
             .domain([d3.min(tdata, PercentageValue), d3.max(tdata, PercentageValue)])
@@ -726,7 +765,7 @@
             .scaleSequential()
             .domain([d3.min(tdata, ActualValue), d3.max(tdata, ActualValue)])
             .interpolator(d3.interpolateRdYlGn);
-        
+        }
         rowEnter = row
           .data(newtbdata)
           .enter()
@@ -750,11 +789,21 @@
 
 
       let myColor = (v, low, high) => {
+  if (ColorValue == 'd => d.properties.c_section_deliveries' || ColorValue == 'd => d.properties.per_still_birth') {
+    if (v < low) return "#24562B"
+    //matte red
+    else if (v >= low && v <= high) return "#F4BC1C";
+    //matte yellow
+    else if (v > high) return "#B2022F"; //matte green
+
+  }
+  else {
     if (v < low) return "#B2022F";
     //matte red
     else if (v >= low && v <= high) return "#F4BC1C";
     //matte yellow
     else if (v > high) return "#24562B"; //matte green
+  }
 };
   
 d3.select(".back-button").on("click", function () {
@@ -1150,7 +1199,7 @@ let tickLabels = ["All", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov",
     //   if (d.project_n) d.project_n = d.project_n;
     //   if (d.awc_with_code) d.awc_with_code = d.awc_with_code;
       // d.block_n = d.block_n;
-        d.per_chld_immunzt_vit_k1 = +d.per_chld_immunzt_vit_k1;
+      d.per_chld_immunzt_vit_k1 = +d.per_chld_immunzt_vit_k1;
         d.per_chld_immunzt_bcg = +d.per_chld_immunzt_bcg;
         d.per_chld_immunzt_9to11m_mr = +d.per_chld_immunzt_9to11m_mr;
         d.per_chld_immunzt_9to11m_measl_1st_dose = +d.per_chld_immunzt_9to11m_measl_1st_dose;
@@ -1222,6 +1271,7 @@ let tickLabels = ["All", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov",
           geojson[j].properties.per_chld_immunzt_dpt1_penta1 = data[i].per_chld_immunzt_dpt1_penta1;
           geojson[j].properties.per_chld_immunzt_dpt2_penta2 = data[i].per_chld_immunzt_dpt2_penta2;
           geojson[j].properties.per_chld_immunzt_dpt3_penta3 = data[i].per_chld_immunzt_dpt3_penta3;
+
         }
       }
     }
@@ -1351,7 +1401,7 @@ fetchGeoJSON().then(mergeData);
     .attr("stroke-linecap", "round");
 
   d3.select("line.track-fill").attr("stroke", "yellow");
-  d3.select("line.leftcolor").attr("stroke", "green");
-  d3.select("line.track-inset").attr("stroke", "red");
+  d3.select("line.leftcolor").attr("stroke", "red");
+  d3.select("line.track-inset").attr("stroke", "green");
 </script>
 {% endblock %}

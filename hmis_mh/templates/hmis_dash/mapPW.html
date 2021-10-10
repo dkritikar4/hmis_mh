@@ -120,7 +120,7 @@
   <div class="col-12">
     <button type="button" class="btn btn-dark back-button m-2">back</button>
     <span class='info info-hirar'>{{dist_name}}</span>
-    <p>Click on the Polygon(District) to view the Lower Level <span class="drilldown">(Drilldown)</span>
+    <p>Click on the Polygon(State) to view the Lower Level <span class="drilldown">(Drilldown)</span>
       </p>
   </div>
 </div>
@@ -196,7 +196,7 @@
     .select("div#table")
     .append("table")
     .attr("class", "table update-table");
-  let headerName = ["Location", "Percentage", "Actual Number"];
+  let headerName = ["Location", "Percentage", "Reported Data"];
   let headers = table
     .append("thead")
     .append("tr")
@@ -261,7 +261,7 @@
 
     const fillCellColor = (d, percentageColor, actualColor) => {
       if (d.name == "Percentage") return percentageColor(d.value);
-      else if (d.name == "Actual Number") return actualColor(d.value);
+      else if (d.name == "Reported Data") return actualColor(d.value);
     };
 
     //info-div
@@ -314,8 +314,8 @@
 
             break;
           case 4:
-            updatedCat = "PW given TT2";
-            Tooltipheader1 = d => "PW given TT2:";
+            updatedCat = "TT1 to TT2 Dropout";
+            Tooltipheader1 = d => "TT1 to TT2 Dropout:";
             // Tooltipheader2 = d => "Moderately PW given TT2:";
             TooltipVal1 = d => d.properties.no_pw_given_tt2;
             // TooltipVal2 = d => d.properties.mdrtly_wstd;
@@ -325,8 +325,8 @@
 
             break;
           case 5:
-            updatedCat = "PW given TT Booster";
-            Tooltipheader1 = d => "PW given TT Booster:";
+            updatedCat = "PW given TT Booster as fraction of children born (or live births)";
+            Tooltipheader1 = d => "PW given TT Booster as fraction of children born (or live births):";
             // Tooltipheader2 = d => "";
             TooltipVal1 = d => d.properties.no_pw_given_tt_booster;
             // TooltipVal2 = d => "-";
@@ -384,8 +384,8 @@
             break;
 
             case 10:
-            updatedCat = "Still Birth";
-            Tooltipheader1 = d => "Still Birth:";
+            updatedCat = "Still Birth Rate (Still births per 1000 Live Births)";
+            Tooltipheader1 = d => "Still Birth Rate (Still births per 1000 Live Births):";
             // Tooltipheader2 = d => "Moderately Underweight Children:";
             TooltipVal1 = d => d.properties.tot_still_birth;
             // TooltipVal2 = d => d.properties.mdrtly_uw;
@@ -394,13 +394,61 @@
             TActualValue = d => d.tot_still_birth;
 
             break;
+          
+            case 11:
+            updatedCat = "PW given TT1 or TT Booster";
+            Tooltipheader1 = d => "PW given TT1 or TT Booster:";
+            // Tooltipheader2 = d => "Moderately Underweight Children:";
+            //TooltipVal1 = d => d.properties.tot_still_birth;
+            // TooltipVal2 = d => d.properties.mdrtly_uw;
+            ColorValue = d => d.properties.per_pw_given_tt1_or_tt_booster;
+            TPercentValue = d => d.per_pw_given_tt1_or_tt_booster;
+            //TActualValue = d => d.tot_still_birth;
+
+            break;
+
+            case 12:
+            updatedCat = "Severely Anaemic PW given treatment";
+            Tooltipheader1 = d => "Severely Anaemic PW given treatment:";
+            // Tooltipheader2 = d => "Moderately Underweight Children:";
+            //TooltipVal1 = d => d.properties.tot_still_birth;
+            // TooltipVal2 = d => d.properties.mdrtly_uw;
+            ColorValue = d => d.properties.per_severe_anaemia_tested_treated;
+            TPercentValue = d => d.per_severe_anaemia_tested_treated;
+            //TActualValue = d => d.tot_still_birth;
+
+            break;
+
+            case 13:
+            updatedCat = "Preterm Birth Rate";
+            Tooltipheader1 = d => "Preterm Birth Rate:";
+            // Tooltipheader2 = d => "Moderately Underweight Children:";
+            TooltipVal1 = d => d.properties.no_preterm_birth;
+            // TooltipVal2 = d => d.properties.mdrtly_uw;
+            ColorValue = d => d.properties.preterm_birth_rate;
+            TPercentValue = d => d.preterm_birth_rate;
+            TActualValue = d => d.no_preterm_birth;
+
+            break;
+
+            case 14:
+            updatedCat = "Pregnancy outcomes as a % of ANC registration";
+            Tooltipheader1 = d => "Pregnancy outcomes as a % of ANC registration:";
+            // Tooltipheader2 = d => "Moderately Underweight Children:";
+            //TooltipVal1 = d => d.properties.no_preterm_birth;
+            // TooltipVal2 = d => d.properties.mdrtly_uw;
+            ColorValue = d => d.properties.per_pw_outcome;
+            TPercentValue = d => d.per_pw_outcome;
+            //TActualValue = d => d.no_preterm_birth;
+
+            break;
         }
       };
 
     if (choices.length > 0) {
      updateviz(parseInt(choices[0])); 
      selectedCategory = updatedCat;
-     if (selectedCategory != 'C-section deliveries' && selectedCategory != 'Still Birth') {
+     if (selectedCategory != 'C-section deliveries' && selectedCategory != 'Still Birth Rate (Still births per 1000 Live Births)' && selectedCategory != 'Preterm Birth Rate') {
           d3.select("line.leftcolor").attr("stroke", "red");
           d3.select("line.track-inset").attr("stroke", "green");
         }
@@ -413,21 +461,24 @@
 
     //makemap
     const makemap = (geojson, tdata) => {
+      // console.log(tdata, "tdata")
+
       d3.select('.info-hirar').text(function () {
         // let displayVal = d => d.properties.area_name; 
         // console.log(displayVal, "d")
-        let hirarchy = "India";
+        let hirarchy = "Maharashtra";
+        let displayAreaName = geojson[0].properties.district
         levelLocation.forEach(loc => {
-          hirarchy += ">" + loc;
+          hirarchy += ">" + displayAreaName;
         })
         return hirarchy;
       })
 
       if (level == 0 && direction == 1) {
-        TextValue = d => d.properties.state;
+        TextValue = d => d.properties.district;
       } 
       else if (level == 1 && direction == 1) {
-        TextValue = d => d.properties.district;
+        TextValue = d => d.properties.block;
       }
       //  else if (level == 2 && direction == 1) {
       //   TextValue = d => d.properties.beat_na;
@@ -581,12 +632,12 @@
 
         temp["Location"] = LocationValue(d);
         temp["Percentage"] = PercentageValue(d);
-        temp["Actual Number"] = ActualValue(d);
+        temp["Reported Data"] = ActualValue(d);
         tbdata.push(temp);
       });
       let percentageColor;
         let actualColor;
-        if (PercentageValue == 'd => d.c_section_deliveries' || PercentageValue == 'd => d.per_still_birth') {
+        if (PercentageValue == 'd => d.c_section_deliveries' || PercentageValue == 'd => d.per_still_birth' || PercentageValue == 'd => d.preterm_birth_rate') {
           percentageColor = d3
             .scaleSequential()
             .domain([d3.max(tdata, PercentageValue), d3.min(tdata, PercentageValue)])
@@ -634,7 +685,7 @@
 
         let selCat = $(this).text();
         let val;
-        if (selCat != 'C-section deliveries' && selCat != 'Still Birth' ) {
+        if (selCat != 'C-section deliveries' && selCat != 'Still Birth Rate (Still births per 1000 Live Births)' && selCat != 'Preterm Birth Rate' ) {
           d3.select("line.leftcolor").attr("stroke", "red");
           d3.select("line.track-inset").attr("stroke", "green");
         }
@@ -647,13 +698,19 @@
           case "Early ANC Registeration": val = 1; break;
           case "PW received 4 or more ANC check ups": val = 2; break;
           case "PW given TT1": val = 3; break;
-          case "PW given TT2": val = 4; break;
-          case "PW given TT Booster": val = 5; break;
+          case "TT1 to TT2 Dropout": val = 4; break;
+          case "PW given TT Booster as fraction of children born (or live births)": val = 5; break;
           case "PW given 360 Calcium tablets": val = 6; break;
           case "PW given 180 Iron Folic Acid (IFA) tablets": val = 7; break;
           case "PW given one Albendazole tablet after 1st trimester": val = 8; break;
           case "C-section deliveries": val = 9; break;
-          case "Still Birth": val = 10; break;
+          case "Still Birth Rate (Still births per 1000 Live Births)": val = 10; break;
+          case "PW given TT1 or TT Booster": val = 11; break;
+          case "Severely Anaemic PW given treatment": val = 12; break;
+          case "Preterm Birth Rate": val = 13; break;
+          case "Pregnancy outcomes as a % of ANC registration": val = 14; break;
+
+
         }
         updateviz(val);
         updateMap(geojson);
@@ -751,8 +808,28 @@
             break;
 
         case 10:
-        PercentageValue = d => d.per_still_birth;
-        ActualValue = d => d.tot_still_birth;
+            PercentageValue = d => d.per_still_birth;
+            ActualValue = d => d.tot_still_birth;
+        break;
+
+        case 11:
+            PercentageValue = d => d.per_pw_given_tt1_or_tt_booster;
+            //ActualValue = d => d.tot_still_birth;
+        break;
+
+        case 12:
+            PercentageValue = d => d.per_severe_anaemia_tested_treated;
+            //ActualValue = d => d.tot_still_birth;
+        break;
+
+        case 13:
+            PercentageValue = d => d.preterm_birth_rate;
+            ActualValue = d => d.no_preterm_birth;
+        break;
+
+        case 14:
+            PercentageValue = d => d.per_pw_outcome;
+            //ActualValue = d => d.tot_still_birth;
         break;
           
         }
@@ -770,13 +847,13 @@
           let temp = {};
           temp["Location"] = LocationValue(d);
           temp["Percentage"] = PercentageValue(d);
-          temp["Actual Number"] = ActualValue(d);
+          temp["Reported Data"] = ActualValue(d);
           newtbdata.push(temp);
         });
         
         let percentageColor;
         let actualColor;
-        if (PercentageValue == 'd => d.c_section_deliveries' || PercentageValue == 'd => d.per_still_birth') {
+        if (PercentageValue == 'd => d.c_section_deliveries' || PercentageValue == 'd => d.per_still_birth' || PercentageValue == 'd => d.preterm_birth_rate') {
           percentageColor = d3
             .scaleSequential()
             .domain([d3.max(tdata, PercentageValue), d3.min(tdata, PercentageValue)])
@@ -821,7 +898,7 @@
 
 
       let myColor = (v, low, high) => {
-  if (ColorValue == 'd => d.properties.c_section_deliveries' || ColorValue == 'd => d.properties.per_still_birth') {
+  if (ColorValue == 'd => d.properties.c_section_deliveries' || ColorValue == 'd => d.properties.per_still_birth' || ColorValue == 'd => d.properties.preterm_birth_rate') {
     if (v < low) return "#24562B"
     //matte red
     else if (v >= low && v <= high) return "#F4BC1C";
@@ -1241,7 +1318,10 @@ let tickLabels = ["All", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov",
         d.pw_ifa = +d.pw_ifa;
         d.c_section_deliveries = +d.c_section_deliveries;
         d.per_still_birth = +d.per_still_birth;
-
+        d.preterm_birth_rate = +d.preterm_birth_rate;
+        d.per_pw_outcome = +d.per_pw_outcome;
+        d.per_severe_anaemia_tested_treated = +d.per_severe_anaemia_tested_treated;
+        d.per_pw_given_tt1_or_tt_booster = +d.per_pw_given_tt1_or_tt_booster;
         d.tot_no_pw_reg_anc = +d.tot_no_pw_reg_anc;
         d.no_early_anc_register = +d.no_early_anc_register;
         d.no_anc_4_or_more = +d.no_anc_4_or_more;
@@ -1251,6 +1331,7 @@ let tickLabels = ["All", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov",
         d.no_pw_given_calcium = +d.no_pw_given_calcium;
         d.no_pw_given_albendazole = +d.no_pw_given_albendazole;
         d.no_pw_given_ifa = +d.no_pw_given_ifa;
+        d.no_preterm_birth = +d.no_preterm_birth;
         d.tot_c_section_deliveries = +d.tot_c_section_deliveries;
         d.tot_still_birth = +d.tot_still_birth;
         d.area_name = d.area_name;
@@ -1310,6 +1391,11 @@ let tickLabels = ["All", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov",
           geojson[j].properties.c_section_deliveries = data[i].c_section_deliveries;
           geojson[j].properties.per_still_birth = data[i].per_still_birth;
 
+          geojson[j].properties.per_pw_given_tt1_or_tt_booster = data[i].per_pw_given_tt1_or_tt_booster;
+          geojson[j].properties.per_severe_anaemia_tested_treated = data[i].per_severe_anaemia_tested_treated;
+          geojson[j].properties.preterm_birth_rate = data[i].preterm_birth_rate;
+          geojson[j].properties.no_preterm_birth = data[i].no_preterm_birth;
+          geojson[j].properties.per_pw_outcome = data[i].per_pw_outcome;
         }
       }
     }

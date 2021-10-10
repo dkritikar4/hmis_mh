@@ -88,8 +88,8 @@
           <a class="dropdown-item" href="#">Childhood Diseases-Tuberculosis(TB)</a>
           <a class="dropdown-item" href="#">Childhood Diseases-Malaria</a>
           <a class="dropdown-item" href="#">Childhood Diseases-Diarrhoea</a>
-          <a class="dropdown-item" href="#">Childhood Diseases-Diarrhoea treated in Inpatients</a>
-          <a class="dropdown-item" href="#">Children admitted with upper respiratory infections</a>
+          <!-- <a class="dropdown-item" href="#">Childhood Diseases-Diarrhoea treated in Inpatients</a>
+          <a class="dropdown-item" href="#">Children admitted with upper respiratory infections</a> -->
           <a class="dropdown-item" href="#">Childhood Diseases-Severe Acute Malnutrition(SAM)</a>
         </div>
     </div>
@@ -230,10 +230,10 @@
 
   const render = (
     district,
-    block,
+    // block,
     state,
     dtData,
-    blockData,
+    // blockData,
     stData
 
   ) => {
@@ -384,13 +384,13 @@
 
     //makemap
     const makemap = (geojson, tdata) => {
-      // console.log(tdata, "tdata")
+      console.log(geojson, "tdata")
 
       d3.select('.info-hirar').text(function () {
         // let displayVal = d => d.properties.area_name; 
         // console.log(displayVal, "d")
         let hirarchy = "Maharashtra";
-        let displayAreaName = geojson[0].properties.state
+        let displayAreaName = geojson[0].properties.district
         levelLocation.forEach(loc => {
           hirarchy += ">" + displayAreaName;
         })
@@ -398,10 +398,10 @@
       })
 
       if (level == 0 && direction == 1) {
-        TextValue = d => d.properties.state;
+        TextValue = d => d.properties.district;
       } 
       else if (level == 1 && direction == 1) {
-        TextValue = d => d.properties.district;
+        TextValue = d => d.properties.block;
       }
       //  else if (level == 2 && direction == 1) {
       //   TextValue = d => d.properties.beat_na;

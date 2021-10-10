@@ -462,10 +462,10 @@ class pieChildDisease(LoginRequiredMixin, TemplateView):
         dtint = int(district)
         fy_name = request.GET.get('fy', fy) 
         if dtint > 440:
-            data = list(MhDSdCiPie.objects.filter(Q(financial_year=fy_name) & Q(area_parent_id=405)).values())
+            data = list(MhDSdCdPie.objects.filter(Q(financial_year=fy_name) & Q(area_parent_id=405)).values())
             
         else:    
-            data = list(MhDSdCiPie.objects.filter(Q(financial_year=fy_name) & Q(area_parent_id=22)).values())
+            data = list(MhDSdCdPie.objects.filter(Q(financial_year=fy_name) & Q(area_parent_id=22)).values())
 
         for i in data:
             area_n = MhAreaDetails.objects.filter(Q(area_id = i['area_id'])).values('area_name')
