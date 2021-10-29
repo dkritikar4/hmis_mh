@@ -20,7 +20,7 @@ from hmis_dash.views import (HMISDashboardView, hmisBarChart, hmisLineChart, hmi
     chldImmuBar, chldImmuLine, chldImmuBarNumeric, chldImmuLineNumeric, chldDiseaseBar, chldDiseaseLine, chldDiseaseBarNumeric,
     chldDiseaseLineNumeric, hmisTableChart, pieStateLevel, pieChildDisease, pieChildImmu,mapStPW, mapStChldImmu, mapStChldDisease,
     fyLine, fyLineNum, fyChldImmuLine, fyChldImmuLineNum, fyChldDiseaseLine, fyChldDiseaseLineNum, 
-    CompBarPw, CompBarPwNumeric, CompBarCd)
+    CompBarPw, CompBarPwNumeric, CompBarCd, CompBarCdNumeric)
 from django.conf import settings
 from django.conf.urls.static import static
 from dashboard import views
@@ -40,6 +40,8 @@ urlpatterns = [
     url(r'^(?P<dist_name>[-\w]+)/(?P<fy>[-\w\ ]+)/hmis_dash/pw_compbar$', CompBarPw.as_view(), name='pw_compbar'),
     url(r'^(?P<dist_name>[-\w]+)/(?P<fy>[-\w\ ]+)/hmis_dash/pw_compbarNum$', CompBarPwNumeric.as_view(), name='pw_compbarNumeric'),
     url(r'^(?P<dist_name>[-\w]+)/(?P<fy>[-\w\ ]+)/hmis_dash/cd_compbar$', CompBarCd.as_view(), name='cd_compbar'),
+    url(r'^(?P<dist_name>[-\w]+)/(?P<fy>[-\w\ ]+)/hmis_dash/cd_compbarNum$', CompBarCdNumeric.as_view(), name='cd_compbarNumeric'),
+
 
     url(r'^(?P<dist_name>[-\w]+)/(?P<fy>[-\w\ ]+)/hmis_dash/ci_bar$', chldImmuBar.as_view(), name='ci_bar'),
     url(r'^(?P<dist_name>[-\w]+)/(?P<fy>[-\w\ ]+)/hmis_dash/ci_line$', chldImmuLine.as_view(), name='ci_line'),
